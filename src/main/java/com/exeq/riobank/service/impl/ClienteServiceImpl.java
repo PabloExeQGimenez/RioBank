@@ -1,18 +1,13 @@
 package com.exeq.riobank.service.impl;
 
-import com.exeq.riobank.DTOs.ClienteDTO;
 import com.exeq.riobank.models.Cliente;
-import com.exeq.riobank.models.Cuenta;
 import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.repositories.CuentaRepo;
 import com.exeq.riobank.service.ClienteService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -40,6 +35,11 @@ public class ClienteServiceImpl implements ClienteService {
   @Override
   public List<Cliente> listadoClientes() {
     return clienteRepo.findAll();
+  }
+
+  @Override
+  public Cliente mostrarClienteId(Long id) {
+    return clienteRepo.findById(id).orElse(null);
   }
 
 

@@ -7,9 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity @Table(name = "Cliente")
-@Getter @Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Cliente {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cliente_id")

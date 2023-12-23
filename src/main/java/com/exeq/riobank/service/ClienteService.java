@@ -1,10 +1,6 @@
 package com.exeq.riobank.service;
 
-import com.exeq.riobank.DTOs.ClienteDTO;
 import com.exeq.riobank.models.Cliente;
-import com.exeq.riobank.models.Cuenta;
-
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,6 +13,8 @@ public interface ClienteService {
 
   void saveClient(Cliente client);
   List<Cliente> listadoClientes();
+
+  Cliente mostrarClienteId(Long id);
 
 }
 
