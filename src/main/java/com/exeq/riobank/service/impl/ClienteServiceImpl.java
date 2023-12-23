@@ -1,5 +1,6 @@
 package com.exeq.riobank.service.impl;
 
+import com.exeq.riobank.DTOs.ClienteDTO;
 import com.exeq.riobank.models.Cliente;
 import com.exeq.riobank.models.Cuenta;
 import com.exeq.riobank.repositories.ClienteRepo;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -28,15 +30,17 @@ public class ClienteServiceImpl implements ClienteService {
     return clienteRepo.save(cliente);
   }
 
+
+
+  @Override
+  public void saveClient(Cliente client) {
+
+  }
+
   @Override
   public List<Cliente> listadoClientes() {
     return clienteRepo.findAll();
   }
 
-  @Override
-  @Transactional
-  public void agregarCuenta(Cliente cliente, Cuenta cuenta) {
-    cuenta.setCliente(cliente);
-    cliente.getCuentas().add(cuenta);
-  }
+
 }
