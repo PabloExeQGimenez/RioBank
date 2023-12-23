@@ -3,6 +3,7 @@ package com.exeq.riobank;
 import com.exeq.riobank.models.Cliente;
 import com.exeq.riobank.models.Cuenta;
 import com.exeq.riobank.repositories.ClienteRepo;
+import com.exeq.riobank.repositories.CuentaRepo;
 import com.exeq.riobank.service.ClienteService;
 import com.exeq.riobank.service.CuentaService;
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +22,7 @@ public class RiobankApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClienteService clienteService, CuentaService cuentaService) {
+	public CommandLineRunner initData(ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
 		return args -> {
 
 			Cliente clienteMelba = clienteService.insertarCliente("Melba", "Morel", "melba@gmail.com");
@@ -34,8 +35,15 @@ public class RiobankApplication {
 			Cuenta cuentaMelba1 = cuentaService.insertarCuenta("VIN001", hoy, 5000.00);
 			Cuenta cuentaMelba2 = cuentaService.insertarCuenta("VIN002", diaSiguiente, 7500.00);
 
+
 			clienteMelba.agregarCuenta(cuentaMelba1);
 			clienteMelba.agregarCuenta(cuentaMelba2);
+
+
+			cuentaRepo.save(cuentaMelba1);
+			cuentaRepo.save(cuentaMelba2);
+			clienteRepo.save(clienteMelba);
+
 		};
 
 	}
