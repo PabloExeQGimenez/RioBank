@@ -1,17 +1,15 @@
 package com.exeq.riobank.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+
 public class Cuenta {
 
   @Id

@@ -22,23 +22,15 @@ public class ClienteController {
   @Autowired
   private ClienteService clienteService;
   @Autowired
-  private ClienteRepo clienteRepo;
-  @Autowired
   private ClienteMapper clienteMapper;
 
   @GetMapping("/clientes")
   public List<ClienteDTO> listadoClientes(){
-    List<Cliente> clientes = clienteService.listadoClientes();
-    List<ClienteDTO> clientesDTO = clienteMapper.transformarAListaClienteDTO(clientes);
-    return clientesDTO;
+       return clienteMapper.transformarAListaClienteDTO(clienteService.listadoClientes());
   }
 
   @GetMapping("/clientes/{id}")
   public ClienteDTO mostrarClienteId(@PathVariable Long id) {
-
-    Cliente cliente = clienteService.mostrarClienteId(id);
-    ClienteDTO clienteDTO = clienteMapper.transformarAClienteDTO(cliente);
-    return clienteDTO;
-
+    return clienteMapper.transformarAClienteDTO(clienteService.mostrarClienteId(id));
   }
 }

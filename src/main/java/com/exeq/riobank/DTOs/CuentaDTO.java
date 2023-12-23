@@ -8,7 +8,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CuentaDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +19,15 @@ public class CuentaDTO {
     private LocalDate fechaCreacion;
     private Double balance;
 
-    public CuentaDTO(Cuenta cuenta){
+
+
+
+
+
+   /* public CuentaDTO(Cuenta cuenta){
       this.id = cuenta.getId();
       this.numero = cuenta.getNumero();
       this.fechaCreacion = cuenta.getFechaCreacion();
       this.balance = cuenta.getBalance();
-    }
+    }*/
 }

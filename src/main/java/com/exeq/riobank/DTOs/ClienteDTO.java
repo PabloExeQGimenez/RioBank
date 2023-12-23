@@ -6,10 +6,9 @@ import lombok.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ClienteDTO {
 
   private Long id;
