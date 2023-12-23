@@ -6,13 +6,12 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {CuentaMapper.class}) //si usa otro mapper por relaciones
 public interface ClienteMapper {
 
   @Mappings({
-      @Mapping(source = "id", target = "id"),
-      @Mapping(source = "nombre", target = "nombre"),
       @Mapping(source = "apellido", target = "apellido"),
+     @Mapping(source = "email", target = "correo"),
   })
 
   ClienteDTO transformarAClienteDTO(Cliente cliente);

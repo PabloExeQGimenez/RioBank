@@ -20,14 +20,4 @@ public class CuentaDTO {
     private Double balance;
 
 
-
-
-
-
-   /* public CuentaDTO(Cuenta cuenta){
-      this.id = cuenta.getId();
-      this.numero = cuenta.getNumero();
-      this.fechaCreacion = cuenta.getFechaCreacion();
-      this.balance = cuenta.getBalance();
-    }*/
 }

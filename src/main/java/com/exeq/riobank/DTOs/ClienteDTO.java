@@ -12,6 +12,6 @@ import java.util.stream.Collectors;
 public class ClienteDTO {
 
   private Long id;
-  private String nombre, apellido, email;
+  private String nombre, apellido, correo;
   private List<CuentaDTO> cuentas;
 }
