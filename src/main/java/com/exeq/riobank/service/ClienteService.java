@@ -1,14 +1,17 @@
 package com.exeq.riobank.service;
 
 import com.exeq.riobank.models.Cliente;
+import com.exeq.riobank.models.Cuenta;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 public interface ClienteService {
-  public Cliente insertarCliente(String nombre, String apellido, String email);
-  public List<Cliente> listadoClientes();
+  Cliente insertarCliente(String nombre, String apellido, String email);
+  List<Cliente> listadoClientes();
+  void agregarCuenta(Cliente cliente, Cuenta cuenta);
 
 }
 

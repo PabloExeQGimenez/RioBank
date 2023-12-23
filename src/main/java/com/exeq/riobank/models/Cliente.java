@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity @Table(name = "Cliente")
 @Getter @Setter
@@ -18,7 +19,7 @@ public class Cliente {
   private Long id;
   private String nombre, apellido, email;
   @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-  private Set<Cuenta> cuenta = new HashSet<>();
+  private Set<Cuenta> cuentas = new HashSet<>();
 
 
   //@Temporal(TemporalType.DATE)
@@ -27,6 +28,11 @@ public class Cliente {
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
+  }
+
+  public void agregarCuenta(Cuenta cuenta) {
+    cuenta.setCliente(this);
+    this.cuentas.add(cuenta);
   }
 }
 

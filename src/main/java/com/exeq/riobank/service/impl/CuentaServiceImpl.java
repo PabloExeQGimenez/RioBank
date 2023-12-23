@@ -6,7 +6,7 @@ import com.exeq.riobank.service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,7 +15,7 @@ public class CuentaServiceImpl implements CuentaService {
   @Autowired
   private CuentaRepo cuentaRepo;
   @Override
-  public Cuenta insertarCuenta(String numero, Date fechaCreacion, Double balance) {
+  public Cuenta insertarCuenta(String numero, LocalDate fechaCreacion, Double balance) {
 
     Cuenta cuenta = new Cuenta();
     cuenta.setNumero(numero);
