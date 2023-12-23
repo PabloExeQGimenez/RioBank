@@ -10,7 +10,6 @@ import java.util.List;
 public interface ClienteMapper {
 
   @Mappings({
-      @Mapping(source = "apellido", target = "apellido"),
      @Mapping(source = "email", target = "correo"),
   })
 

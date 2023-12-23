@@ -22,10 +22,11 @@ createApp({
 
         cargarClientes() {
             axios
-                .get("/clientes")
+                .get("/api/clientes")
                 .then(respuesta => {
-                    this.json = respuesta.data._embedded
-                    this.clientes = respuesta.data._embedded.clientes
+                    console.log(respuesta.data)
+                    this.json = respuesta
+                    this.clientes = respuesta.data
                 })
                 .catch(error => {
                     console.error('Error al obtener clientes:', error);
@@ -53,12 +54,10 @@ createApp({
                 nombre: this.inputNombre,
                 apellido: this.inputApellido,
                 email: this.inputEmail,
-                contrasena: this.inputEmail,
-
             };
 
             axios
-                .post("/clientes", datoClientes)
+                .post("/rest/clientes", datoClientes)
                 .then(respuesta => {
                     this.cargarClientes()
                     this.borrarFormulario()
