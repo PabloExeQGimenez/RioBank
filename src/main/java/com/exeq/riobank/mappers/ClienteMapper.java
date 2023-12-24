@@ -6,7 +6,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {CuentaMapper.class}) //si usa otro mapper por relaciones
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {CuentaMapper.class,TransactionMapper.class}) //si usa otro mapper por relaciones
 public interface ClienteMapper {
 
   @Mappings({

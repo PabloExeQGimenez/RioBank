@@ -7,17 +7,18 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CuentaDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String numero;
     private LocalDate fechaCreacion;
     private Double balance;
+    private List<TransactionDTO> transactions;
 
 
 }

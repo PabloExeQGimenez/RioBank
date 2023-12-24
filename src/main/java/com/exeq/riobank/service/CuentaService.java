@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface CuentaService {
-  public Cuenta insertarCuenta(String numero, LocalDate fechaCreacion, Double balance);
+  Cuenta insertarCuenta(String numero, LocalDate fechaCreacion, Double balance);
 
-  public List<Cuenta> listadoCuentas();
+  List<Cuenta> listadoCuentas();
+
+  Cuenta cuentaId(Long id);
 }

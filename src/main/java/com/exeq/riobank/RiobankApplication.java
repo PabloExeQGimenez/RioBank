@@ -47,6 +47,7 @@ public class RiobankApplication {
 			LocalDateTime ahora = LocalDateTime.now();
 			Transaction transactionMelba = transactionService.createTransaction(TransactionType.CREDIT, 2000.00, "Prueba", ahora );
 			cuentaMelba1.addTransaction(transactionMelba);
+			transactionService.saveTransactions(transactionMelba);
 		};
 
 	}

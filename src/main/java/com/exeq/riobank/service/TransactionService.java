@@ -8,4 +8,6 @@ import java.time.LocalDateTime;
 public interface TransactionService {
 
   Transaction createTransaction(TransactionType type, Double amount, String description, LocalDateTime date);
+
+  void saveTransactions(Transaction transactions);
 }

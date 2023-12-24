@@ -5,6 +5,7 @@ import com.exeq.riobank.mappers.CuentaMapper;
 import com.exeq.riobank.service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,10 @@ public class CuentaController {
   @GetMapping("/cuentas")
   public List<CuentaDTO> listadoCuentas(){
     return cuentaMapper.transformarAListaCuentaDTO(cuentaService.listadoCuentas());
+  }
+
+  @GetMapping("/cuentas/{id}")
+  public CuentaDTO cuentaId(@PathVariable Long id){
+    return cuentaMapper.transformarACuentaDTO(cuentaService.cuentaId(id));
   }
 }

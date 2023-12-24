@@ -20,6 +20,18 @@ createApp({
 
     },
     methods: {
+        clientes() {
+            axios
+                .get("/api/clientes")
+                .then(respuesta => {
+                    this.clienteMelba = respuesta.data
+                    console.log(this.clienteMelba)
+                    this.cuentasMelba = this.clienteMelba.cuentas
+                    console.log(this.cuentasMelba)
+                })
+                .catch(error => {
+                    console.error('Error al obtener clientes:', error);
+                });
 
         cliente1() {
             axios

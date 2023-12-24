@@ -28,4 +28,9 @@ public class CuentaServiceImpl implements CuentaService {
   public List<Cuenta> listadoCuentas() {
     return cuentaRepo.findAll();
   }
+
+  @Override
+  public Cuenta cuentaId(Long id) {
+    return cuentaRepo.findById(id).orElse(null);
+  }
 }
