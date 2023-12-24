@@ -46,7 +46,7 @@ main {
 
 footer {
     grid-column: 1/-1;
-    background-color: rgb(37, 49, 45);
+    background-color: rgb(0, 0, 0);
     height: 200px;
 
 }
