@@ -10,19 +10,50 @@ createApp({
             name: "",
             lastName: "",
             email: "",
+            acounts: [],
+            transactions: [],
+            visibleDetalleCuenta: false,
+
+
         };
     },
 
     created() {
-        this.cliente1();
+        this.cliente1()
+       
+
     },
 
     methods: {
+
+        accountId(id) {
+            if (!id) {
+                // Manejar el caso en el que no hay un parámetro 'id' en la URL
+                console.error("ID not found in the URL");
+                return;
+            }
+
+            axios
+                .get(`/api/cuentas/${id}`)
+                .then((response) => {
+                    this.accounts = response.data;
+                    this.transactions = response.data.transactions;
+                    this.transactions.sort((a, b) => b.id - a.id);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            this.visibleDetalleCuenta = true;
+            this.visibleCuentas = false;
+            this.visibleDatosPersonales = false;
+        },
+
+
         clientes() {
             axios
                 .get("/api/clientes")
                 .then((respuesta) => {
-                    // Haz algo con la respuesta si es necesario
                 })
                 .catch((error) => {
                     console.error('Error al obtener clientes:', error);
@@ -34,10 +65,7 @@ createApp({
                 .get("/api/clientes/1")
                 .then((respuesta) => {
                     this.clienteMelba = respuesta.data;
-                    console.log(this.clienteMelba);
                     this.cuentasMelba = this.clienteMelba.cuentas;
-                    console.log(this.cuentasMelba);
-
                     this.name = this.clienteMelba.nombre;
                     this.lastName = this.clienteMelba.apellido;
                     this.email = this.clienteMelba.correo;
@@ -50,10 +78,12 @@ createApp({
         mostrarDatosPersonales() {
             this.visibleDatosPersonales = true;
             this.visibleCuentas = false;
+            this.visibleDetalleCuenta = false
         },
         mostrarCuentas() {
             this.visibleCuentas = true;
             this.visibleDatosPersonales = false;
+            this.visibleDetalleCuenta = false
         },
 
         logout() {

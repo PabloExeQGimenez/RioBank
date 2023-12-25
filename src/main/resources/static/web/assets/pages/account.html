@@ -22,7 +22,25 @@
       </nav>
     </header>
     <main>
-      
+      <div class="seccion3">
+      <table class="table table-hover text-center">
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody class="rounded-4">
+          <tr v-for="transaction of transactions">
+            <td>{{transaction.type}}</td>
+            <td>{{transaction.amount}}</td>
+            <td>{{transaction.date}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
     </main>
 
     <footer>
