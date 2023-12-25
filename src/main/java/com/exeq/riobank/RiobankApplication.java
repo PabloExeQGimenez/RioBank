@@ -45,9 +45,15 @@ public class RiobankApplication {
 			clienteRepo.save(clienteMelba);
 
 			LocalDateTime ahora = LocalDateTime.now();
-			Transaction transactionMelba = transactionService.createTransaction(TransactionType.CREDIT, 2000.00, "Prueba", ahora );
+			Transaction transactionMelba = transactionService.createTransaction(TransactionType.CREDIT, 2000.00, "Prueba credit", ahora );
+
 			cuentaMelba1.addTransaction(transactionMelba);
 			transactionService.saveTransactions(transactionMelba);
+			Transaction transactionMelba2 = transactionService.createTransaction(TransactionType.DEBIT, 3000.00, "Prueba debit", ahora );
+			cuentaMelba1.addTransaction(transactionMelba2);
+			transactionService.saveTransactions(transactionMelba2);
+
+
 		};
 
 	}

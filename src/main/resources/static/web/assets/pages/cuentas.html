@@ -88,7 +88,7 @@
                     {{ transaction.type }}
                   </td>
                   <td>$ {{ transaction.amount }}</td>
-                  <td>{{ transaction.date }}</td>
+                  <td>{{ formatTransactionDate(transaction.date) }}</td>
                   <td>{{transaction.description}}</td>
                 </tr>
               </tbody>
