@@ -1,13 +1,11 @@
 package com.exeq.riobank;
 
-import com.exeq.riobank.models.Cliente;
-import com.exeq.riobank.models.Cuenta;
-import com.exeq.riobank.models.Transaction;
-import com.exeq.riobank.models.TransactionType;
+import com.exeq.riobank.models.*;
 import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.repositories.CuentaRepo;
 import com.exeq.riobank.service.ClienteService;
 import com.exeq.riobank.service.CuentaService;
+import com.exeq.riobank.service.LoanService;
 import com.exeq.riobank.service.TransactionService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class RiobankApplication {
@@ -26,7 +25,7 @@ public class RiobankApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
+	public CommandLineRunner initData(LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
 		return args -> {
 
 			Cliente clienteMelba = clienteService.insertarCliente("Melba", "Morel", "melba@gmail.com");
@@ -53,6 +52,9 @@ public class RiobankApplication {
 			cuentaMelba1.addTransaction(transactionMelba2);
 			transactionService.saveTransactions(transactionMelba2);
 
+			Loan mortgageLoan = loanService.createLoan("Mortgage", 500000.00, List.of(12, 24, 36, 48, 60));
+			Loan personalLoan = loanService.createLoan("Personal", 100000.00, List.of(6, 12, 24));
+			Loan autoLoan = loanService.createLoan("Automotriz", 300000.00, List.of(6, 12, 24,36));
 
 		};
 

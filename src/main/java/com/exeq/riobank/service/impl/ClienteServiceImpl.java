@@ -14,8 +14,8 @@ public class ClienteServiceImpl implements ClienteService {
 
   @Autowired
   private ClienteRepo clienteRepo;
-  @Autowired
-  private CuentaRepo cuentaRepo;
+/*  @Autowired
+  private CuentaRepo cuentaRepo;*/
   @Override
   public Cliente insertarCliente(String nombre, String apellido, String email) {
     Cliente cliente= new Cliente();

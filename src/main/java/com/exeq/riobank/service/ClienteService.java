@@ -7,15 +7,9 @@ import java.util.List;
 
 public interface ClienteService {
   Cliente insertarCliente(String nombre, String apellido, String email);
-/*
-  List<ClienteDTO> listadoClientes();
-*/
-
   void saveClient(Cliente client);
   List<Cliente> listadoClientes();
-
   Cliente mostrarClienteId(Long id);
-
 }
 
 // que queremos hacer con la clase Cliente
