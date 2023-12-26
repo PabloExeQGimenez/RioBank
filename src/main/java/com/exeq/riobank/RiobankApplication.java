@@ -58,6 +58,7 @@ public class RiobankApplication {
 			ClientLoan melbaLoanPersonal = clientLoanService.createClientLoan(personalLoan, 50000.00, 12);
 			Set<ClientLoan> listaClientLoans = Set.of(melbaLoanPersonal,melbaLoanMortgage);
 			clienteMelba.setClientLoans(listaClientLoans);
+			clienteRepo.save(clienteMelba);
 		};
 
 	}
