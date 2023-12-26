@@ -3,10 +3,7 @@ package com.exeq.riobank;
 import com.exeq.riobank.models.*;
 import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.repositories.CuentaRepo;
-import com.exeq.riobank.service.ClienteService;
-import com.exeq.riobank.service.CuentaService;
-import com.exeq.riobank.service.LoanService;
-import com.exeq.riobank.service.TransactionService;
+import com.exeq.riobank.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class RiobankApplication {
@@ -25,7 +23,7 @@ public class RiobankApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
+	public CommandLineRunner initData(ClientLoanService clientLoanService, LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
 		return args -> {
 
 			Cliente clienteMelba = clienteService.insertarCliente("Melba", "Morel", "melba@gmail.com");
@@ -56,6 +54,10 @@ public class RiobankApplication {
 			Loan personalLoan = loanService.createLoan("Personal", 100000.00, List.of(6, 12, 24));
 			Loan autoLoan = loanService.createLoan("Automotriz", 300000.00, List.of(6, 12, 24,36));
 
+			ClientLoan melbaLoanMortgage = clientLoanService.createClientLoan(mortgageLoan, 400000.00, 60);
+			ClientLoan melbaLoanPersonal = clientLoanService.createClientLoan(personalLoan, 50000.00, 12);
+			Set<ClientLoan> listaClientLoans = Set.of(melbaLoanPersonal,melbaLoanMortgage);
+			clienteMelba.setClientLoans(listaClientLoans);
 		};
 
 	}
