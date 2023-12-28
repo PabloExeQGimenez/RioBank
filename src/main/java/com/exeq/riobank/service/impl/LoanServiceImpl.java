@@ -20,4 +20,12 @@ public class LoanServiceImpl implements LoanService {
     loan.setPayments(payments);
     return loanRepo.save(loan);
   }
+
+  @Override
+  public Loan saveLoan(Loan loan) {
+    return loanRepo.save(loan);
+
+  }
+
+
 }

@@ -1,10 +1,7 @@
 package com.exeq.riobank.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,9 +23,29 @@ public class Loan {
   @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
   private Set<ClientLoan> clientLoans = new HashSet<>();
 
-  private Loan (String name, Double maxAmount, List<Integer> payments){
+  public Loan(String name, Double maxAmount, List<Integer> payments){
     this.name = name;
     this.maxAmount = maxAmount;
     this.payments = payments;
+  }
+  public void addClientLoan(ClientLoan clientLoan) {
+    clientLoan.setLoan(this);
+    this.clientLoans.add(clientLoan);
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }

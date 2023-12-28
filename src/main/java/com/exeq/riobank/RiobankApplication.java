@@ -1,8 +1,11 @@
 package com.exeq.riobank;
 
+import com.exeq.riobank.DTOs.ClienteLoanDTO;
 import com.exeq.riobank.models.*;
+import com.exeq.riobank.repositories.ClientLoanRepo;
 import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.repositories.CuentaRepo;
+import com.exeq.riobank.repositories.LoanRepo;
 import com.exeq.riobank.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +26,7 @@ public class RiobankApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClientLoanService clientLoanService, LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
+	public CommandLineRunner initData(ClientLoanRepo clientLoanRepo, LoanRepo loanRepo, ClientLoanService clientLoanService, LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
 		return args -> {
 
 			Cliente clienteMelba = clienteService.insertarCliente("Melba", "Morel", "melba@gmail.com");
@@ -50,15 +53,47 @@ public class RiobankApplication {
 			cuentaMelba1.addTransaction(transactionMelba2);
 			transactionService.saveTransactions(transactionMelba2);
 
+
+			/*List<Integer> listPayments1 = List.of(12,24,36,48,60);
+			Loan loan1 = new Loan("Mortgage", 500000.00, listPayments1);
+			loanRepo.save(loan1);
+			List<Integer> listPayments2 = List.of(6,12,24);
+			Loan loan2 = new Loan("Personal", 300000.00, listPayments2);
+			loanRepo.save(loan2);
+			List<Integer> listPayments3 = List.of(6,12,24,36);
+			Loan loan3 = new Loan("Automotriz", 300000.00, listPayments3);
+			loanRepo.save(loan3);
+
+			ClientLoan clientLoan1 = new ClientLoan(loan1,400000.00, 60);
+			loan1.addClientLoan(clientLoan1);
+			clienteMelba.addClientLoan(clientLoan1);
+			clientLoanRepo.save(clientLoan1);
+			ClientLoan clientLoan2 = new ClientLoan(loan2,50000.00, 12);
+			loan2.addClientLoan(clientLoan2);
+			clienteMelba.addClientLoan(clientLoan2);
+			clientLoanRepo.save(clientLoan2);*/
+
+
+
 			Loan mortgageLoan = loanService.createLoan("Mortgage", 500000.00, List.of(12, 24, 36, 48, 60));
 			Loan personalLoan = loanService.createLoan("Personal", 100000.00, List.of(6, 12, 24));
 			Loan autoLoan = loanService.createLoan("Automotriz", 300000.00, List.of(6, 12, 24,36));
 
 			ClientLoan melbaLoanMortgage = clientLoanService.createClientLoan(mortgageLoan, 400000.00, 60);
 			ClientLoan melbaLoanPersonal = clientLoanService.createClientLoan(personalLoan, 50000.00, 12);
-			Set<ClientLoan> listaClientLoans = Set.of(melbaLoanPersonal,melbaLoanMortgage);
-			clienteMelba.setClientLoans(listaClientLoans);
+			mortgageLoan.addClientLoan(melbaLoanMortgage);
+			personalLoan.addClientLoan(melbaLoanPersonal);
+			clienteMelba.addClientLoan(melbaLoanMortgage);
+			clienteMelba.addClientLoan(melbaLoanPersonal);
+			loanRepo.save(mortgageLoan);
+			loanRepo.save(personalLoan);
+			clientLoanRepo.save(melbaLoanMortgage);
+			clientLoanRepo.save(melbaLoanPersonal);
 			clienteRepo.save(clienteMelba);
+
+			ClienteLoanDTO clienteLoanDTO = new ClienteLoanDTO();
+
+
 		};
 
 	}

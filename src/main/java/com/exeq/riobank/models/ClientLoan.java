@@ -1,28 +1,24 @@
 package com.exeq.riobank.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ClientLoan {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private Double amount;
   private Integer payments;
-  @ManyToOne()
+  @ManyToOne(fetch = FetchType.EAGER)
   private Cliente cliente;
-  @ManyToOne()
+  @ManyToOne(fetch = FetchType.EAGER)
   private Loan loan;
-
-  public ClientLoan(Loan loan, Double amount, Integer payments){
-    this.loan = loan;
+  public ClientLoan(Double amount, Integer payments){
     this.amount = amount;
     this.payments = payments;
   }
