@@ -12,7 +12,9 @@ createApp({
             email: "",
             acounts: [],
             transactions: [],
+            loans:[],
             visibleDetalleCuenta: false,
+            visiblePrestamos:false,
 
 
         };
@@ -49,6 +51,7 @@ createApp({
                     this.accounts = response.data;
                     this.transactions = response.data.transactions;
                     this.transactions.sort((a, b) => b.id - a.id);
+
                 })
                 .catch((error) => {
                     console.error(error);
@@ -57,6 +60,8 @@ createApp({
             this.visibleDetalleCuenta = true;
             this.visibleCuentas = false;
             this.visibleDatosPersonales = false;
+            this.visiblePrestamos = false
+
         },
 
 
@@ -79,6 +84,8 @@ createApp({
                     this.name = this.clienteMelba.nombre;
                     this.lastName = this.clienteMelba.apellido;
                     this.email = this.clienteMelba.correo;
+
+                    this.loans = this.clienteMelba.loans
                 })
                 .catch((error) => {
                     console.error('Error al obtener clientes:', error);
@@ -89,13 +96,20 @@ createApp({
             this.visibleDatosPersonales = true;
             this.visibleCuentas = false;
             this.visibleDetalleCuenta = false
+            this.visiblePrestamos = false
         },
         mostrarCuentas() {
             this.visibleCuentas = true;
             this.visibleDatosPersonales = false;
             this.visibleDetalleCuenta = false
+            this.visiblePrestamos = false
         },
-
+        mostrarPrestamos() {
+            this.visiblePrestamos = true
+            this.visibleCuentas = false
+            this.visibleDatosPersonales = false
+            this.visibleDetalleCuenta = false
+        },
         logout() {
             axios
                 .post("http://localhost:8080/api/logout")

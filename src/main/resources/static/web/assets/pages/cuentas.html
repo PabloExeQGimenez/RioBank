@@ -31,6 +31,8 @@
               Personal information</a></li>
           <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-person-bounding-box "></i>
               Accounts</a></li>
+              <li><a href="" @click.prevent="mostrarPrestamos" class=""><i class="bi bi-person-bounding-box "></i>
+                Loans</a></li>
 
         </ul>
 
@@ -90,6 +92,29 @@
                   <td>$ {{ transaction.amount }}</td>
                   <td>{{ formatTransactionDate(transaction.date) }}</td>
                   <td>{{transaction.description}}</td>
+                </tr>
+              </tbody>
+              
+            </table>
+          </div>
+          <div v-if="visiblePrestamos" class="cuentas">
+          
+            <table class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Loan</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Payments</th>
+
+                </tr>
+              </thead>
+              <tbody class="rounded-4">
+                <tr v-for="loan of loans">
+                  <td >
+                    {{ loan.loanName }}
+                  </td>
+                  <td>$ {{ loan.amount }}</td>
+                  <td>{{loan.payments}}</td>
                 </tr>
               </tbody>
               
