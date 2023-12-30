@@ -10,7 +10,7 @@ createApp({
             name: "",
             lastName: "",
             email: "",
-            acounts: [],
+            accounts: [],
             transactions: [],
             loans:[],
             visibleDetalleCuenta: false,
@@ -40,7 +40,6 @@ createApp({
 
         accountId(id) {
             if (!id) {
-                // Manejar el caso en el que no hay un parámetro 'id' en la URL
                 console.error("ID not found in the URL");
                 return;
             }
