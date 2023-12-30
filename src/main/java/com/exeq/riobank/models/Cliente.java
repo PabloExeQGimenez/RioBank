@@ -15,7 +15,7 @@ public class Cliente {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cliente_id")
   private Long id;
-  private String nombre, apellido, email;
+  private String nombre, apellido, email, password;
   @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
   private Set<Cuenta> cuentas = new HashSet<>();
   @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)

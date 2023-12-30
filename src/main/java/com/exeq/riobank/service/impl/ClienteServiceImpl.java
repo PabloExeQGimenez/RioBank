@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -17,11 +18,12 @@ public class ClienteServiceImpl implements ClienteService {
 /*  @Autowired
   private CuentaRepo cuentaRepo;*/
   @Override
-  public Cliente insertarCliente(String nombre, String apellido, String email) {
+  public Cliente insertarCliente(String nombre, String apellido, String email, String password) {
     Cliente cliente= new Cliente();
     cliente.setNombre(nombre);
     cliente.setApellido(apellido);
     cliente.setEmail(email);
+    cliente.setPassword(password);
     return clienteRepo.save(cliente);
   }
 
@@ -40,6 +42,11 @@ public class ClienteServiceImpl implements ClienteService {
   @Override
   public Cliente mostrarClienteId(Long id) {
     return clienteRepo.findById(id).orElse(null);
+  }
+
+  @Override
+  public Cliente buscarClientePorEmail(String email) {
+    return clienteRepo.findByEmail(email).orElse(null);
   }
 
 
