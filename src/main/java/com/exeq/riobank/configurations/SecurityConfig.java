@@ -19,8 +19,10 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     http.authorizeHttpRequests(authorize -> authorize
-        .requestMatchers("/api/login", "/web/index.html", "/api/**", "/web/assets/**" ).permitAll()
-        .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
+        .requestMatchers("/api/login", "/web/index.html", "/web/assets/style/**", "/web/assets/scripts/index.js" ).permitAll()
+        .requestMatchers(HttpMethod.POST, "/api/login", "/api/clientes").permitAll()
+        .requestMatchers("/web/assets/pages/cuentas.html").hasAuthority("CLIENT")
+
         .anyRequest().authenticated());
 
     http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
