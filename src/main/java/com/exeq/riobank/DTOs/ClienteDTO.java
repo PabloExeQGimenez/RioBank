@@ -5,6 +5,7 @@ import com.exeq.riobank.models.Loan;
 import lombok.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,4 +18,8 @@ public class ClienteDTO {
   private String nombre, apellido, correo;
   private List<CuentaDTO> cuentas;
   private List<ClienteLoanDTO> loans;
+
+  public ClienteDTO(Optional<Cliente> email) {
+
+  }
 }

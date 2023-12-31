@@ -3,8 +3,8 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            clienteMelba: "",
-            cuentasMelba: "",
+            clienteCurrent: "",
+            cuentasCurrent: "",
             visibleDatosPersonales: false,
             visibleCuentas: false,
             name: "",
@@ -76,15 +76,16 @@ createApp({
 
         cliente1() {
             axios
-                .get("/api/clientes/1")
+                .get("/api/clientes/current")
                 .then((respuesta) => {
-                    this.clienteMelba = respuesta.data;
-                    this.cuentasMelba = this.clienteMelba.cuentas;
-                    this.name = this.clienteMelba.nombre;
-                    this.lastName = this.clienteMelba.apellido;
-                    this.email = this.clienteMelba.correo;
+                    console.log(respuesta.data);
+                    this.clienteCurrent = respuesta.data;
+                    this.cuentasCurrent = this.clienteCurrent.cuentas;
+                    this.name = this.clienteCurrent.nombre;
+                    this.lastName = this.clienteCurrent.apellido;
+                    this.email = this.clienteCurrent.correo;
 
-                    this.loans = this.clienteMelba.loans
+                    this.loans = this.clienteCurrent.loans
                 })
                 .catch((error) => {
                     console.error('Error al obtener clientes:', error);

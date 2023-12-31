@@ -25,7 +25,7 @@
 
     <main id="mainCuentas" class="container">
 
-      <section class="navLateral"><span class="saludoNavLateral">Hello! {{clienteMelba.nombre}}</span>
+      <section class="navLateral"><span class="saludoNavLateral">Hello! {{clienteCurrent.nombre}}</span>
 
         <ul class="ulLateral">
           <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i class="bi bi-person-bounding-box "></i>
@@ -62,7 +62,7 @@
 
         </div>
         <div v-if="visibleCuentas" class="cuentas">
-          <div v-for="cuenta of cuentasMelba">
+          <div v-for="cuenta of cuentasCurrent">
             <div class="tarjetaCuenta">
               <span class="fs-5">Numero de Cuenta:</span>
               <h4> {{cuenta.numero}}</h4>

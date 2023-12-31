@@ -6,13 +6,14 @@ import com.exeq.riobank.models.Cliente;
 import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,6 +24,10 @@ public class ClienteController {
   private ClienteService clienteService;
   @Autowired
   private ClienteMapper clienteMapper;
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+  @Autowired
+  private ClienteRepo clienteRepo;
 
   @GetMapping("/clientes")
   public List<ClienteDTO> listadoClientes(){
@@ -32,5 +37,20 @@ public class ClienteController {
   @GetMapping("/clientes/{id}")
   public ClienteDTO mostrarClienteId(@PathVariable Long id) {
     return clienteMapper.transformarAClienteDTO(clienteService.mostrarClienteId(id));
+  }
+
+  @PostMapping("/clientes")
+  public ResponseEntity<Object> register(@RequestParam String nombre, @RequestParam String apellido,
+                                         @RequestParam String email, @RequestParam String password){
+
+    Cliente cliente = clienteService.insertarCliente(nombre, apellido, email, passwordEncoder.encode(password));
+
+    return new ResponseEntity<>(HttpStatus.CREATED);
+  }
+
+  @GetMapping("/clientes/current")
+  public ClienteDTO clienteActual(Authentication authentication){
+
+    return clienteMapper.transformarAClienteDTO(clienteService.buscarClientePorEmail(authentication.getName()));
   }
 }

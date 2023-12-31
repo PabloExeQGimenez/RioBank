@@ -24,6 +24,14 @@ public class Cliente {
 
   //@Temporal(TemporalType.DATE)
 
+ /* public Cliente(String nombre, String apellido, String email, String password){
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.email = email;
+    this.password = password;
+
+  }*/
+
   public void agregarCuenta(Cuenta cuenta) {
     cuenta.setCliente(this);
     this.cuentas.add(cuenta);
