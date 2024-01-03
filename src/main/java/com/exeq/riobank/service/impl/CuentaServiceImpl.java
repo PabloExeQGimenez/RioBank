@@ -33,4 +33,9 @@ public class CuentaServiceImpl implements CuentaService {
   public Cuenta cuentaId(Long id) {
     return cuentaRepo.findById(id).orElse(null);
   }
+
+  @Override
+  public Cuenta saveAccount(Cuenta cuenta) {
+    return cuentaRepo.save(cuenta);
+  }
 }

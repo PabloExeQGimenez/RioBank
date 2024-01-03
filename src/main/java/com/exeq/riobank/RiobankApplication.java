@@ -7,6 +7,7 @@ import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.repositories.CuentaRepo;
 import com.exeq.riobank.repositories.LoanRepo;
 import com.exeq.riobank.service.*;
+import com.exeq.riobank.utils.AccountUtils;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -73,6 +74,7 @@ public class RiobankApplication {
 			clientLoanRepo.save(melbaLoanMortgage);
 			clientLoanRepo.save(melbaLoanPersonal);
 			clienteRepo.save(clienteMelba);
+
 
 		};
 

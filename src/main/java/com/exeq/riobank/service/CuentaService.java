@@ -11,4 +11,6 @@ public interface CuentaService {
   List<Cuenta> listadoCuentas();
 
   Cuenta cuentaId(Long id);
+
+  Cuenta saveAccount(Cuenta cuenta);
 }
