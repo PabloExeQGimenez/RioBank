@@ -27,6 +27,18 @@ createApp({
     },
 
     methods: {
+        
+        createAccount() {
+            axios
+                .post("/api/clientes/current/accounts")
+                .then((response) => {
+                    location.reload()
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+
         formatTransactionDate(date) {
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
                 year: 'numeric',
