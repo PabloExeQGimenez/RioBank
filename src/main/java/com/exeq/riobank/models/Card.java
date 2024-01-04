@@ -1,9 +1,6 @@
 package com.exeq.riobank.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,18 +21,10 @@ public class Card {
   private String number;
   private String cvv;
   private LocalDate thruDate, fromDate;
-
-  public Card(CardType type, CardColor color, String number, String cvv, LocalDate thruDate, LocalDate fromDate){
-    this.type = type;
-    this.color = color;
-    this.number = number;
-    this.cvv = cvv;
-    this.thruDate = thruDate;
-    this.fromDate = fromDate;
+  @ManyToOne(fetch = FetchType.EAGER)
+  private Cliente client;
 
 
-  }
-
-  public void setCliente(Cliente cliente) {
+  public Card(String s, CardType cardType, CardColor cardColor, String s1, String number, LocalDate now, LocalDate localDate) {
   }
 }

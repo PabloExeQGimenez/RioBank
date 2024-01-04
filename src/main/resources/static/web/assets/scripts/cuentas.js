@@ -15,6 +15,11 @@ createApp({
             loans:[],
             visibleDetalleCuenta: false,
             visiblePrestamos:false,
+            visibleCards: false,
+            cards: [],
+            cardType: "",
+            cardColor: "",
+
 
 
         };
@@ -27,6 +32,19 @@ createApp({
     },
 
     methods: {
+        createCard() {
+            console.log(this.cardType)
+            console.log(this.cardColor)
+        axios
+        .post("/api/clientes/current/cards", `type=${this.cardType}&color=${this.cardColor}`)
+        .then((response) => {
+            console.log("card created")
+            location.reload()
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+        },
         
         createAccount() {
             axios
@@ -72,6 +90,7 @@ createApp({
             this.visibleCuentas = false;
             this.visibleDatosPersonales = false;
             this.visiblePrestamos = false
+            this.visibleCards = false;
 
         },
 
@@ -103,24 +122,34 @@ createApp({
                     console.error('Error al obtener clientes:', error);
                 });
         },
+        mostrarCards() {
+            this.visibleCards = true;
+            this.visibleDatosPersonales = false;
+            this.visibleCuentas = false;
+            this.visibleDetalleCuenta = false
+            this.visiblePrestamos = false
+        },
 
         mostrarDatosPersonales() {
             this.visibleDatosPersonales = true;
             this.visibleCuentas = false;
             this.visibleDetalleCuenta = false
             this.visiblePrestamos = false
+            this.visibleCards = false;
         },
         mostrarCuentas() {
             this.visibleCuentas = true;
             this.visibleDatosPersonales = false;
             this.visibleDetalleCuenta = false
             this.visiblePrestamos = false
+            this.visibleCards = false;
         },
         mostrarPrestamos() {
             this.visiblePrestamos = true
             this.visibleCuentas = false
             this.visibleDatosPersonales = false
             this.visibleDetalleCuenta = false
+            this.visibleCards = false;
         },
         logout() {
             axios

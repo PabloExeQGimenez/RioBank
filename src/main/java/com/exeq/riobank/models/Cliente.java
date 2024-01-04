@@ -20,7 +20,7 @@ public class Cliente {
   private Set<Cuenta> cuentas = new HashSet<>();
   @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
   private List<ClientLoan> loans = new ArrayList<>();
-  @OneToMany(mappedBy = "cardholder")
+  @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
   private List<Card> cards = new ArrayList<>();
 
 
@@ -43,7 +43,7 @@ public class Cliente {
     this.loans.add(clientLoan);
   }
   public void addCard(Card card) {
-    card.setCliente(this);
+    card.setClient(this);
     this.cards.add(card);
   }
 

@@ -9,6 +9,8 @@ import com.exeq.riobank.service.CardService;
 import com.exeq.riobank.service.ClienteService;
 import com.exeq.riobank.utils.CardUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +34,21 @@ public class CardController {
   @Autowired
   private CardUtils cardUtils;
 
+
   @PostMapping("/clientes/current/cards")
-  public Card createCard(@RequestParam CardType type, @RequestParam CardColor color, Authentication authentication){
+  public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color, Authentication authentication){
 
     Cliente autenticado = clienteService.buscarClientePorEmail(authentication.getName());
-    Card card = new Card(type, color, (generateNumber(1,10000)+ " "+generateNumber(1,10000)+" "+generateNumber(1,10000)+" "+generateNumber(1,10000)),generateCvv(1,1000), LocalDate.now(), LocalDate.now().plusYears(5));
+    Card card = new Card((autenticado.getNombre()+ " " + autenticado.getApellido() ), CardType.valueOf(type), CardColor.valueOf(color),"9238 8928 9823 7879","345" , LocalDate.now(), LocalDate.now().plusYears(5));
 
-    return card;
+/*
+    Card card = new Card(type, color, (generateNumber(1,10000)+ " "+generateNumber(1,10000)+" "+generateNumber(1,10000)+" "+generateNumber(1,10000)),generateCvv(1,1000), LocalDate.now(), LocalDate.now().plusYears(5));
+*/
+
+    cardService.saveCard(card);
+    autenticado.addCard(card);
+    clienteService.saveClient(autenticado);
+    return new ResponseEntity<>("Card created!", HttpStatus.CREATED);
   }
 
 }

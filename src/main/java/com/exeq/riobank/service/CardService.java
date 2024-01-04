@@ -7,5 +7,5 @@ import com.exeq.riobank.models.CardType;
 import java.time.LocalDate;
 
 public interface CardService {
-  Card createCard(CardType type, CardColor color, String number, String cVV, LocalDate thruDate, LocalDate fromDate);
+  void saveCard(Card card);
 }
