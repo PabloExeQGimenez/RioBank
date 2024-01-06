@@ -5,6 +5,7 @@ import com.exeq.riobank.models.CardType;
 import com.exeq.riobank.models.Card;
 
 import com.exeq.riobank.models.Cliente;
+import com.exeq.riobank.repositories.CardRepo;
 import com.exeq.riobank.service.CardService;
 import com.exeq.riobank.service.ClienteService;
 import com.exeq.riobank.utils.CardUtils;
@@ -33,21 +34,30 @@ public class CardController {
   private ClienteService clienteService;
   @Autowired
   private CardUtils cardUtils;
+  @Autowired
+  private CardRepo cardRepo;
 
 
   @PostMapping("/clientes/current/cards")
   public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color, Authentication authentication){
 
-    Cliente autenticado = clienteService.buscarClientePorEmail(authentication.getName());
-    Card card = new Card((autenticado.getNombre()+ " " + autenticado.getApellido() ), CardType.valueOf(type), CardColor.valueOf(color),"9238 8928 9823 7879","345" , LocalDate.now(), LocalDate.now().plusYears(5));
-
+    Cliente cliente = clienteService.buscarClientePorEmail(authentication.getName());
+    String nombreUsuario = authentication.getName();
+    System.out.println("autenticación: " + nombreUsuario);
 /*
-    Card card = new Card(type, color, (generateNumber(1,10000)+ " "+generateNumber(1,10000)+" "+generateNumber(1,10000)+" "+generateNumber(1,10000)),generateCvv(1,1000), LocalDate.now(), LocalDate.now().plusYears(5));
+    Card card = new Card((cliente.getNombre()+ " " + cliente.getApellido() ), CardType.valueOf(type), CardColor.valueOf(color),"9238 8928 9823 7879","345" , LocalDate.now(), LocalDate.now().plusYears(5));
 */
 
+  /*  Card card = new Card((autenticado.getNombre()+ " " + autenticado.getApellido() ),CardType.valueOf(type), CardColor.valueOf(color), (generateNumber(1,10000)+ " "+generateNumber(1,10000)+" "+generateNumber(1,10000)+" "+generateNumber(1,10000)),generateCvv(1,1000), LocalDate.now(), LocalDate.now().plusYears(5));
+*/
+   /* System.out.println("Lista de tarjetas antes de agregar: " + cliente.getCards());
+    System.out.println(cliente);
     cardService.saveCard(card);
-    autenticado.addCard(card);
-    clienteService.saveClient(autenticado);
+    cliente.addCard(card);*/
+
+    System.out.println("Lista de tarjetas despues de agregar: " + cliente.getCards());
+
+    clienteService.saveClient(cliente);
     return new ResponseEntity<>("Card created!", HttpStatus.CREATED);
   }
 

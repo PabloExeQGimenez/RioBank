@@ -32,7 +32,7 @@ public class RiobankApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClientLoanRepo clientLoanRepo, LoanRepo loanRepo, ClientLoanService clientLoanService, LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
+	public CommandLineRunner initData(CardService cardService, ClientLoanRepo clientLoanRepo, LoanRepo loanRepo, ClientLoanService clientLoanService, LoanService loanService, TransactionService transactionService, ClienteService clienteService, CuentaService cuentaService, CuentaRepo cuentaRepo, ClienteRepo clienteRepo) {
 		return args -> {
 
 			Cliente clienteMelba = clienteService.insertarCliente("Melba", "Morel", "melba@gmail.com", passwordEncoder.encode("melba"));
@@ -75,9 +75,21 @@ public class RiobankApplication {
 			clientLoanRepo.save(melbaLoanPersonal);
 			clienteRepo.save(clienteMelba);
 
+			Card cardMelba = new Card(
+					(clienteMelba.getNombre() + " " + clienteMelba.getApellido()),
+					CardType.DEBIT, CardColor.TITANIUM,
+					"9238 8928 9823 7879", "345",
+					LocalDate.now(), LocalDate.now().plusYears(5)
+			);
+			System.out.println("Lista de tarjetas antes de agregar: " + clienteMelba.getCards());
+			clienteMelba.addCard(cardMelba);
+			cardService.saveCard(cardMelba);
+			clienteService.saveClient(clienteMelba);
+
+			System.out.println("Lista de tarjetas después de agregar: " + clienteMelba.getCards());
+		};
 
 		};
 
 	}
 
-	}

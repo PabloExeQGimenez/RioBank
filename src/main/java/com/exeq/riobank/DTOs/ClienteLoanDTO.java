@@ -17,7 +17,7 @@ public class ClienteLoanDTO {
   private Double amount;
   private Integer payments;
 
-    public ClienteLoanDTO(ClientLoan clientLoan, Loan loan) {
+    public ClienteLoanDTO(ClientLoan clientLoan) {
     this.id = clientLoan.getId();
     this.loanId = clientLoan.getLoan().getId();
     this.loanName = clientLoan.getLoan().getName();

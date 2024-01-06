@@ -8,9 +8,9 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 @Entity
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter @Setter
 public class Card {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,15 @@ public class Card {
   private String cvv;
   private LocalDate thruDate, fromDate;
   @ManyToOne(fetch = FetchType.EAGER)
-  private Cliente client;
+  private Cliente cliente;
 
-
-  public Card(String s, CardType cardType, CardColor cardColor, String s1, String number, LocalDate now, LocalDate localDate) {
+  public Card(String cardholder,CardType type, CardColor color, String number, String cvv, LocalDate thruDate, LocalDate fromDate){
+    this.cardholder= cardholder;
+    this.type = type;
+    this.color = color;
+    this.number = number;
+    this.cvv = cvv;
+    this.thruDate = thruDate;
+    this.fromDate = fromDate;
   }
 }

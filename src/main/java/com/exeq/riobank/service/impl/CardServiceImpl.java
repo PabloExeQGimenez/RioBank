@@ -16,11 +16,21 @@ public class CardServiceImpl implements CardService {
   private CardRepo cardRepo;
   @Override
   public Card createCard(CardType type, CardColor color, String number, String cVV, LocalDate thruDate, LocalDate fromDate) {
-    return new Card();
+    Card card = new Card();
+    card.setType(type);
+    card.setColor(color);
+    card.setNumber(number);
+    card.setCvv(cVV);
+    card.setThruDate(thruDate);
+    card.setFromDate(fromDate);
+    return cardRepo.save(card);
   }
 
   @Override
   public void saveCard(Card card) {
+
     cardRepo.save(card);
   }
+
+
 }

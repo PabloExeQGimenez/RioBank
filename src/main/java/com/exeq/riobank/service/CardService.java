@@ -8,4 +8,5 @@ import java.time.LocalDate;
 
 public interface CardService {
   void saveCard(Card card);
+  Card createCard(CardType type, CardColor color, String number, String cVV, LocalDate thruDate, LocalDate fromDate);
 }

@@ -1,9 +1,7 @@
 package com.exeq.riobank.DTOs;
 
-import com.exeq.riobank.models.Cuenta;
+
 import com.exeq.riobank.models.TransactionType;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

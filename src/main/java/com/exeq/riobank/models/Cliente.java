@@ -1,6 +1,5 @@
 package com.exeq.riobank.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,28 +10,17 @@ import java.util.stream.Collectors;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Cliente {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "cliente_id")
   private Long id;
   private String nombre, apellido, email, password;
   @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
   private Set<Cuenta> cuentas = new HashSet<>();
   @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
   private List<ClientLoan> loans = new ArrayList<>();
-  @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
   private List<Card> cards = new ArrayList<>();
-
-
-  //@Temporal(TemporalType.DATE)
-
- /* public Cliente(String nombre, String apellido, String email, String password){
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.email = email;
-    this.password = password;
-
-  }*/
 
   public void agregarCuenta(Cuenta cuenta) {
     cuenta.setCliente(this);
@@ -43,7 +31,7 @@ public class Cliente {
     this.loans.add(clientLoan);
   }
   public void addCard(Card card) {
-    card.setClient(this);
+    card.setCliente(this);
     this.cards.add(card);
   }
 
