@@ -2,13 +2,11 @@ package com.exeq.riobank.mappers;
 
 import com.exeq.riobank.DTOs.CardDTO;
 import com.exeq.riobank.models.Card;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-
+import org.mapstruct.*;
 import java.util.List;
-
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = "spring")
 public interface CardMapper {
+
   CardDTO transformarACardDTO(Card card);
-  List<CardDTO> transformarAListaCardDTO(List<Card> cards);
+  List<CardDTO> transformarAListaCardsDTO(List<Card> cards);
 }

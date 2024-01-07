@@ -39,26 +39,23 @@ public class CardController {
 
 
   @PostMapping("/clientes/current/cards")
-  public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color, Authentication authentication){
+  public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color, Authentication authentication) {
 
     Cliente cliente = clienteService.buscarClientePorEmail(authentication.getName());
     String nombreUsuario = authentication.getName();
     System.out.println("autenticación: " + nombreUsuario);
-/*
     Card card = new Card((cliente.getNombre()+ " " + cliente.getApellido() ), CardType.valueOf(type), CardColor.valueOf(color),"9238 8928 9823 7879","345" , LocalDate.now(), LocalDate.now().plusYears(5));
-*/
 
-  /*  Card card = new Card((autenticado.getNombre()+ " " + autenticado.getApellido() ),CardType.valueOf(type), CardColor.valueOf(color), (generateNumber(1,10000)+ " "+generateNumber(1,10000)+" "+generateNumber(1,10000)+" "+generateNumber(1,10000)),generateCvv(1,1000), LocalDate.now(), LocalDate.now().plusYears(5));
+/*
+    Card card = new Card((cliente.getNombre()+ " " + cliente.getApellido() ),CardType.valueOf(type), CardColor.valueOf(color), (generateNumber(1,10000)+ " "+generateNumber(1,10000)+" "+generateNumber(1,10000)+" "+generateNumber(1,10000)),generateCvv(1,1000), LocalDate.now(), LocalDate.now().plusYears(5));
 */
-   /* System.out.println("Lista de tarjetas antes de agregar: " + cliente.getCards());
+    System.out.println("Lista de tarjetas antes de agregar: " + cliente.getCards());
     System.out.println(cliente);
+    cliente.addCard(card);
     cardService.saveCard(card);
-    cliente.addCard(card);*/
-
     System.out.println("Lista de tarjetas despues de agregar: " + cliente.getCards());
-
     clienteService.saveClient(cliente);
     return new ResponseEntity<>("Card created!", HttpStatus.CREATED);
   }
 
-}
+  }
