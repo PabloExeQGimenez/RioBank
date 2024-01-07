@@ -33,8 +33,9 @@
           <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-person-bounding-box "></i>
               Accounts</a></li>
               <li><a @click="createAccount">Create Account</a></li>
-              <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Cards</a></li>
-              <li></li>
+              <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Create Cards</a></li>
+              <li><a @click.prevent="mostrarGetCards"><i class="bi bi-person-bounding-box "></i>Cards</a></li>
+
               <li><a href="" @click.prevent="mostrarPrestamos" ><i class="bi bi-person-bounding-box "></i>
                 Loans</a></li>
 
@@ -116,6 +117,7 @@
             </table>
           </div>
           <div v-if="visibleCards">
+            
             <form>
               <select class="form-select" aria-label="Default select example" v-model="cardType">
                 <option selected>Choose card type</option>
@@ -154,6 +156,13 @@
               
             </table>
           </div>
+          <div v-if="visibleGetCards">
+            hhh
+            <div v-for="card of cards">
+              <p>numero: {{card.number}}</p>
+
+            </div>
+            </div>
         
   </div>
   </section>

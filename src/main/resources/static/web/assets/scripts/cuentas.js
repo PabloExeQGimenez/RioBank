@@ -19,7 +19,7 @@ createApp({
             cards: [],
             cardType: "",
             cardColor: "",
-
+            visibleGetCards: false,
 
 
         };
@@ -32,6 +32,7 @@ createApp({
     },
 
     methods: {
+        
         createCard() {
             console.log(this.cardType)
             console.log(this.cardColor)
@@ -114,13 +115,21 @@ createApp({
                     this.cuentasCurrent = this.clienteCurrent.cuentas;
                     this.name = this.clienteCurrent.nombre;
                     this.lastName = this.clienteCurrent.apellido;
-                    this.email = this.clienteCurrent.correo;
-
+                    this.email = this.clienteCurrent.email;
                     this.loans = this.clienteCurrent.loans
+                    this.cards = this.clienteCurrent.cards
                 })
                 .catch((error) => {
                     console.error('Error al obtener clientes:', error);
                 });
+        },
+        mostrarGetCards() {
+            this.visibleGetCards = true;
+            this.visibleCards = false;
+            this.visibleDatosPersonales = false;
+            this.visibleCuentas = false;
+            this.visibleDetalleCuenta = false
+            this.visiblePrestamos = false
         },
         mostrarCards() {
             this.visibleCards = true;
@@ -128,6 +137,8 @@ createApp({
             this.visibleCuentas = false;
             this.visibleDetalleCuenta = false
             this.visiblePrestamos = false
+            this.visibleGetCards = false;
+
         },
 
         mostrarDatosPersonales() {
@@ -136,6 +147,7 @@ createApp({
             this.visibleDetalleCuenta = false
             this.visiblePrestamos = false
             this.visibleCards = false;
+            this.visibleGetCards = false;
         },
         mostrarCuentas() {
             this.visibleCuentas = true;
@@ -143,6 +155,7 @@ createApp({
             this.visibleDetalleCuenta = false
             this.visiblePrestamos = false
             this.visibleCards = false;
+            this.visibleGetCards = false;
         },
         mostrarPrestamos() {
             this.visiblePrestamos = true
@@ -150,6 +163,7 @@ createApp({
             this.visibleDatosPersonales = false
             this.visibleDetalleCuenta = false
             this.visibleCards = false;
+            this.visibleGetCards = false;
         },
         logout() {
             axios

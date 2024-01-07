@@ -1,31 +1,31 @@
 package com.exeq.riobank.utils;
 
-import com.exeq.riobank.repositories.CardRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.util.HashSet;
+import java.util.Set;
 @Component
 public class CardUtils {
-  @Autowired
-  private static CardRepo cardRepo;
-
   public static String generateNumber(int min, int max) {
-
+    Set<String> setCards = new HashSet<>();
     long number;
     String numberCompleted;
     do {
       number = (int) ((Math.random() * (max - min)) + min);
-      numberCompleted = String.format("%04d", number);
-    } while (cardRepo.existsByNumber(numberCompleted));
+      String formattedNumber = String.format("%04d", number);
+      numberCompleted = formattedNumber;
+    } while (setCards.contains(numberCompleted));
     return numberCompleted;
   }
 
   public static String generateCvv(int min, int max) {
+    Set<String> setCvvs = new HashSet<>();
     long number;
     String numberCompleted;
     do {
       number = (int) ((Math.random() * (max - min)) + min);
-      numberCompleted = String.format("%03d", number);
-    } while (cardRepo.existsByCvv(numberCompleted));
+      String formattedNumber = String.format("%03d", number);
+      numberCompleted = formattedNumber;
+    } while (setCvvs.contains(numberCompleted));
     return numberCompleted;
   }
 }
