@@ -46,7 +46,7 @@ main {
 footer {
     grid-column: 1/-1;
     background-color: var(--darkShades);
-    height: 200px;
+    height: 150px;
 
 }
 

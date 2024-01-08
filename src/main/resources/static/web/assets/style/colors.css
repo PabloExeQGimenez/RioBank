@@ -1,8 +1,8 @@
 :root{
-    --lightShades: #E7EEF3;
-    --lightAccent: #81B3C8;
-    --main   : #196BAD;
-    --darkAccent : #706E91;
-    --darkShades: #21558B;
+    --lightShades: #F8F4F3;
+    --lightAccent: #90BBCF;
+    --main   : #7B97AC;
+    --darkAccent : #959095;
+    --darkShades: #3A5470;  
     --json:#18fbf3;
 }
