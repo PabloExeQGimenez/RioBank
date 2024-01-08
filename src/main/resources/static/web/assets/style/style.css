@@ -2,52 +2,53 @@
 @import url(./colors.css);
 
 /*Utilidades*/
-.boton{
+.boton {
     background-color: var(--colorPrincipal);
-    font-size      : 1.2rem;
-    color          : var(--fuenteEnPrincipal);
+    font-size: 1.2rem;
+    color: var(--fuenteEnPrincipal);
     text-decoration: none;
-    border         : 1px solid var(--bordesBotonesEnPrincipal);
-    padding        : 2px 8px 2px 12px;
-    border-radius  : 20px;
+    border: 1px solid var(--bordesBotonesEnPrincipal);
+    padding: 2px 8px 2px 12px;
+    border-radius: 20px;
     transition: all 0.5s ease;
 
-    &:hover{
+    &:hover {
         background-color: var(--fuenteEnPrincipal);
         color: var(--colorPrincipal);
     }
 }
 
-a{
+a {
     color: white;
     text-decoration: none;
 }
+
 ul {
     list-style-type: none;
 }
 
-.json{
-    color:var(--json);
+.json {
+    color: var(--json);
     background-color: #01253b;
 }
 
 
 
-.header{
-    background-color: var(--colorPrincipal);
-    display         : flex;
-    justify-content : space-evenly;
+.header {
+    background-color: var(--main);
+    display: flex;
+    justify-content: space-around;
     align-items: center;
-    
-   
+
+
 }
 
 nav {
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-around;
     align-items: center;
-	height: 70px;
-	background-color: var(--principalResaltado);
+    height: 70px;
+    background-color: var(--lightAccen);
     border-radius: 8px;
     padding-left: 2px;
     padding-right: 2px;
@@ -55,38 +56,39 @@ nav {
     & a {
         min-width: 100px;
         text-align: center;
-        line-height: 66px; 
+        line-height: 66px;
         height: 66px;
         font-size: 1rem;
         text-transform: uppercase;
         color: rgb(255, 255, 255);
-        cursor: pointer;  
+        cursor: pointer;
     }
-    & a:hover{
+
+    & a:hover {
         border-radius: 8px;
         height: 66px;
-        background-color: var(--colorPrincipal);
+        background-color: var(--lightAccent);
     }
 }
 
-.navLateral{
+.navLateral {
     display: flex;
     flex-direction: column;
 
-    
+
 }
 
-#mainCuentas{
+#mainCuentas {
 
     .navLateral {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; 
-        align-items: center; 
+        justify-content: flex-start;
+        align-items: center;
         gap: 1.5rem;
         border-radius: 10px;
 
-        .saludoNavLateral{
+        .saludoNavLateral {
             text-align: center;
             color: var(--fuenteEnPrincipal);
             background-color: var(--colorPrincipal);
@@ -97,11 +99,11 @@ nav {
             box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
             -webkit-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
             -moz-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
-    
-            
+
+
         }
-        
-        .ulLateral{
+
+        .ulLateral {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -109,13 +111,13 @@ nav {
         }
 
         & a {
-            
+
             color: var(--colorPrincipal);
             font-size: 1.2rem;
             padding: 10px;
-            
-            
-    
+
+
+
             &:hover {
                 min-width: 100px;
                 border-radius: 8px;
@@ -127,16 +129,16 @@ nav {
     }
 
 
-    .cuentas{
+    .cuentas {
         display: flex;
         justify-content: center;
         gap: 2rem;
         align-items: center;
         justify-content: center;
         padding: 20px;
-       
 
-        .tarjetaCuenta{
+
+        .tarjetaCuenta {
             background-color: var(--colorPrincipal);
             color: var(--fuenteEnPrincipal);
             width: 300px;
@@ -149,7 +151,62 @@ nav {
                 padding: 10px;
                 border-radius: 8px;
             }
-            
+
         }
     }
+}
+
+.mainIndex {
+    .contCards {
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+        margin-top: 50px;
+        padding: 20px;
+
+
+        .card {
+            width: 500px !important;
+            border: none;
+            box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
+
+            .btn {
+                width: 100%;
+                background-color: var(--main);
+                font-size: 1.2rem;
+                color: var(--lightShades);
+                text-decoration: none;
+                border: 1px solid var(--bordesBotonesEnPrincipal);
+                padding: 2px 8px 2px 12px;
+                border-radius: 8px;
+                transition: all 0.5s ease;
+
+                &:hover {
+                    background-color: var(--darkShades);
+                    color: var(--lightShades);
+                }
+            }
+        }
+    }
+}
+
+.foot{
+    
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 15px;
+    
+}
+
+.seccion2{
+}
+.seccion3{
+    border-top: 1px solid var(--darkShades);
+    border-bottom: 1px solid var(--darkShades);
+    margin: 50px;
+  
 }

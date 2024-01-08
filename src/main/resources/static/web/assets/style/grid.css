@@ -18,8 +18,7 @@
 
 .banner {
     grid-column: 1/-1;
-    background-color: cadetblue;
-    height: 400px;
+    height: 520px;
 }
 
 main {
@@ -46,7 +45,7 @@ main {
 
 footer {
     grid-column: 1/-1;
-    background-color: rgb(0, 0, 0);
+    background-color: var(--darkShades);
     height: 200px;
 
 }

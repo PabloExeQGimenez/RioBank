@@ -1,9 +1,8 @@
 :root{
-    --colorPrincipal   : #014d7a;
-    --principalResaltado : #013d60;
-    --fuenteEnPrincipal: #fff;
-    --bordesBotonesEnPrincipal: #fff;
-    --main: #eee;
+    --lightShades: #E7EEF3;
+    --lightAccent: #81B3C8;
+    --main   : #196BAD;
+    --darkAccent : #706E91;
+    --darkShades: #21558B;
     --json:#18fbf3;
-
 }
