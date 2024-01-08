@@ -77,6 +77,25 @@ footer {
         grid-column: 2/12;
     }
 }
+.mainIndex {
+    grid-column: 1/-1;
+    min-height: calc(100vh - 150px - 100px);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 2.5rem;
+
+
+
+  
+
+    .seccion2 {
+    }
+
+    .seccion3Index {
+        grid-column: 1/-1;
+    }
+}
 
 #mainCuentas {
     grid-column: 1/-1;
