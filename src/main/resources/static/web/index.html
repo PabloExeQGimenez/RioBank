@@ -14,17 +14,32 @@
 
 <body>
   <div id="app" class="grid">
+    <div class="top ">
+      <div class="container top2">
+      <i class="bi bi-headset fs-4"> </i> 0800-333-1234 - 24hs
+
+    </div>
+    </div>
     <header class="header">
       <h1><a href="#"><i class="bi bi-bank2"></i> Río Bank</a></h1>
       <nav>
-        <a href="" data-bs-target="#modalLogin" data-bs-toggle="modal">Login</a>
-        <a href="./assets/pages/cuentas.html">Cuentas</a>
-        <a href="./assets/pages/manager.html">Admin</a>
-        <a @click="logout()">Logout</a>
+
+        
+        <div class="d-flex align-items-start">
+          <a href="" data-bs-target="#modalLogin" data-bs-toggle="modal" class="d-flex align-items-center">
+              <i class="bi bi-box-arrow-in-right fs-2 "></i>
+               Login
+          </a>
+          <a href="" data-bs-target="#modalLogin" data-bs-toggle="modal" class="d-flex align-items-center">
+            <i class="bi bi-person-plus m-2 fs-2"></i>
+             Register
+        </a>
+          <!-- <a @click="logout()">Logout</a> -->
+      </div>
       </nav>
     </header>
     <section class="banner">
-      <div id="carouselExample" class="carousel slide">
+      <div id="carouselExampleAutoplaying" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="./assets/images/banner2.png" class="d-block w-100" alt="...">
@@ -34,11 +49,11 @@
           </div>
 
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -50,32 +65,30 @@
       <section class="seccion2">
         <div class="contCards">
           <div class="card" style="width: 18rem;">
+            <img src="./assets/images/transfer.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Transfers to all banks</h5>
+              <p class="card-text">Send and receive money with the free Rio Bank account</p>
+              <a href="#" class="btn btn-primary">Go!</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
             <img src="./assets/images/loans.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+              <h5 class="card-title">Loans at the best interest</h5>
+              <p class="card-text">Mortgage, automotive and personal loans, find out how to obtain them.</p>
               <a href="#" class="btn btn-primary">Go!</a>
             </div>
           </div>
           <div class="card" style="width: 18rem;">
             <img src="./assets/images/transactions.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+              <h5 class="card-title">Free debit cards</h5>
+              <p class="card-text">Silver, gold and titatinum debit cards to make all your purchases.</p>
               <a href="#" class="btn btn-primary">Go!</a>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
-            <img src="./assets/images/loans.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go!</a>
-            </div>
-          </div>
+         
         </div>
       </section>
       <section class="seccion3Index">
@@ -106,7 +119,7 @@
 
 
     <div class="modal fade " id="modalLogin" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
-      <div class="modal-dialog ">
+      <div class="modal-dialog">
         <div class="modal-content modal_login">
           <!-- <div class="modal-header ">
                   
@@ -160,22 +173,14 @@
                         <label class="form-check-label" for="loginCheck"> Remember me </label>
                       </div>
                     </div>
-
                     <div class="col-md-6 d-flex justify-content-center">
                       <!-- Simple link -->
                       <a href="#!">Forgot password?</a>
                     </div>
-
                   </div>
-
                   <!-- Submit button -->
                   <button type="button" class="btn btn-block mb-4 btn_sign mx-auto" @click="login"
                     data-bs-dismiss="modalLogin">Sign in</button>
-
-                  <!-- Register buttons -->
-                  <div class="text-center">
-                    <p>Not a member? <a href="#!">Register</a></p>
-                  </div>
                 </form>
               </div>
 
@@ -185,46 +190,27 @@
                   <div class="mb-3">
                     <p>Sign up with:</p>
                   </div>
-
                   <!-- Name input -->
                   <div class="form-outline mb-1">
                     <input type="text" id="registerName" class="form-control" placeholder="Name" v-model="nameRegister">
                   </div>
-
                   <!-- Lastname input -->
                   <div class="form-outline mb-1">
                     <input type="text" id="registerUsername" class="form-control" placeholder="Lastname"
                       v-model="lastNameRegister">
                   </div>
-
                   <!-- Email input -->
                   <div class="form-outline mb-1">
                     <input type="email" id="registerEmail" class="form-control" placeholder="Email"
                       v-model="emailRegister">
                   </div>
-
-
-
                   <!-- Password input -->
                   <div class="form-outline mb-2">
                     <input type="password" id="registerPassword" class="form-control" placeholder="Password"
                       v-model="passwordRegister">
                   </div>
-
-
-
-                  <!-- Checkbox -->
-                  <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                      aria-describedby="registerCheckHelpText" />
-                    <label class="form-check-label" for="registerCheck">
-                      I have read and agree to the terms
-                    </label>
-                  </div>
-
                   <!-- Submit button -->
-                  <button data-mdb-ripple-init type="button" class="btn btn-block mb-3 btn_sign" @click="register">Sign
-                    in</button>
+                  <button data-mdb-ripple-init type="button" class="btn btn-block mb-3 btn_sign" @click="register">Sign up</button>
                 </form>
               </div>
 

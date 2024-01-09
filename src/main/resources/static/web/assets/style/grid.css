@@ -10,7 +10,9 @@
     grid-template-columns: repeat(12, 1fr);
 
 }
-
+.top{
+    grid-column: 1/-1;
+}
 .header {
     grid-column: 1/-1;
     height: 100px;
@@ -84,10 +86,6 @@ footer {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
     gap: 2.5rem;
-
-
-
-  
 
     .seccion2 {
     }
