@@ -43,7 +43,7 @@
         </ul>
       </section>
       <section class="seccion2 container">
-        <div v-if="visibleDatosPersonales" class="datosPersonales">
+        <div v-show="visibleDatosPersonales" class="datosPersonales">
           <div class="input-group my-3 ">
             <span class="input-group-text" id="basic-addon1">Name</span>
             <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"
@@ -61,10 +61,10 @@
           </div>
         </div>
 
-        <div v-if="visibleCuentas" class="cont_account">
+        <div v-show="visibleCuentas" class="cont_account">
           <div class="d-flex justify-content-between flex-column">
             <h3>Your accounts</h3>
-            
+           
           <div>
             <table class="table table-hover text-center w-100">
               <thead>
@@ -86,9 +86,9 @@
           </div>
           <a @click.prevent="createAccount" class="boton" role="button">Create Account</a>
         </div>
-
-        <div v-if="visibleDetalleCuenta" class="cuentas">
-
+      </div>
+        <div v-if="visibleDetalleCuenta" >
+            detalles de cuentas
           <table class="table table-hover text-center">
             <thead>
               <tr>
@@ -113,6 +113,7 @@
 
           </table>
         </div>
+
         <div v-if="visibleCards">
 
           <form>
@@ -153,8 +154,14 @@
 
           </table>
         </div>
-        <div v-if="visibleGetCards">
-          hhh
+        <div v-if="true">
+          <div class="cont_cards">
+            <div class="card_paint" v-for="card of cards">
+              <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
+              <img src="../images/chip.png" alt="" class="chip">
+            </div>
+
+          </div>
           <div v-for="card of cards">
             <p>numero: {{card.number}}</p>
 

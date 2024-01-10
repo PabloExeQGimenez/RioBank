@@ -78,6 +78,7 @@ createApp({
             axios
                 .get(`/api/cuentas/${id}`)
                 .then((response) => {
+                    console.log(response.data);
                     this.accounts = response.data;
                     this.transactions = response.data.transactions;
                     this.transactions.sort((a, b) => b.id - a.id);
