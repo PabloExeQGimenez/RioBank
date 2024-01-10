@@ -13,40 +13,37 @@
 
 <body>
   <div id="app" class="grid">
+    <div class="top ">
+      <div class="container top2">
+        <i class="bi bi-headset fs-4"> </i> 0800-333-1234 - 24hs
+      </div>
+    </div>
     <header class="header">
-      <h1><a href="../../index.html">Río Bank</a></h1>
-
+      <h1><a href="../../index.html"><i class="bi bi-bank2"></i> Río Bank</a></h1>
       <nav>
-
-        <a @click="logout()">Logout</a>
-
+        <div class="d-flex align-items-start">
+          <a @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
+            class="d-flex align-items-center">
+            <i class="bi bi-box-arrow-in-left fs-2 "></i>
+            Logout
+          </a>
+        </div>
       </nav>
     </header>
-
     <main id="mainCuentas" class="container">
-
-      <section class="navLateral"><span class="saludoNavLateral">Hello! {{clienteCurrent.nombre}}</span>
-
+      <section class="navLateral">
         <ul class="ulLateral">
-          <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i class="bi bi-person-bounding-box "></i>
-              Personal information</a></li>
-          <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-person-bounding-box "></i>
-              Accounts</a></li>
-              <li><a @click="createAccount">Create Account</a></li>
-              <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Create Cards</a></li>
-              <li><a @click.prevent="mostrarGetCards"><i class="bi bi-person-bounding-box "></i>Cards</a></li>
-
-              <li><a href="" @click.prevent="mostrarPrestamos" ><i class="bi bi-person-bounding-box "></i>
-                Loans</a></li>
-
+          <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-wallet2"></i> Accounts</a></li>
+          <!-- <li><a @click="createAccount">Create Account</a></li> -->
+          <!-- <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Create Cards</a></li> -->
+          <li><a @click.prevent="mostrarGetCards"><i class="bi bi-credit-card-2-back"></i></i>Cards</a></li>
+          <li><a href="" @click.prevent="mostrarPrestamos"><i class="bi bi-cash-coin"></i></i>Loans</a></li>
+          <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i class="bi bi-person-bounding-box "></i>Personal information</a></li>
 
         </ul>
-
       </section>
-
       <section class="seccion2 container">
         <div v-if="visibleDatosPersonales" class="datosPersonales">
-
           <div class="input-group my-3 ">
             <span class="input-group-text" id="basic-addon1">Name</span>
             <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"
@@ -62,11 +59,12 @@
             <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"
               v-model="email" /><button type="button" class="btn btn-dark">Modify</button>
           </div>
-
-
-
         </div>
-        <div v-if="visibleCuentas">
+
+        <div v-if="visibleCuentas" class="cont_account">
+          <div class="d-flex justify-content-between flex-column">
+            <h3>Your accounts</h3>
+            
           <div>
             <table class="table table-hover text-center w-100">
               <thead>
@@ -74,7 +72,6 @@
                   <th scope="col">Account Number</th>
                   <th scope="col">Balance</th>
                   <th scope="col">Creation Date</th>
-
                 </tr>
               </thead>
               <tbody class="">
@@ -85,85 +82,85 @@
                   <td><a @click.prevent="accountId(cuenta.id)" class="boton" role="button">Details</a></td>
                 </tr>
               </tbody>
-              
             </table>
+          </div>
+          <a @click.prevent="createAccount" class="boton" role="button">Create Account</a>
+        </div>
 
-          
+        <div v-if="visibleDetalleCuenta" class="cuentas">
+
+          <table class="table table-hover text-center">
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+
+              </tr>
+            </thead>
+            <tbody class="rounded-4">
+              <tr v-for="transaction of transactions" :key="transaction.id">
+                <td
+                  :class="{ 'text-success': transaction.type === 'CREDIT', 'text-danger': transaction.type === 'DEBIT' }">
+                  {{ transaction.type }}
+                </td>
+                <td>$ {{ transaction.amount }}</td>
+                <td>{{ formatTransactionDate(transaction.date) }}</td>
+                <td>{{transaction.description}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+        <div v-if="visibleCards">
+
+          <form>
+            <select class="form-select" aria-label="Default select example" v-model="cardType">
+              <option selected>Choose card type</option>
+              <option value="DEBIT">Debit</option>
+              <option value="CREDIT">Credit</option>
+            </select>
+            <select class="form-select" v-model="cardColor">
+              <option value="SILVER">Silver</option>
+              <option value="GOLD">Gold</option>
+              <option value="TITANIUM">Titanium</option>
+            </select>
+          </form>
+          <a @click="createCard" class="boton" role="button">Create Cards</a>
+          cards
+        </div>
+        <div v-if="visiblePrestamos" class="cuentas">
+
+          <table class="table table-hover text-center">
+            <thead>
+              <tr>
+                <th scope="col">Loan</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Payments</th>
+
+              </tr>
+            </thead>
+            <tbody class="rounded-4">
+              <tr v-for="loan of loans">
+                <td>
+                  {{ loan.loanName }}
+                </td>
+                <td>$ {{ loan.amount }}</td>
+                <td>{{loan.payments}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+        <div v-if="visibleGetCards">
+          hhh
+          <div v-for="card of cards">
+            <p>numero: {{card.number}}</p>
+
           </div>
         </div>
-        <div v-if="visibleDetalleCuenta" class="cuentas">
-          
-            <table class="table table-hover text-center">
-              <thead>
-                <tr>
-                  <th scope="col">Type</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Description</th>
 
-                </tr>
-              </thead>
-              <tbody class="rounded-4">
-                <tr v-for="transaction of transactions" :key="transaction.id">
-                  <td :class="{ 'text-success': transaction.type === 'CREDIT', 'text-danger': transaction.type === 'DEBIT' }">
-                    {{ transaction.type }}
-                  </td>
-                  <td>$ {{ transaction.amount }}</td>
-                  <td>{{ formatTransactionDate(transaction.date) }}</td>
-                  <td>{{transaction.description}}</td>
-                </tr>
-              </tbody>
-              
-            </table>
-          </div>
-          <div v-if="visibleCards">
-            
-            <form>
-              <select class="form-select" aria-label="Default select example" v-model="cardType">
-                <option selected>Choose card type</option>
-                <option value="DEBIT">Debit</option>
-                <option value="CREDIT">Credit</option>
-              </select>
-              <select class="form-select" v-model="cardColor">
-                <option value="SILVER">Silver</option>
-                <option value="GOLD">Gold</option>
-                <option value="TITANIUM">Titanium</option>               
-              </select>
-            </form>
-            <a @click="createCard" class="boton" role="button">Create Cards</a>
-            cards
-          </div>
-          <div v-if="visiblePrestamos" class="cuentas">
-          
-            <table class="table table-hover text-center">
-              <thead>
-                <tr>
-                  <th scope="col">Loan</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Payments</th>
-
-                </tr>
-              </thead>
-              <tbody class="rounded-4">
-                <tr v-for="loan of loans">
-                  <td >
-                    {{ loan.loanName }}
-                  </td>
-                  <td>$ {{ loan.amount }}</td>
-                  <td>{{loan.payments}}</td>
-                </tr>
-              </tbody>
-              
-            </table>
-          </div>
-          <div v-if="visibleGetCards">
-            hhh
-            <div v-for="card of cards">
-              <p>numero: {{card.number}}</p>
-
-            </div>
-            </div>
-        
   </div>
   </section>
   </main>
@@ -171,7 +168,22 @@
 
 
   <footer>
-    <span>footer</span>
+    <div class="foot container">
+      <a href="www.facebook.com" class="me-4 text-reset">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="www.twiter.com" class="me-4 text-reset">
+        <i class="bi bi-twitter"></i> </a>
+      <a href="www.google.com" class="me-4 text-reset">
+        <i class="bi bi-google"></i>
+        <a href="www.instagram.com" class="me-4 text-reset">
+          <i class="bi bi-instagram"></i>
+        </a>
+        
+    </div>
+    <div class="foot2 container">
+      <p>© 2021 Río Bank, Inc. All rights reserved.</p>
+    </div>
   </footer>
 
   </div>

@@ -6,7 +6,7 @@ createApp({
             clienteCurrent: "",
             cuentasCurrent: "",
             visibleDatosPersonales: false,
-            visibleCuentas: false,
+            visibleCuentas: true,
             name: "",
             lastName: "",
             email: "",
