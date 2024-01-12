@@ -38,7 +38,8 @@
           <!-- <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Create Cards</a></li> -->
           <li><a @click.prevent="mostrarGetCards"><i class="bi bi-credit-card-2-back"></i></i>Cards</a></li>
           <li><a href="" @click.prevent="mostrarPrestamos"><i class="bi bi-cash-coin"></i></i>Loans</a></li>
-          <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i class="bi bi-person-bounding-box "></i>Personal information</a></li>
+          <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i
+                class="bi bi-person-bounding-box "></i>Personal information</a></li>
 
         </ul>
       </section>
@@ -64,31 +65,31 @@
         <div v-show="visibleCuentas" class="cont_account">
           <div class="d-flex justify-content-between flex-column">
             <h3>Your accounts</h3>
-           
-          <div>
-            <table class="table table-hover text-center w-100">
-              <thead>
-                <tr>
-                  <th scope="col">Account Number</th>
-                  <th scope="col">Balance</th>
-                  <th scope="col">Creation Date</th>
-                </tr>
-              </thead>
-              <tbody class="">
-                <tr v-for="cuenta of cuentasCurrent" @click.prevent="accountId(cuenta.id)" role="button">
-                  <td>{{ cuenta.numero }}</td>
-                  <td>$ {{ cuenta.balance }}</td>
-                  <td>{{ formatTransactionDate(cuenta.fechaCreacion) }}</td>
-                  <td><a @click.prevent="accountId(cuenta.id)" class="boton" role="button">Details</a></td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div>
+              <table class="table table-hover text-center w-100">
+                <thead>
+                  <tr>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">Creation Date</th>
+                  </tr>
+                </thead>
+                <tbody class="">
+                  <tr v-for="cuenta of cuentasCurrent" @click.prevent="accountId(cuenta.id)" role="button">
+                    <td>{{ cuenta.numero }}</td>
+                    <td>$ {{ cuenta.balance }}</td>
+                    <td>{{ formatTransactionDate(cuenta.fechaCreacion) }}</td>
+                    <td><a @click.prevent="accountId(cuenta.id)" class="boton" role="button">Details</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <a @click.prevent="createAccount" class="boton" role="button">Create Account</a>
           </div>
-          <a @click.prevent="createAccount" class="boton" role="button">Create Account</a>
         </div>
-      </div>
-        <div v-if="visibleDetalleCuenta" >
-            detalles de cuentas
+        <div v-if="visibleDetalleCuenta">
+          detalles de cuentas
           <table class="table table-hover text-center">
             <thead>
               <tr>
@@ -155,43 +156,48 @@
           </table>
         </div>
         <div v-if="true">
-          <div class="cont_cards">
-            <div class="card_paint" v-for="card of cards">
-              <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
+          
+            v-for="card of cards"
+            
+            <div class="card_paint">
+              <div class="face front">
+                <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
               <img src="../images/chip.png" alt="" class="chip">
+              </div>
+              <div class="face back">
+                <div class="black_bar"></div>
+                <div class="ccv">
+                  <span>CVV</span>
+                </div>
+
+              </div>
             </div>
+          
 
-          </div>
-          <div v-for="card of cards">
-            <p>numero: {{card.number}}</p>
-
-          </div>
         </div>
-
-  </div>
-  </section>
-  </main>
+      </section>
+    </main>
 
 
 
-  <footer>
-    <div class="foot container">
-      <a href="www.facebook.com" class="me-4 text-reset">
-        <i class="bi bi-facebook"></i>
-      </a>
-      <a href="www.twiter.com" class="me-4 text-reset">
-        <i class="bi bi-twitter"></i> </a>
-      <a href="www.google.com" class="me-4 text-reset">
-        <i class="bi bi-google"></i>
-        <a href="www.instagram.com" class="me-4 text-reset">
-          <i class="bi bi-instagram"></i>
+    <footer>
+      <div class="foot container">
+        <a href="www.facebook.com" class="me-4 text-reset">
+          <i class="bi bi-facebook"></i>
         </a>
-        
-    </div>
-    <div class="foot2 container">
-      <p>© 2021 Río Bank, Inc. All rights reserved.</p>
-    </div>
-  </footer>
+        <a href="www.twiter.com" class="me-4 text-reset">
+          <i class="bi bi-twitter"></i> </a>
+        <a href="www.google.com" class="me-4 text-reset">
+          <i class="bi bi-google"></i>
+          <a href="www.instagram.com" class="me-4 text-reset">
+            <i class="bi bi-instagram"></i>
+          </a>
+
+      </div>
+      <div class="foot2 container">
+        <p>© 2021 Río Bank, Inc. All rights reserved.</p>
+      </div>
+    </footer>
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
