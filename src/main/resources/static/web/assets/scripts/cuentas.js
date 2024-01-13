@@ -12,9 +12,9 @@ createApp({
             email: "",
             accounts: [],
             transactions: [],
-            loans:[],
+            loans: [],
             visibleDetalleCuenta: false,
-            visiblePrestamos:false,
+            visiblePrestamos: false,
             visibleCards: false,
             cards: [],
             cardType: "",
@@ -32,27 +32,32 @@ createApp({
     },
 
     methods: {
-        
+
         createCard() {
-            console.log(this.cardType)
-            console.log(this.cardColor)
-        axios
-        .post("/api/clientes/current/cards", `type=${this.cardType}&color=${this.cardColor}`)
-        .then((response) => {
-            console.log("card created")
-            location.reload()
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            axios
+                .post("/api/clientes/current/cards", `type=${this.cardType}&color=${this.cardColor}`)
+                .then((response) => {
+                    location.reload()
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            this.visibleCards = true;
+            this.visibleCuentas = false;
+            this.visibleDatosPersonales = false;
+            this.visibleDetalleCuenta = false;
+            this.visiblePrestamos = false;
+            this.visibleGetCards = false;
         },
-        
+
+
         createAccount() {
             axios
                 .post("/api/clientes/current/accounts")
                 .then((response) => {
                     location.reload()
                 })
+
                 .catch((error) => {
                     console.error(error);
                 });

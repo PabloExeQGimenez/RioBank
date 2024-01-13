@@ -75,17 +75,17 @@ public class RiobankApplication {
 			clientLoanRepo.save(melbaLoanPersonal);
 			clienteRepo.save(clienteMelba);
 
-			Card cardMelba = new Card(
+			/*Card cardMelba = new Card(
 					(clienteMelba.getNombre() + " " + clienteMelba.getApellido()),
 					CardType.DEBIT, CardColor.TITANIUM,
 					"9238 8928 9823 7879", "345",
 					LocalDate.now(), LocalDate.now().plusYears(5)
-			);
-			System.out.println("Lista de tarjetas antes de agregar: " + clienteMelba.getCards());
+			);*/
+			/*System.out.println("Lista de tarjetas antes de agregar: " + clienteMelba.getCards());
 			clienteMelba.addCard(cardMelba);
 			cardService.saveCard(cardMelba);
 			clienteService.saveClient(clienteMelba);
-
+*/
 			System.out.println("Lista de tarjetas después de agregar: " + clienteMelba.getCards());
 		};
 
