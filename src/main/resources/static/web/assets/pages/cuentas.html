@@ -35,7 +35,7 @@
         <ul class="ulLateral">
           <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-wallet2"></i> Accounts</a></li>
           <!-- <li><a @click="createAccount">Create Account</a></li> -->
-          <!-- <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Create Cards</a></li> -->
+
           <li><a @click.prevent="mostrarGetCards"><i class="bi bi-credit-card-2-back"></i></i>Cards</a></li>
           <li><a href="" @click.prevent="mostrarPrestamos"><i class="bi bi-cash-coin"></i></i>Loans</a></li>
           <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i
@@ -156,29 +156,30 @@
           </table>
         </div>
         <div v-if="true">
-          
-            v-for="card of cards"
-            
-            <div class="card_paint">
-              <div class="face front">
-                <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
+          <ul>
+            <li><a @click="mostrarCards"><i class="bi bi-person-bounding-box "></i>Create Cards</a></li>
+          </ul>
+          <div class="card_paint" v-for="card of cards" :key="card.id">
+            <div
+              :class="{'face': true, 'front': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
+              <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
               <img src="../images/chip.png" alt="" class="chip">
-              </div>
-              <div class="face back">
-                <div class="black_bar"></div>
-                <div class="ccv">
-                  <span>CVV</span>
-                </div>
-
+              <div class="dates">
+                <p>{{ card.cardholder }}</p>
+                <p>{{ card.color }}</p>
               </div>
             </div>
-          
-
+            <div
+              :class="{'face': true, 'back': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
+              <div class="black_bar"></div>
+              <div class="ccv">
+                <span>CVV</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
-
-
 
     <footer>
       <div class="foot container">
