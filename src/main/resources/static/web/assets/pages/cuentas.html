@@ -86,6 +86,70 @@
               </table>
             </div>
             <a @click.prevent="createAccount" class="boton" role="button">Create Account</a>
+            <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#modalTransaction">
+              Make a transaction
+            </button>
+            <!-- @click.prevent="createTransaction" -->
+          </div>
+        </div>
+        <div class="modal fade " id="modalTransaction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content modalTransaction">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Make a transaction</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <select v-model="originNumber" class="form-select" aria-label="Default select example">
+                    <option value="">Origin account</option>
+                    <option v-for="account of cuentasCurrent" :value="account.numero">{{account.numero}} (Balance:
+                      US${{account.balance}})</option>
+                  </select>
+                  <div class="form-check text-center">
+                    <p class="d-inline-flex gap-1">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                        data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      <label class="form-check-label" for="flexRadioDefault1">To own account</label>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                      <select v-model="destinationNumber" class="form-select" aria-label="Default select example">
+                        <option value="" selected>Select account</option>
+                        <option v-for="account of cuentasCurrent">{{account.numero}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-check text-center">
+                    <p class="d-inline-flex gap-1">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                        data-bs-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapse">
+                      <label class="form-check-label" for="flexRadioDefault1">To third party account</label>
+                    </p>
+                    <div class="collapse" id="collapse">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">N°</span>
+                        <input v-model="destinationNumber" type="text" class="form-control" aria-label="Default select example">
+                      </div>
+                    </div>
+                  </div>
+          
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">US$</span>
+                    <input v-model="amount" type="number" class="form-control valor" aria-label="Amount (to the nearest dollar)">
+                  </div>
+          
+                  <div class="input-group text-center">
+                    <span class="input-group-text">Description</span>
+                    <textarea v-model="description" class="form-control description" aria-label="With textarea"></textarea>
+                  </div>
+                </form>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn boton" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn boton" @click.prevent="createTransaction">Confirm transfer</button>
+              </div>
+            </div>
           </div>
         </div>
         <div v-if="visibleDetalleCuenta">
@@ -143,7 +207,7 @@
           <div class="modal-dialog">
             <div class="modal-content modalCard">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">New Card</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Request Card</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -186,17 +250,17 @@
                 :class="{'face': true, 'front': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
                 <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
                 <img src="../images/chip.png" alt="" class="chip">
-                <div class="dates">
-                  <p>{{ card.cardholder }}</p>
-                  <p>{{ card.color }}</p>
-                </div>
+                  <h4>{{ card.cardholder }}</h4>
+                  <p class="colorType">{{ card.color }} {{card.type}}</p>
+                  <p class="cardNumber">{{ card.number }}</p>
+                  <p class="date">Exp: {{ card.fromDate }}</p>
+
               </div>
-              <div
-                :class="{'face': true, 'back': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
-                <div class="black_bar"></div>
-                <div class="ccv">
-                  <span>CVV</span>
+              <div :class="{'face': true, 'back': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
+                <div class="black_bar">
+
                 </div>
+                  <span class="cvv">CVV {{card.cvv}}</span>
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CuentaServiceImpl implements CuentaService {
@@ -37,5 +38,10 @@ public class CuentaServiceImpl implements CuentaService {
   @Override
   public Cuenta saveAccount(Cuenta cuenta) {
     return cuentaRepo.save(cuenta);
+  }
+
+  @Override
+  public Cuenta findByNumero(String numero) {
+    return cuentaRepo.findByNumero(numero).orElse(null);
   }
 }

@@ -46,6 +46,7 @@ public class ClienteServiceImpl implements ClienteService {
 
   @Override
   public Cliente buscarClientePorEmail(String email) {
+
     return clienteRepo.findByEmail(email).orElse(null);
   }
 

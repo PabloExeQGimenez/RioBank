@@ -453,7 +453,7 @@ nav {
 
 }
 
-.cont_card{
+.cont_card {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -467,6 +467,8 @@ nav {
         position: relative;
         margin: 20px;
 
+        
+
         .face {
             width: 100%;
             height: 100%;
@@ -479,6 +481,26 @@ nav {
             padding: 15px;
 
 
+        }
+        .black_bar {
+            width: 320px;
+            height: 40px;
+            background-color: #333;
+            position: absolute;
+            top: 35px;
+            left: 0;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 5px rgb(235, 234, 234), 0 10px rgb(199, 199, 199), 0 15px rgb(235, 234, 234), 0 20px rgb(199, 199, 199), 0 25px rgb(235, 234, 234), 0 30px rgb(199, 198, 198);
+        }
+        .cvv{
+            
+            
+            position: absolute;
+            top: 78px;
+            right: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         .goldColor {
@@ -525,10 +547,53 @@ nav {
         &:hover .back {
             transform: perspective(600px) rotateY(360deg);
         }
+
+
+
+        & h4 {
+            position: absolute;
+            top: 80px;
+            left: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--darkShades);
+
+        }
+
+        .colorType {
+            position: absolute;
+            top: 50px;
+            font-size: .9rem;
+            color: var(--darkShades);
+        }
+
+        .cardNumber {
+            position: absolute;
+            left: 43px;
+            top: 110px;
+            font-size: 1.2rem;
+            color: var(--darkShades);
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        .date {
+            position: absolute;
+            top: 150px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: var(--lightShades);
+        }
+
+       
+
+
     }
+
 }
 
-.modalCard{
+
+.modalCard {
     width: 400px;
     display: flex;
     gap: 1rem;
@@ -537,15 +602,15 @@ nav {
     border-radius: 8px;
     box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
 
-    
+
 
     & fieldset {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin-bottom: 15px;
-        
-        & input{
+
+        & input {
             background-color: var(--darkShades);
             color: var(--lightShades);
             font-size: 1.1rem;
@@ -554,19 +619,21 @@ nav {
             border: 1px solid var(--lightShades);
 
         }
-        
+
         & legend {
             font-size: 1.1rem;
             color: var(--lightShades);
         }
     }
-    & span{
+
+    & span {
         margin-top: 15px;
         padding-top: 15px;
         font-size: 1.1rem;
         color: var(--lightShades);
     }
-    & select{
+
+    & select {
         margin: 10px;
         background-color: var(--darkShades);
         color: var(--lightShades);
@@ -576,9 +643,65 @@ nav {
         font-size: 1.1rem;
         color: var(--lightShades);
 
-        &:hover{
+        &:hover {
             background-color: var(--lightAccent);
             color: var(--darkShades);
         }
+    }
+}
+
+.modalTransaction {
+    width: 500px;
+    display: flex;
+    gap: 1rem;
+    background-color: var(--darkShades);
+    color: var(--lightShades);
+    border-radius: 8px;
+    box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
+
+   
+
+    
+
+    
+
+.input-group-text {
+    background-color: var(--darkShades)!important;
+    color: var(--lightShades)!important;
+    border: 1px solid var(--lightShades);
+    border-radius: 8px;
+
+    &:hover {
+        background-color: var(--lightAccent);
+        color: var(--darkShades);
+    }
+
+}
+
+    .valor{
+        background-color: var(--darkShades)!important;
+        color: var(--lightShades)!important;
+        border: 1px solid var(--lightShades);
+        border-radius: 8px;
+        width: 50px;
+    
+        &:hover {
+            background-color: var(--lightAccent);
+            color: var(--darkShades);
+        }
+
+    }
+    .description{
+        background-color: var(--darkShades)!important;
+        color: var(--lightShades)!important;
+        border: 1px solid var(--lightShades);
+        border-radius: 8px;
+        width: 300px;
+    
+        &:hover {
+            background-color: var(--lightAccent);
+            color: var(--darkShades);
+        }
+
     }
 }

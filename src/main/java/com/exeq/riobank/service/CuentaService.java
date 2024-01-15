@@ -13,4 +13,6 @@ public interface CuentaService {
   Cuenta cuentaId(Long id);
 
   Cuenta saveAccount(Cuenta cuenta);
+
+  Cuenta findByNumero(String numero);
 }

@@ -20,6 +20,10 @@ createApp({
             cardType: "",
             cardColor: "",
             visibleGetCards: false,
+            amount: "",
+            description: "",
+            originNumber: "",
+            destinationNumber: "",
 
 
         };
@@ -58,6 +62,18 @@ createApp({
                     location.reload()
                 })
 
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+        createTransaction() {
+
+            axios
+                .post("/api/transactions",
+            `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`)
+                .then((response) => {
+                    location.reload()
+                })
                 .catch((error) => {
                     console.error(error);
                 });
@@ -129,6 +145,7 @@ createApp({
                     console.error('Error al obtener clientes:', error);
                 });
         },
+    
         mostrarGetCards() {
             this.visibleGetCards = true;
             this.visibleCards = false;

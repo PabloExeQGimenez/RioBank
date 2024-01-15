@@ -52,4 +52,5 @@ public class CuentaController {
     clienteService.saveClient(autenticado);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
+
 }
