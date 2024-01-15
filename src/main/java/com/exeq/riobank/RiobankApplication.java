@@ -86,7 +86,6 @@ public class RiobankApplication {
 			cardService.saveCard(cardMelba);
 			clienteService.saveClient(clienteMelba);
 */
-			System.out.println("Lista de tarjetas después de agregar: " + clienteMelba.getCards());
 		};
 
 		};
