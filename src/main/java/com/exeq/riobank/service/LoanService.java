@@ -9,4 +9,6 @@ Loan createLoan(String name, Double maxAmount, List<Integer> payments);
 
 Loan saveLoan(Loan loan);
 
+Loan findLoanById(Long idLoan);
+
 }

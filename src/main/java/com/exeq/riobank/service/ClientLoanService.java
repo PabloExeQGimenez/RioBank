@@ -6,4 +6,5 @@ import com.exeq.riobank.models.Loan;
 public interface ClientLoanService {
 
   ClientLoan createClientLoan(Loan loan, Double amount, Integer payments);
+  void saveClientLoan(ClientLoan clientLoan);
 }

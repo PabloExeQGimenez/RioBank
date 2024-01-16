@@ -27,5 +27,10 @@ public class LoanServiceImpl implements LoanService {
 
   }
 
+  @Override
+  public Loan findLoanById(Long idLoan) {
+    return loanRepo.findById(idLoan).orElse(null);
+  }
+
 
 }

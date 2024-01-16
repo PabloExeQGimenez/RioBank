@@ -19,4 +19,9 @@ public class ClientLoanServiceImpl implements ClientLoanService {
     clientLoan.setPayments(payments);
     return clientLoanRepo.save(clientLoan);
   }
+
+  @Override
+  public void saveClientLoan(ClientLoan clientLoan) {
+    clientLoanRepo.save(clientLoan);
+  }
 }
