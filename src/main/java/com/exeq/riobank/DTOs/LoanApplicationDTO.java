@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanApplicationDTO {
-    private Long idLoan;
+    private Long id;
     private Double amount;
     private Integer payments;
     private String destinationAccount;

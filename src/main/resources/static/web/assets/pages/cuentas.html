@@ -89,10 +89,10 @@
             <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#modalTransaction">
               Make a transaction
             </button>
-            <!-- @click.prevent="createTransaction" -->
           </div>
         </div>
-        <div class="modal fade " id="modalTransaction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade " id="modalTransaction" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content modalTransaction">
               <div class="modal-header">
@@ -109,7 +109,8 @@
                   <div class="form-check text-center">
                     <p class="d-inline-flex gap-1">
                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                        data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">
                       <label class="form-check-label" for="flexRadioDefault1">To own account</label>
                     </p>
                     <div class="collapse" id="collapseExample">
@@ -128,22 +129,25 @@
                     <div class="collapse" id="collapse">
                       <div class="input-group mb-3">
                         <span class="input-group-text">N°</span>
-                        <input v-model="destinationNumber" type="text" class="form-control" aria-label="Default select example">
+                        <input v-model="destinationNumber" type="text" class="form-control"
+                          aria-label="Default select example">
                       </div>
                     </div>
                   </div>
-          
+
                   <div class="input-group mb-3">
                     <span class="input-group-text">US$</span>
-                    <input v-model="amount" type="number" class="form-control valor" aria-label="Amount (to the nearest dollar)">
+                    <input v-model="amount" type="number" class="form-control valor"
+                      aria-label="Amount (to the nearest dollar)">
                   </div>
-          
+
                   <div class="input-group text-center">
                     <span class="input-group-text">Description</span>
-                    <textarea v-model="description" class="form-control description" aria-label="With textarea"></textarea>
+                    <textarea v-model="description" class="form-control description"
+                      aria-label="With textarea"></textarea>
                   </div>
                 </form>
-                
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn boton" data-bs-dismiss="modal">Close</button>
@@ -180,8 +184,8 @@
         </div>
 
 
-        <div v-if="visiblePrestamos" class="cuentas">
-
+        <div v-if="visiblePrestamos" class="cuentas d-flex flex-column">
+          <h3>Your loans</h3>
           <table class="table table-hover text-center">
             <thead>
               <tr>
@@ -192,7 +196,7 @@
               </tr>
             </thead>
             <tbody class="rounded-4">
-              <tr v-for="loan of loans">
+              <tr v-for="loan of loanscurrent">
                 <td>
                   {{ loan.loanName }}
                 </td>
@@ -202,6 +206,71 @@
             </tbody>
 
           </table>
+          <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#modalLoan">
+            Request Loan
+          </button><div class="modal fade " id="modalLoan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content modalCard">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Request Loan</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div>
+                      <div class="input-group mb-3">
+                          <select v-model="loanId" class="form-select" aria-label="Default select example">
+                              <option >Select the type of loan</option>
+                              <option v-for="loan in loans" :value="loan.id">{{ loan.name }} (Max amount: US$
+                                  {{(Number(loan.maxAmount))}})</option>
+                          </select>
+                      </div>
+                      <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId"
+                          style="padding-bottom: 1rem;">
+                          <h5>Select the number of payments</h5>
+                          <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+                            <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId" style="padding-bottom: 1rem;">
+                              <h5>Select the number of payments</h5>
+                              <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+                                  <div v-for="paymentOption in loans.find(loan => loan.id === loanId).payments">
+                                      <input v-model="payments" class="form-check-input" type="radio" name="inlineRadioOptions"
+                                          :value="paymentOption">
+                                      <label class="form-check-label" for="inlineRadioOptions">{{ paymentOption }}</label>
+                                  </div>
+                              </div>
+                          </div>
+                                                    </div>
+                      </div>
+                      <div class="input-group mb-3">
+                          <span class="input-group-text">Amount to request US$</span>
+                          <input v-model="amountLoan" type="number" class="form-control"
+                              aria-label="Amount (to the nearest dollar)" x>
+                      </div>
+                      <div class="input-group mb-3">
+                          <select v-model="toAccount" class="form-select" aria-label="Default select example">
+                              <option value="">Select your destination account</option>
+                              <option v-for="account of cuentasCurrent" :value="account.numero">{{account.numero}}</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div>
+                      <h6 v-if="loanId && amount && payments"
+                          style="text-align: center; display: flex; justify-content: center;">To be paid in {{payments}}
+                          payments of US$ {{(Number(amount * 1.20) / payments)}}</h6>
+                  </div>
+                  <div class="col-auto d-flex justify-content-around">
+                      <button type="button" class="Boton" @click.prevent="createLoan" data-text="Apply">Apply</button>
+                  </div>
+                  </form>
+  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn boton" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn boton" @click="createCard">Create Card</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -213,12 +282,14 @@
               <div class="modal-body">
                 <form>
                   <span></span>
-                  <fieldset >
+                  <fieldset>
                     <legend>Select the type of card:</legend>
                     <div class="d-flex gap-4">
-                    <label><input type="radio" id="DEBIT" name="typeCard" value="DEBIT" v-model="cardType">DEBIT</label>
-                    <label><input type="radio" id="CREDIT" name="typeCard" value="CREDIT" v-model="cardType">CREDIT</label>
-                  </div>
+                      <label><input type="radio" id="DEBIT" name="typeCard" value="DEBIT"
+                          v-model="cardType">DEBIT</label>
+                      <label><input type="radio" id="CREDIT" name="typeCard" value="CREDIT"
+                          v-model="cardType">CREDIT</label>
+                    </div>
                   </fieldset>
                   <span>Select the color of card:</span>
                   <select class="form-select" v-model="cardColor">
@@ -227,7 +298,7 @@
                     <option value="TITANIUM">Titanium</option>
                   </select>
                 </form>
-                
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn boton" data-bs-dismiss="modal">Close</button>
@@ -250,17 +321,18 @@
                 :class="{'face': true, 'front': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
                 <h3><i class="bi bi-bank2"></i>Rio Bank</h3>
                 <img src="../images/chip.png" alt="" class="chip">
-                  <h4>{{ card.cardholder }}</h4>
-                  <p class="colorType">{{ card.color }} {{card.type}}</p>
-                  <p class="cardNumber">{{ card.number }}</p>
-                  <p class="date">Exp: {{ card.fromDate }}</p>
+                <h4>{{ card.cardholder }}</h4>
+                <p class="colorType">{{ card.color }} {{card.type}}</p>
+                <p class="cardNumber">{{ card.number }}</p>
+                <p class="date">Exp: {{ card.fromDate }}</p>
 
               </div>
-              <div :class="{'face': true, 'back': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
+              <div
+                :class="{'face': true, 'back': true, 'silverColor': card.color === 'SILVER', 'goldColor': card.color === 'GOLD', 'titaniumColor': card.color === 'TITANIUM' }">
                 <div class="black_bar">
 
                 </div>
-                  <span class="cvv">CVV {{card.cvv}}</span>
+                <span class="cvv">CVV {{card.cvv}}</span>
               </div>
             </div>
           </div>

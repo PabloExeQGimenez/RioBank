@@ -11,4 +11,6 @@ Loan saveLoan(Loan loan);
 
 Loan findLoanById(Long idLoan);
 
+List<Loan> findAllLoans();
+
 }

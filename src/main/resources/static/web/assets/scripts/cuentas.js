@@ -12,7 +12,7 @@ createApp({
             email: "",
             accounts: [],
             transactions: [],
-            loans: [],
+            loanscurrent: [],
             visibleDetalleCuenta: false,
             visiblePrestamos: false,
             visibleCards: false,
@@ -24,6 +24,12 @@ createApp({
             description: "",
             originNumber: "",
             destinationNumber: "",
+            loans: [],
+            loanId: 0,
+            amountLoan: 0,
+            payments: 0,
+            toAccount: "",
+            
 
 
         };
@@ -31,11 +37,35 @@ createApp({
 
     created() {
         this.cliente1()
+        this.getLoans()
 
 
     },
 
     methods: {
+
+        getLoans() {
+            axios
+                .get("/api/loans")
+                .then((response) => {
+                    this.loans = response.data;
+                    console.log(this.loans);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+
+        createLoan() {
+            axios
+                .post("/api/clientloans", `loanId=${this.loanId}&amount=${this.amountLoan}&payments=${this.payments}&destinationAccount=${this.toAccount}`)
+                .then((result) => {
+                    location.reload()
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
 
         createCard() {
             axios
@@ -138,7 +168,7 @@ createApp({
                     this.name = this.clienteCurrent.nombre;
                     this.lastName = this.clienteCurrent.apellido;
                     this.email = this.clienteCurrent.email;
-                    this.loans = this.clienteCurrent.loans
+                    this.loanscurrent = this.clienteCurrent.loans
                     this.cards = this.clienteCurrent.cards
                 })
                 .catch((error) => {

@@ -7,6 +7,8 @@ import com.exeq.riobank.service.ClientLoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientLoanServiceImpl implements ClientLoanService {
   @Autowired
@@ -23,5 +25,10 @@ public class ClientLoanServiceImpl implements ClientLoanService {
   @Override
   public void saveClientLoan(ClientLoan clientLoan) {
     clientLoanRepo.save(clientLoan);
+  }
+
+  @Override
+  public List<ClientLoan> getAllClientLoans() {
+    return clientLoanRepo.findAll();
   }
 }

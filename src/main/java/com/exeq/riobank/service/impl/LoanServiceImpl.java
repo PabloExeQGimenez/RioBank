@@ -32,5 +32,10 @@ public class LoanServiceImpl implements LoanService {
     return loanRepo.findById(idLoan).orElse(null);
   }
 
+  @Override
+  public List<Loan> findAllLoans() {
+    return loanRepo.findAll();
+  }
+
 
 }
