@@ -29,17 +29,12 @@ createApp({
             amountLoan: 0,
             payments: 0,
             toAccount: "",
-            
-
-
         };
     },
 
     created() {
         this.cliente1()
         this.getLoans()
-
-
     },
 
     methods: {
