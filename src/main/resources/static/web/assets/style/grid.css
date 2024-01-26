@@ -20,12 +20,12 @@
 
 .banner {
     grid-column: 1/-1;
-    height: 520px;
+    height: 54vh;
+    margin-bottom: 4vh;
 }
 
 main {
     grid-column: 1/-1;
-    /* background-color: rgb(237, 237, 237); */
     min-height: calc(100vh - 150px - 100px);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
