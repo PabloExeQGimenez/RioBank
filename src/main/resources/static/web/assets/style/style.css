@@ -105,10 +105,11 @@ nav {
     background-color: var(--darkShades);
     border-radius: 50%;
   }
-  img{
+
+  img {
     min-height: 10rem;
     object-fit: cover;
-  
+
   }
 }
 
@@ -222,7 +223,7 @@ nav {
         box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
         overflow: hidden;
         border-radius: 8px;
-        width: 380px; 
+        width: 380px;
 
         & img {
           width: 100%;
@@ -277,14 +278,11 @@ nav {
     gap: 2rem;
 
 
-    & img {
-      max-width: 10vw;
-      min-width: 8rem;
-    }
+
 
     .appCelular {
       display: flex;
-      width: 35%;
+      width: 32%;
 
       background-color: var(--darkShades);
       color: var(--lightShades);
@@ -294,6 +292,14 @@ nav {
       box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
       border-radius: 8px;
 
+
+      & img {
+        max-width: 10vw;
+        width: 6rem;
+        min-width: 4rem;
+        margin-right: 1rem;
+      }
+
       .textAndButton {
         display: flex;
         flex-direction: column;
@@ -301,20 +307,20 @@ nav {
         align-items: center;
 
         & h2 {
-          font-size: 2rem;
+          font-size: 1.6rem;
           color: var(--lightShades);
         }
 
         & p {
           text-align: center;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           color: var(--lightShades);
         }
 
         .btn {
           width: 100%;
           background-color: var(--main);
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           color: var(--lightShades);
           text-decoration: none;
           border: 1px solid var(--bordesBotonesEnPrincipal);
@@ -336,7 +342,7 @@ nav {
     }
 
     .contact {
-      width: 35%;
+      width: 32%;
       justify-content: center;
       align-items: center;
       color: var(--lightShades);
@@ -347,7 +353,7 @@ nav {
 
       & a {
         color: var(--lightShades);
-        font-size: 1.6rem;
+        font-size: 1.3rem;
 
       }
     }
@@ -379,57 +385,7 @@ nav {
     background-color: var(--darkAccent);
   }
 
-  .modal_login {
-    background-color: var(--darkShades);
-    color: var(--lightShades);
-    border-radius: 8px;
-    box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
-
-    & input {
-      background-color: var(--darkShades);
-      color: var(--lightShades);
-      border: none;
-      border-bottom: 1px solid var(--lightShades);
-      border-radius: 0;
-
-      &::placeholder {
-        color: var(--lightShades);
-      }
-
-
-    }
-
-    .btn {
-      background-color: var(--main) !important;
-      color: var(--lightShades);
-      border: none;
-      border-radius: 8px;
-      padding: 5px;
-      width: 100%;
-      margin-top: 10px;
-      margin-bottom: 10px;
-
-      &:hover {
-        background-color: var(--lightAccent) !important;
-        color: var(--darkShades);
-      }
-    }
-
-    .btn_sign,
-    .btn_login {
-      background-color: var(--main) !important;
-      color: var(--lightShades);
-      border-radius: 8px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-
-      &:hover {
-        background-color: var(--lightAccent) !important;
-        color: var(--darkShades);
-      }
-    }
-  }
-
+  
   .boton {
     background-color: var(--main) !important;
     color: var(--lightShades);
@@ -578,6 +534,7 @@ nav {
     }
   }
 
+  
 
   .modalCard {
     width: 400px;
@@ -687,7 +644,59 @@ nav {
     }
   }
 }
+.modal_login {
+  background-color: var(--darkShades);
+  color: var(--lightShades);
+  border-radius: 8px;
+  box-shadow: -2px 2px 9px 0px rgba(0, 0, 0, 0.75);
 
+  & input {
+    background-color: var(--darkShades);
+    color: var(--lightShades);
+    border: none;
+    border-bottom: 1px solid var(--lightShades);
+    border-radius: 0;
+
+    &::placeholder {
+      color: var(--lightShades);
+    }
+
+
+  }
+
+  .btn {
+    background-color: var(--main) !important;
+    color: var(--lightShades);
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &:hover {
+      background-color: var(--lightAccent) !important;
+      color: var(--darkShades);
+    }
+  }
+
+  .btn_sign,
+  .btn_login {
+    background-color: var(--main) !important;
+    color: var(--lightShades);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &:hover {
+      background-color: var(--lightAccent) !important;
+      color: var(--darkShades);
+    }
+  }
+  .btn-login{
+    padding: 5px;
+  }
+}
 
 .foot {
 
@@ -706,10 +715,12 @@ nav {
 }
 
 @media (max-width: 768px) {
-  
+  h1 {
+    font-size: 1rem;
+  }
+
   .mainIndex {
-    padding: auto;
-    margin: auto;
+
 
     .seccion3Index {
       margin: auto;
@@ -723,46 +734,59 @@ nav {
       .contact {
         width: 100%;
       }
-
     }
-
   }
 
-  
-  h1 {
-    font-size: 1rem;
-  
-  }
 
-  .card{
+  .card {
     margin: 18px;
   }
-  .banner img{
+
+  .banner img {
     height: 20rem;
-  
+
   }
 }
 
 @media (max-width: 425px) {
-  .banner img{
-    height: 10rem;
-  
-  }
-  & nav {
-    display: none;
-  }
-  .mainIndex {
-    .seccion3Index {
-      .appCelular {
-        flex-direction: column;
-        width: 100%
-      }
+  .header {
+    height: 80px;
+    justify-content: space-evenly;
+    align-items: center;
 
-      .contact {
-        width: 100%;
-      }
+  }
+  nav{
+    height: 80px;
+    
+  }
 
+  h1 a {
+    font-size: 1.8rem;
+  }
+
+  .logReg {
+    font-size: 0.8rem;
+    height: 60px;
+    margin-top: 8px;
+  }
+
+
+.banner img {
+  height: 10rem;
+}
+
+.mainIndex {
+  .seccion3Index {
+    .appCelular {
+      flex-direction: column;
+      width: 100%
+    }
+
+    .contact {
+      width: 100%;
     }
 
   }
+
+}
 }
