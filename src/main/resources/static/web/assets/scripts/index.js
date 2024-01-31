@@ -9,8 +9,6 @@ createApp({
       lastNameRegister: "",
       emailRegister: "",
       passwordRegister: "",
-
-
     };
   },
 
@@ -36,11 +34,29 @@ createApp({
     login() {
       axios.post("/api/login", `email=${this.inputEmail}&password=${this.inputPassword}`)
         .then(response => {
-          console.log("logueado")
-          location.pathname = "/web/assets/pages/cuentas.html"
+          Swal.fire({
+            title: "Welcome!",
+            text: "will be redirected to your personal account",
+            icon: "success",
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            didClose: () => {
+              location.pathname = "/web/assets/pages/cuentas.html";
+            }
+          });
         })
-        .catch(err => console.error('Error en el inicio de sesión:', err));
+        .catch(err => {
+          console.error('Error en el inicio de sesión:', err);
+          Swal.fire({
+            title: "Error!",
+            text: "Invalid email or password, please try again.",
+            icon: "error",
+            button: "Ok",
+          });
+        });
     },
+    
 
     logout() {
       axios.post('/api/logout').then(response => {

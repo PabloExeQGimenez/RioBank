@@ -17,6 +17,9 @@
     color: var(--colorPrincipal);
   }
 }
+body{
+  font-family: lato, sans-serif;
+}
 
 a {
   color: white;
