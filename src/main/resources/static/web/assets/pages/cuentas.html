@@ -46,13 +46,8 @@
       <section class="navLateral">
         <ul class="ulLateral">
           <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-wallet2"></i> Accounts</a></li>
-          <!-- <li><a @click="createAccount">Create Account</a></li> -->
-
-          <li><a @click.prevent="mostrarCards"><i class="bi bi-credit-card-2-back"></i></i>Cards</a></li>
-          <li><a href="" @click.prevent="mostrarPrestamos"><i class="bi bi-cash-coin"></i></i>Loans</a></li>
-          <li><a href="" @click.prevent="mostrarDatosPersonales" class=""><i
-                class="bi bi-person-bounding-box "></i>Personal information</a></li>
-
+         <li><a @click.prevent="mostrarCards"><i class="bi bi-credit-card-2-back"></i> Cards</a></li>
+          <li><a href="" @click.prevent="mostrarPrestamos"><i class="bi bi-cash-coin"></i> Loans</a></li>
         </ul>
       </section>
       <section class="seccion2 ">
@@ -75,7 +70,7 @@
         </div>
 
         <div v-show="visibleCuentas" class="cont_account">
-          <div class="d-flex justify-content-between flex-column">
+          <div class="d-flex flex-column">
             <h3>Your accounts</h3>
 
             <div>
@@ -89,10 +84,10 @@
                 </thead>
                 <tbody class="">
                   <tr v-for="cuenta of cuentasCurrent" @click.prevent="accountId(cuenta.id)" role="button">
-                    <td>{{ cuenta.numero }}</td>
-                    <td>$ {{ cuenta.balance }}</td>
-                    <td>{{ formatTransactionDate(cuenta.fechaCreacion) }}</td>
-                    <td><a @click.prevent="accountId(cuenta.id)" class="boton" role="button">Details</a></td>
+                    <td>{{cuenta.numero}}</td>
+                    <td>$ {{cuenta.balance}}</td>
+                    <td>{{formatDate(cuenta.fechaCreacion)}}</td>
+                    <td><a @click.prevent="accountId(cuenta.id)" class="boton" role="button">+</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -168,8 +163,9 @@
             </div>
           </div>
         </div>
-        <div v-if="visibleDetalleCuenta" class="cont_account">
+        <div v-if="visibleDetalleCuenta" class="cont_account container">
           detalles de cuentas
+          <div class="table-responsive-md">
           <table class="table table-hover text-center">
             <thead>
               <tr>
@@ -193,6 +189,7 @@
             </tbody>
 
           </table>
+        </div>
         </div>
 
 
@@ -355,11 +352,23 @@
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+      <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal" class="d-flex align-items-center">
+        <i class="bi bi-person-circle fs-2 mx-2"></i>
+       <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span> 
+      </a>
+    </h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <p>Try scrolling the rest of the page to see this option in action.</p>
+    
+      <ul class="ulLateral">
+        <li><a href="" @click.prevent="mostrarCuentas" class="" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-wallet2"></i> Accounts</a></li>
+        <li><a @click.prevent="mostrarCards" data-bs-dismiss="offcanvas" aria-label="Close" ><i class="bi bi-credit-card-2-back"></i> Cards</a></li>
+        <li><a href="" @click.prevent="mostrarPrestamos" data-bs-dismiss="offcanvas" aria-label="Close" ><i class="bi bi-cash-coin"></i> Loans</a></li>
+        
+      </ul>
+    
   </div>
 </div>
 
