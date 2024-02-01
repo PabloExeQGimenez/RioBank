@@ -2,6 +2,13 @@
 @import url(./colors.css);
 
 /*Utilidades*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
 .boton {
   background-color: var(--colorPrincipal);
   font-size: 1.2rem;
@@ -28,6 +35,7 @@ a {
 
 ul {
   list-style-type: none;
+  padding: 0!important;
 }
 
 .json {
@@ -57,19 +65,22 @@ ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 
   & h1 {
     color: var(--lightShades);
     font-size: 3rem;
+    margin-left: 2rem;
   }
 }
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   height: 100px;
   background-color: var(--darkShades);
+  margin-right: -2rem;
 
 
   & a {
@@ -90,13 +101,17 @@ nav {
     background-color: var(--main);
   }
 
+  .bi-list{
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 
+  }
+  
 }
 
-.navLateral {
-  display: flex;
-  flex-direction: column;
-}
 
 .banner {
   width: 100%;
@@ -120,51 +135,46 @@ nav {
 #mainCuentas {
 
   .navLateral {
-    display: flex;
-    flex-direction: column;
+    border: 1px solid red;
 
     .ulLateral {
       display: flex;
       flex-direction: column;
+      border: 1px solid green;
+      width: 100%;
 
       & li {
         display: flex;
         justify-content: start;
-        align-items: center;
+        align-items: start;
         background-color: var(--darkShades);
         color: var(--lightShades);
         font-size: 1.2rem;
-        width: 100%;
-        height: 50px;
         box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
         -webkit-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
         -moz-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
         transition: all 0.3s ease;
-
 
         &:hover {
           background-color: var(--main);
           border-radius: 20px;
 
         }
-      }
-    }
+        & a {
 
-
-    & a {
-
-      color: var(--colorPrincipal);
-      font-size: 1.2rem;
-      padding: 10px;
-
-
-
-      &:hover {
-        min-width: 100px;
-        border-radius: 8px;
-        padding: 10px;
-        background-color: var(--colorPrincipal);
-        color: var(--fuenteEnPrincipal);
+          color: var(--colorPrincipal);
+          font-size: 1.2rem;
+          padding: 10px;
+    
+    
+    
+          &:hover {
+            border-radius: 8px;
+            padding: 10px;
+            background-color: var(--colorPrincipal);
+            color: var(--fuenteEnPrincipal);
+          }
+        }
       }
     }
   }
@@ -792,4 +802,41 @@ nav {
   }
 
 }
+}
+
+@media (max-width: 768px){
+ 
+  .navpc{
+    display: none;
+  }
+  
+}
+@media (min-width: 769px){
+  .btnoffcanvas{
+    display: none;
+  }
+}
+@media (max-width: 768px){
+  .navLateral {
+      display: none;
+  }
+  #mainCuentas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 20px;
+      margin-top: 10px;
+      border-bottom: 1px solid var(--darkShades);
+      width: 100%;
+      border: 1px solid olivedrab;
+  }
+  .seccion2 {
+      background-color: var(--lightShades);
+      grid-column: 1 / -1;
+      width: 100%;
+      box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
+      border: 1px solid rgb(10, 175, 216);
+  }
+  
 }

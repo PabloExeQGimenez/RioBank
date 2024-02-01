@@ -20,16 +20,34 @@ createApp({
     register() {
       axios.post("/api/clientes", `nombre=${this.nameRegister}&apellido=${this.lastNameRegister}&email=${this.emailRegister}&password=${this.passwordRegister}`)
         .then(response => {
-          return axios.post("/api/login", `email=${this.emailRegister}&password=${this.passwordRegister}`)
+          return axios.post("/api/login", `email=${this.emailRegister}&password=${this.passwordRegister}`);
         })
         .then(response => {
-          console.log("logueado")
-          location.pathname = "/web/assets/pages/cuentas.html"
+          Swal.fire({
+            title: "Your registration was successful!",
+            text: "We will redirect you to your personal account",
+            icon: "success",
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            background: '#7B97AC',
+            color: '#fff',
+            didClose: () => {
+              location.pathname = "/web/assets/pages/cuentas.html";
+            }
+          });
         })
-        .catch(err => console.error('Error en el registro:', err));
-
-
+        .catch(err => {
+          console.error('Error en el registro o inicio de sesión:', err);
+          Swal.fire({
+            title: "Error",
+            text: "Hubo un problema en el registro o inicio de sesión",
+            icon: "error",
+            button: "Aceptar",
+          });
+        });
     },
+    
 
     login() {
       axios.post("/api/login", `email=${this.inputEmail}&password=${this.inputPassword}`)
@@ -41,6 +59,8 @@ createApp({
             timer: 2000,
             timerProgressBar: true,
             showConfirmButton: false,
+            background: '#7B97AC',
+            color: 'white',
             didClose: () => {
               location.pathname = "/web/assets/pages/cuentas.html";
             }

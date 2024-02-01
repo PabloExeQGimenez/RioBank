@@ -101,8 +101,8 @@ footer {
 
     .seccion2 {
         background-color: var(--lightShades);
-
         grid-column: 4/13;
+        grid-row: auto;
         box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
         -webkit-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
         -moz-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74)
@@ -110,3 +110,4 @@ footer {
 
 
 }
+

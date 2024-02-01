@@ -20,14 +20,26 @@
     </div>
     <header class="header">
       <h1><a href="../../index.html"><i class="bi bi-bank2"></i> Río Bank</a></h1>
-      <nav>
+
+      <nav class="navpc">
+        <div class="d-flex align-items-start">
+          <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal" class="d-flex align-items-center">
+            <i class="bi bi-person-circle fs-2 mx-2"></i>
+           <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span> 
+          </a>
         <div class="d-flex align-items-start">
           <a @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
             class="d-flex align-items-center">
             <i class="bi bi-box-arrow-in-left fs-2 "></i>
             Logout
           </a>
+
         </div>
+
+      </nav>
+      <nav class="btnoffcanvas">
+        <a  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></a>
+
       </nav>
     </header>
     <main id="mainCuentas" class="container">
@@ -43,8 +55,8 @@
 
         </ul>
       </section>
-      <section class="seccion2 container">
-        <div v-show="visibleDatosPersonales" class="datosPersonales">
+      <section class="seccion2 ">
+        <div v-show="visibleDatosPersonales" class="cont_account">
           <div class="input-group my-3 ">
             <span class="input-group-text" id="basic-addon1">Name</span>
             <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"
@@ -156,7 +168,7 @@
             </div>
           </div>
         </div>
-        <div v-if="visibleDetalleCuenta">
+        <div v-if="visibleDetalleCuenta" class="cont_account">
           detalles de cuentas
           <table class="table table-hover text-center">
             <thead>
@@ -184,7 +196,7 @@
         </div>
 
 
-        <div v-if="visiblePrestamos" class="cuentas d-flex flex-column">
+        <div v-if="visiblePrestamos" class="cont_account d-flex flex-column">
           <h3>Your loans</h3>
           <table class="table table-hover text-center">
             <thead>
@@ -307,7 +319,7 @@
             </div>
           </div>
         </div>
-        <div v-if="visibleCards">
+        <div v-if="visibleCards" class="cont_account">
           <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Request Card
           </button>
@@ -338,6 +350,18 @@
           </div>
       </section>
     </main>
+
+    <!--ofcanvas-->
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>
+</div>
 
     <footer>
       <div class="foot container">
