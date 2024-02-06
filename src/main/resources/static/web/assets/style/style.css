@@ -5,18 +5,17 @@
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  
+  box-sizing: border-box; 
 }
 
 .boton {
   background-color: var(--colorPrincipal);
-  font-size: 1.2rem;
+  font-size: 1.2em;
   color: var(--fuenteEnPrincipal);
   text-decoration: none;
   border: 1px solid var(--bordesBotonesEnPrincipal);
-  padding: 2px 8px 2px 12px;
-  border-radius: 20px;
+  padding: .125rem .5rem .125rem .75rem;
+  border-radius: 1.25rem;
   transition: all 0.5s ease;
 
   &:hover {
@@ -24,6 +23,7 @@
     color: var(--colorPrincipal);
   }
 }
+
 body{
   font-family: lato, sans-serif;
 }
@@ -43,10 +43,9 @@ ul {
   background-color: #01253b;
 }
 
-
 .top {
   display: flex;
-  font-size: 1rem;
+  font-size: 1.1em;
   color: var(--lightShades);
   width: 100%;
   height: 2rem;
@@ -63,55 +62,52 @@ ul {
 .header {
   background-color: var(--darkShades);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+  border: 1px solid orangered;
+  height: 6.5rem;
+  padding: 0 17.2%;
+
+  .navpc{
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    & a {
+      text-align: center;
+      height: 100%;
+      font-size: 1em;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      padding:2rem 1rem;
+    }
   
-
-  & h1 {
-    color: var(--lightShades);
-    font-size: 3rem;
-    margin-left: 2rem;
-  }
-}
-
-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 100px;
-  background-color: var(--darkShades);
-  margin-right: -2rem;
-
-
-  & a {
-    min-width: 100px;
-    text-align: center;
-    line-height: 100px;
-    height: 100px;
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    padding-right: 18px;
-    padding-left: 10px;
-  }
-
-  & a:hover {
-    height: 100px;
-    background-color: var(--main);
+    & a:hover {
+      height: 100%;
+      background-color: var(--main);
+    }
+  
+   
   }
 
   .bi-list{
-    font-size: 1.5rem;
+    font-size: 1.5em;
     color: white;
-    border-radius: 8px;
-    padding: 5px;
+    border-radius: .5rem;
+    padding: 0.2rem;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 
   }
-  
+  & h1 {
+    color: var(--lightShades);
+    font-size: 3em;
+  }
 }
-
 
 .banner {
   width: 100%;
@@ -148,9 +144,7 @@ nav {
         background-color: var(--darkShades);
         color: var(--lightShades);
         font-size: 1.2rem;
-        box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
-        -webkit-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
-        -moz-box-shadow: 0px -1px 9px -4px rgba(0, 0, 0, 0.74);
+        box-shadow: 0px -0.0625rem .5625rem -0.25rem rgba(0, 0, 0, 0.74);
         transition: all 0.3s ease;
 
         &:hover {
@@ -162,13 +156,13 @@ nav {
 
           color: var(--colorPrincipal);
           font-size: 1.2rem;
-          padding: 10px;
+          padding: .625rem;
     
     
     
           &:hover {
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: .5rem;
+            padding: .625rem;
             background-color: var(--colorPrincipal);
             color: var(--fuenteEnPrincipal);
           }
@@ -181,8 +175,8 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 20px;
-    margin-top: 10px;
+    padding: 1.25rem;
+    margin-top: .625rem;
     border-bottom: 1px solid var(--darkShades);
     width: 100%;
 
@@ -593,10 +587,7 @@ nav {
 }
 
 @media (max-width: 768px) {
-  h1 {
-    font-size: 1rem;
-  }
-
+ 
   .mainIndex {
 
 
@@ -628,10 +619,7 @@ nav {
 
 @media (max-width: 768px) {
   .header {
-   
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 2.2rem;
+    padding: 0 1rem;    
 
   }
   nav{
@@ -639,8 +627,9 @@ nav {
     
   }
 
-  h1 a {
-    font-size: 1.8rem;
+  h1 a{
+    font-size: 0.8em;
+    padding: 0;
   }
 
   .logReg {
@@ -671,11 +660,11 @@ nav {
 }
 
 @media (max-width: 768px){
- 
+  .header{
   .navpc{
     display: none;
   }
-  
+}
 }
 @media (min-width: 769px){
   .btnoffcanvas{

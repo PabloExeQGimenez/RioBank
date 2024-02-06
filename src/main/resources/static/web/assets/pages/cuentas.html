@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
   <div id="app" class="grid">
     <div class="top">
       <div class="container top2">
@@ -19,26 +20,29 @@
       </div>
     </div>
     <header class="header">
+
       <h1><a href="../../index.html"><i class="bi bi-bank2"></i> Río Bank</a></h1>
 
       <nav class="navpc">
         <div class="d-flex align-items-start">
-          <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal" class="d-flex align-items-center">
-            <i class="bi bi-person-circle fs-2 mx-2"></i>
-           <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span> 
-          </a>
-        <div class="d-flex align-items-start">
-          <a @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
+          <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal"
             class="d-flex align-items-center">
-            <i class="bi bi-box-arrow-in-left fs-2 "></i>
-            Logout
+            <i class="bi bi-person-circle fs-2 mx-2"></i>
+            <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span>
           </a>
+          <div class="d-flex align-items-start">
+            <a @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
+              class="d-flex align-items-center">
+              <i class="bi bi-box-arrow-in-left fs-2 "></i>
+              Logout
+            </a>
 
-        </div>
+          </div>
 
       </nav>
       <nav class="btnoffcanvas">
-        <a  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></a>
+        <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+          aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></a>
 
       </nav>
     </header>
@@ -46,7 +50,7 @@
       <section class="navLateral">
         <ul class="ulLateral">
           <li><a href="" @click.prevent="mostrarCuentas" class=""><i class="bi bi-wallet2"></i> Accounts</a></li>
-         <li><a @click.prevent="mostrarCards"><i class="bi bi-credit-card-2-back"></i> Cards</a></li>
+          <li><a @click.prevent="mostrarCards"><i class="bi bi-credit-card-2-back"></i> Cards</a></li>
           <li><a href="" @click.prevent="mostrarPrestamos"><i class="bi bi-cash-coin"></i> Loans</a></li>
         </ul>
       </section>
@@ -166,30 +170,30 @@
         <div v-if="visibleDetalleCuenta" class="cont_account container">
           detalles de cuentas
           <div class="table-responsive-md">
-          <table class="table table-hover text-center">
-            <thead>
-              <tr>
-                <th scope="col">Type</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Date</th>
-                <th scope="col">Description</th>
+            <table class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Type</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
 
-              </tr>
-            </thead>
-            <tbody class="rounded-4">
-              <tr v-for="transaction of transactions" :key="transaction.id">
-                <td
-                  :class="{ 'text-success': transaction.type === 'CREDIT', 'text-danger': transaction.type === 'DEBIT' }">
-                  {{ transaction.type }}
-                </td>
-                <td>$ {{ transaction.amount }}</td>
-                <td>{{ formatTransactionDate(transaction.date) }}</td>
-                <td>{{transaction.description}}</td>
-              </tr>
-            </tbody>
+                </tr>
+              </thead>
+              <tbody class="rounded-4">
+                <tr v-for="transaction of transactions" :key="transaction.id">
+                  <td
+                    :class="{ 'text-success': transaction.type === 'CREDIT', 'text-danger': transaction.type === 'DEBIT' }">
+                    {{ transaction.type }}
+                  </td>
+                  <td>$ {{ transaction.amount }}</td>
+                  <td>{{ formatTransactionDate(transaction.date) }}</td>
+                  <td>{{transaction.description}}</td>
+                </tr>
+              </tbody>
 
-          </table>
-        </div>
+            </table>
+          </div>
         </div>
 
 
@@ -217,7 +221,8 @@
           </table>
           <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#modalLoan">
             Request Loan
-          </button><div class="modal fade " id="modalLoan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          </button>
+          <div class="modal fade " id="modalLoan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content modalCard">
                 <div class="modal-header">
@@ -228,50 +233,51 @@
                   <form>
                     <div>
                       <div class="input-group mb-3">
-                          <select v-model="loanId" class="form-select" aria-label="Default select example">
-                              <option >Select the type of loan</option>
-                              <option v-for="loan in loans" :value="loan.id">{{ loan.name }} (Max amount: US$
-                                  {{(Number(loan.maxAmount))}})</option>
-                          </select>
+                        <select v-model="loanId" class="form-select" aria-label="Default select example">
+                          <option>Select the type of loan</option>
+                          <option v-for="loan in loans" :value="loan.id">{{ loan.name }} (Max amount: US$
+                            {{(Number(loan.maxAmount))}})</option>
+                        </select>
                       </div>
                       <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId"
-                          style="padding-bottom: 1rem;">
-                          <h5>Select the number of payments</h5>
-                          <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
-                            <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId" style="padding-bottom: 1rem;">
-                              <h5>Select the number of payments</h5>
-                              <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
-                                  <div v-for="paymentOption in loans.find(loan => loan.id === loanId).payments">
-                                      <input v-model="payments" class="form-check-input" type="radio" name="inlineRadioOptions"
-                                          :value="paymentOption">
-                                      <label class="form-check-label" for="inlineRadioOptions">{{ paymentOption }}</label>
-                                  </div>
+                        style="padding-bottom: 1rem;">
+                        <h5>Select the number of payments</h5>
+                        <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+                          <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId"
+                            style="padding-bottom: 1rem;">
+                            <h5>Select the number of payments</h5>
+                            <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+                              <div v-for="paymentOption in loans.find(loan => loan.id === loanId).payments">
+                                <input v-model="payments" class="form-check-input" type="radio"
+                                  name="inlineRadioOptions" :value="paymentOption">
+                                <label class="form-check-label" for="inlineRadioOptions">{{ paymentOption }}</label>
                               </div>
+                            </div>
                           </div>
-                                                    </div>
+                        </div>
                       </div>
                       <div class="input-group mb-3">
-                          <span class="input-group-text">Amount to request US$</span>
-                          <input v-model="amountLoan" type="number" class="form-control"
-                              aria-label="Amount (to the nearest dollar)" x>
+                        <span class="input-group-text">Amount to request US$</span>
+                        <input v-model="amountLoan" type="number" class="form-control"
+                          aria-label="Amount (to the nearest dollar)" x>
                       </div>
                       <div class="input-group mb-3">
-                          <select v-model="toAccount" class="form-select" aria-label="Default select example">
-                              <option value="">Select your destination account</option>
-                              <option v-for="account of cuentasCurrent" :value="account.numero">{{account.numero}}</option>
-                          </select>
+                        <select v-model="toAccount" class="form-select" aria-label="Default select example">
+                          <option value="">Select your destination account</option>
+                          <option v-for="account of cuentasCurrent" :value="account.numero">{{account.numero}}</option>
+                        </select>
                       </div>
-                  </div>
-                  <div>
+                    </div>
+                    <div>
                       <h6 v-if="loanId && amount && payments"
-                          style="text-align: center; display: flex; justify-content: center;">To be paid in {{payments}}
-                          payments of US$ {{(Number(amount * 1.20) / payments)}}</h6>
-                  </div>
-                  <div class="col-auto d-flex justify-content-around">
+                        style="text-align: center; display: flex; justify-content: center;">To be paid in {{payments}}
+                        payments of US$ {{(Number(amount * 1.20) / payments)}}</h6>
+                    </div>
+                    <div class="col-auto d-flex justify-content-around">
                       <button type="button" class="Boton" @click.prevent="createLoan" data-text="Apply">Apply</button>
-                  </div>
+                    </div>
                   </form>
-  
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn boton" data-bs-dismiss="modal">Close</button>
@@ -350,27 +356,32 @@
 
     <!--ofcanvas-->
 
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-      <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal" class="d-flex align-items-center">
-        <i class="bi bi-person-circle fs-2 mx-2"></i>
-       <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span> 
-      </a>
-    </h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    
-      <ul class="ulLateral">
-        <li><a href="" @click.prevent="mostrarCuentas" class="" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-wallet2"></i> Accounts</a></li>
-        <li><a @click.prevent="mostrarCards" data-bs-dismiss="offcanvas" aria-label="Close" ><i class="bi bi-credit-card-2-back"></i> Cards</a></li>
-        <li><a href="" @click.prevent="mostrarPrestamos" data-bs-dismiss="offcanvas" aria-label="Close" ><i class="bi bi-cash-coin"></i> Loans</a></li>
-        
-      </ul>
-    
-  </div>
-</div>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+      aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+          <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal"
+            class="d-flex align-items-center">
+            <i class="bi bi-person-circle fs-2 mx-2"></i>
+            <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span>
+          </a>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <ul class="ulLateral">
+          <li><a href="" @click.prevent="mostrarCuentas" class="" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-wallet2"></i> Accounts</a></li>
+          <li><a @click.prevent="mostrarCards" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-credit-card-2-back"></i> Cards</a></li>
+          <li><a href="" @click.prevent="mostrarPrestamos" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-cash-coin"></i> Loans</a></li>
+
+        </ul>
+
+      </div>
+    </div>
 
     <footer>
       <div class="foot container">
