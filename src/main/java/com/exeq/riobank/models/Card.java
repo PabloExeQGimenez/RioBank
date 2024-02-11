@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class Card {
+public class  Card {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

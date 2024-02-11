@@ -9,14 +9,29 @@ createApp({
       lastNameRegister: "",
       emailRegister: "",
       passwordRegister: "",
+      clienteCurrent: "",
+      name: "-",
+      lastName: "",
     };
   },
 
   created() {
-
-
+    this.cliente1()
   },
   methods: {
+    cliente1() {
+      axios
+        .get("/api/clientes/current")
+        .then((respuesta) => {
+          console.log(respuesta.data);
+          this.clienteCurrent = respuesta.data;
+          this.name = this.clienteCurrent.nombre;
+          this.lastName = this.clienteCurrent.apellido;
+        })
+        .catch((error) => {
+          console.error('Error al obtener clientes:', error);
+        });
+    },
     register() {
       axios.post("/api/clientes", `nombre=${this.nameRegister}&apellido=${this.lastNameRegister}&email=${this.emailRegister}&password=${this.passwordRegister}`)
         .then(response => {
@@ -47,7 +62,7 @@ createApp({
           });
         });
     },
-    
+
 
     login() {
       axios.post("/api/login", `email=${this.inputEmail}&password=${this.inputPassword}`)
@@ -76,7 +91,7 @@ createApp({
           });
         });
     },
-    
+
 
     logout() {
       axios.post('/api/logout').then(response => {
