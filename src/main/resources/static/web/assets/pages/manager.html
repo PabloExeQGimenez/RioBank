@@ -22,7 +22,6 @@
             <h1><a href="../../index.html"><i class="bi bi-bank2"></i> Río Bank</a></h1>
             <nav class="header__navPc">
                 <div class="d-flex align-items-start">
-
                     <div class="d-flex align-items-start">
                         <a @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
                             class="d-flex align-items-center">
@@ -69,6 +68,7 @@
                     </div>
                     <button type="button" class="btn boton w-100" @click="agregarCliente">Send</button>
                 </form>
+                <div>
                 <h3 class="text-center">Listado de clientes</h3>
                 <table class="table table-hover text-center">
                     <thead>
@@ -82,14 +82,16 @@
                         <tr v-for="cliente of clientes">
                             <td>{{cliente.nombre}}</td>
                             <td>{{cliente.apellido}}</td>
-                            <td>{{cliente.correo}}</td>
+                            <td>{{cliente.email}}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
             </section>
         </main>
-        <footer>
-            <span>footer</span>
+        <footer class="footManager">
+            <span>© 2023 Río Bank, Inc. All rights reserved.
+            </span>
         </footer>
 
     </div>

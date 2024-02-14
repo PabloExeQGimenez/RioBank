@@ -4,7 +4,6 @@ createApp({
     data() {
         return {
             clientes: [],
-            json: "",
             inputNombre: "",
             inputApellido: "",
             inputEmail: "",
@@ -15,8 +14,6 @@ createApp({
     created() {
 
         this.cargarClientes()
-
-
     },
     methods: {
 
@@ -25,7 +22,6 @@ createApp({
                 .get("/api/clientes")
                 .then(respuesta => {
                     console.log(respuesta.data)
-                    this.json = respuesta
                     this.clientes = respuesta.data
                 })
                 .catch(error => {
@@ -47,9 +43,7 @@ createApp({
                 this.mensaje = "Complete el campo email"
                 return
             }
-
             else {
-
                 let datoClientes = {
                     nombre: this.inputNombre,
                     apellido: this.inputApellido,
@@ -61,7 +55,6 @@ createApp({
                     .then(respuesta => {
                         this.cargarClientes()
                         this.borrarFormulario()
-
                     })
                     .catch(err => console.log(err))
             }
@@ -72,7 +65,6 @@ createApp({
             this.inputApellido = ""
             this.inputEmail = ""
             this.mensaje = ""
-
         },
 
         logout() {
@@ -84,7 +76,6 @@ createApp({
                 })
                 .catch((error) => console.log(error));
         }
-
     }
 
 }).mount('#app');

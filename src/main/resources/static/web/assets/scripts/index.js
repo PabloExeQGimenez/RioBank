@@ -63,23 +63,40 @@ createApp({
         });
     },
 
-
     login() {
       axios.post("/api/login", `email=${this.inputEmail}&password=${this.inputPassword}`)
         .then(response => {
-          Swal.fire({
-            title: "Welcome!",
-            text: "will be redirected to your personal account",
-            icon: "success",
-            timer: 2000,
-            timerProgressBar: true,
-            showConfirmButton: false,
-            background: '#7B97AC',
-            color: 'white',
-            didClose: () => {
-              location.pathname = "/web/assets/pages/cuentas.html";
-            }
-          });
+          console.log('Respuesta del login:', response.data.email);
+          if (this.inputEmail === 'admin@admin.com') {
+            Swal.fire({
+              title: "Welcome Admin!",
+              text: "You will be redirected to the admin page.",
+              icon: "success",
+              timer: 2000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+              background: '#7B97AC',
+              color: 'white',
+              didClose: () => {
+                location.pathname = "/web/assets/pages/manager.html";
+              }
+            });
+          } else {
+            // Si no es 'admin@admin.com', redireccionar a la página de cuentas
+            Swal.fire({
+              title: "Welcome!",
+              text: "You will be redirected to your personal account.",
+              icon: "success",
+              timer: 2000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+              background: '#7B97AC',
+              color: 'white',
+              didClose: () => {
+                location.pathname = "/web/assets/pages/cuentas.html";
+              }
+            });
+          }
         })
         .catch(err => {
           console.error('Error en el inicio de sesión:', err);
@@ -92,13 +109,23 @@ createApp({
         });
     },
 
-
     logout() {
       axios.post('/api/logout').then(response => {
         location.pathname = "/web/index.html"
       })
     },
 
+  linkAdmin(){
+    Swal.fire({
+      title: "Menu > Login / Register",
+      text: "You must enter with the email: 'admin@admin.com', password:'admin' to access the admin page.",
+      icon: "success",
+      background: '#7B97AC',
+      color: 'white',
+      customClass: {
+        confirmButton: "boton",
+    },
+    });
   }
-
+  }
 }).mount('#app');

@@ -39,6 +39,7 @@ public class RiobankApplication {
 			Cliente clienteJuana = clienteService.insertarCliente("Juana", "Pascal", "juana@gmail.com", passwordEncoder.encode("juana"));
 			Cliente clienteJose = clienteService.insertarCliente("Jose", "Rodriguez", "jose@gmail.com", passwordEncoder.encode("jose"));
 			Cliente clienteMilagros = clienteService.insertarCliente("Milagros", "Avellaneda", "milagros@gmail.com", passwordEncoder.encode("milagros"));
+			Cliente admin = clienteService.insertarCliente("admin", "admin", "admin@admin.com", passwordEncoder.encode("admin"));
 
 			LocalDate hoy = LocalDate.now();
 			LocalDate diaSiguiente = hoy.plusDays(1);
