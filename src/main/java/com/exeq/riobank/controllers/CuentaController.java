@@ -43,7 +43,7 @@ public class CuentaController {
   @PostMapping("/clientes/current/accounts")
   public ResponseEntity<Object> createAccount(Authentication authentication){
     Cliente autenticado = clienteService.buscarClientePorEmail(authentication.getName());
-    if(autenticado.getCuentas().size() >= 3){
+    if(autenticado.getCuentas().size() >= 30){
       return new ResponseEntity<>("You can have up to three active accounts", HttpStatus.FORBIDDEN);
     }
     Cuenta cuenta = new Cuenta(generateRandomNumber(), LocalDate.now(), 0.00 );

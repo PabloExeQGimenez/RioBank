@@ -48,43 +48,43 @@ createApp({
                 return
             }
 
-             else{
+            else {
 
-            let datoClientes = {
-                nombre: this.inputNombre,
-                apellido: this.inputApellido,
-                email: this.inputEmail,
-            };
+                let datoClientes = {
+                    nombre: this.inputNombre,
+                    apellido: this.inputApellido,
+                    email: this.inputEmail,
+                };
 
+                axios
+                    .post("/rest/clientes", datoClientes)
+                    .then(respuesta => {
+                        this.cargarClientes()
+                        this.borrarFormulario()
+
+                    })
+                    .catch(err => console.log(err))
+            }
+        },
+
+        borrarFormulario() {
+            this.inputNombre = ""
+            this.inputApellido = ""
+            this.inputEmail = ""
+            this.mensaje = ""
+
+        },
+
+        logout() {
             axios
-                .post("/rest/clientes", datoClientes)
-                .then(respuesta => {
-                    this.cargarClientes()
-                    this.borrarFormulario()
-
+                .post("http://localhost:8080/api/logout")
+                .then((response) => {
+                    console.log("signed out!!!");
+                    location.href = "http://localhost:8080/web/index.html";
                 })
-                .catch(err => console.log(err))
+                .catch((error) => console.log(error));
         }
-    },
 
-    borrarFormulario() {
-        this.inputNombre = ""
-        this.inputApellido = ""
-        this.inputEmail = ""
-        this.mensaje = ""
-
-    },
-
-    logout() {
-        axios
-            .post("http://localhost:8080/api/logout")
-            .then((response) => {
-                console.log("signed out!!!");
-                location.href = "http://localhost:8080/web/index.html";
-            })
-            .catch((error) => console.log(error));
     }
-
-}
 
 }).mount('#app');

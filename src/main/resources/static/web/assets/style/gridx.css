@@ -113,3 +113,13 @@ footer{
   
 }
 
+.mainManager{
+  grid-column: 3/11;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  
+}
+.mainManager__section1{
+  grid-column: 4/11;
+}

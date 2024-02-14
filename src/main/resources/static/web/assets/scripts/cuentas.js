@@ -31,14 +31,11 @@ createApp({
             toAccount: "",
         };
     },
-
     created() {
         this.cliente1()
         this.getLoans()
     },
-
     methods: {
-
         getLoans() {
             axios
                 .get("/api/loans")
@@ -50,52 +47,182 @@ createApp({
                     console.error(error);
                 });
         },
-
         createLoan() {
-            axios
-                .post("/api/clientloans", `loanId=${this.loanId}&amount=${this.amountLoan}&payments=${this.payments}&destinationAccount=${this.toAccount}`)
-                .then((result) => {
-                    location.reload()
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "boton",
+                    cancelButton: "boton",
+                },
+                buttonsStyling: false
+            });
+            const loanConfirmationMessage = `
+            <strong>Amount: U$D</strong> ${this.amountLoan}<br>
+            <strong>Payments:</strong> ${this.payments}<br>
+            <strong>Destination Account:</strong> ${this.toAccount}
+            `;
+            swalWithBootstrapButtons.fire({
+                title: "Confirm Loan Request",
+                html: loanConfirmationMessage,
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, submit request!",
+                cancelButtonText: "No, cancel",
+                reverseButtons: true,
+                background: "#7B97AC",
+                color: "#000"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .post("/api/clientloans", `loanId=${this.loanId}&amount=${this.amountLoan}&payments=${this.payments}&destinationAccount=${this.toAccount}`)
+                        .then(() => {
+                            swalWithBootstrapButtons.fire({
+                                title: "Loan Request Submitted!",
+                                text: "To view details of your loan, go to: Menu > Loans",
+                                icon: "success",
+                                background: "#7B97AC",
+                                color: "#000"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        })
+                        .catch(err => {
+                            console.error('Error en el registro o inicio de sesión:', err);
+                            swalWithBootstrapButtons.fire({
+                                title: "Error",
+                                text: "An error occurred while processing your loan request.",
+                                icon: "error",
+                                background: "#7B97AC",
+                                color: "#000"
+                            });
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your loan request has been cancelled.",
+                        icon: "error",
+                        background: "#7B97AC",
+                        color: "#000"
+                    });
+                }
+            });
         },
-
         createCard() {
-            axios
-                .post("/api/clientes/current/cards", `type=${this.cardType}&color=${this.cardColor}`)
-                .then((response) => {
-                    location.reload()
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-            this.visibleCards = true;
-            this.visibleCuentas = false;
-            this.visibleDatosPersonales = false;
-            this.visibleDetalleCuenta = false;
-            this.visiblePrestamos = false;
-            this.visibleGetCards = false;
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "boton",
+                    cancelButton: "boton",
+                },
+                buttonsStyling: false
+            });
+            const cardConfirmationMessage = `
+                <strong>Card Type:</strong> ${this.cardType}<br>
+                <strong>Card Color:</strong> ${this.cardColor}
+            `;
+            swalWithBootstrapButtons.fire({
+                title: "Confirm Card Creation",
+                html: cardConfirmationMessage,
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, create card!",
+                cancelButtonText: "No, cancel",
+                reverseButtons: true,
+                background: "#7B97AC",
+                color: "#000"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .post("/api/clientes/current/cards", `type=${this.cardType}&color=${this.cardColor}`)
+                        .then(() => {
+                            swalWithBootstrapButtons.fire({
+                                title: "Card Created!",
+                                text: "To see your new card go to: Menu > Cards",
+                                icon: "success",
+                                background: "#7B97AC",
+                                color: "#000"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            swalWithBootstrapButtons.fire({
+                                title: "Error",
+                                text: "An error occurred while creating your card.",
+                                icon: "error",
+                                background: "#7B97AC",
+                                color: "#000"
+                            });
+                        });
+                    this.visibleCards = true;
+                    this.visibleCuentas = false;
+                    this.visibleDatosPersonales = false;
+                    this.visibleDetalleCuenta = false;
+                    this.visiblePrestamos = false;
+                    this.visibleGetCards = false;
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Card creation has been cancelled.",
+                        icon: "error",
+                        background: "#7B97AC",
+                        color: "#000"
+                    });
+                }
+            });
         },
-
-
         createAccount() {
-            axios
-                .post("/api/clientes/current/accounts")
-                .then((response) => {
-                    location.reload()
-                })
-
-                .catch((error) => {
-                    console.error(error);
-                });
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "boton",
+                    cancelButton: "boton",
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                title: "Confirm Account Creation",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, create account!",
+                cancelButtonText: "No, cancel",
+                reverseButtons: true,
+                background: "#7B97AC",
+                color: "#000"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .post("/api/clientes/current/accounts", `type=${this.accountType}&initialBalance=${this.initialBalance}&accountHolder=${this.accountHolder}`)
+                        .then(() => {
+                            swalWithBootstrapButtons.fire({
+                                title: "Account Created!",
+                                text: "Your account has been created successfully.",
+                                icon: "success",
+                                background: "#7B97AC",
+                                color: "#000"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        })
+                        .catch(err => {
+                            console.error('Error en la creación de la cuenta:', err);
+                            swalWithBootstrapButtons.fire({
+                                title: "Error",
+                                text: "An error occurred while creating your account.",
+                                icon: "error"
+                            });
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Account creation has been cancelled.",
+                        icon: "error"
+                    });
+                }
+            });
         },
         createTransaction() {
-
             axios
                 .post("/api/transactions",
-            `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`)
+                    `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`)
                 .then((response) => {
                     location.reload()
                 })
@@ -103,7 +230,6 @@ createApp({
                     console.error(error);
                 });
         },
-
         formatTransactionDate(date) {
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -120,7 +246,7 @@ createApp({
                 year: 'numeric',
                 month: '2-digit',
                 day: '2-digit',
-              
+
             });
             return formattedDate;
         },
@@ -142,15 +268,12 @@ createApp({
                 .catch((error) => {
                     console.error(error);
                 });
-
             this.visibleDetalleCuenta = true;
             this.visibleCuentas = false;
             this.visibleDatosPersonales = false;
             this.visiblePrestamos = false
             this.visibleCards = false;
-
         },
-
 
         clientes() {
             axios
@@ -179,7 +302,7 @@ createApp({
                     console.error('Error al obtener clientes:', error);
                 });
         },
-    
+
         mostrarGetCards() {
             this.visibleGetCards = true;
             this.visibleCards = false;
@@ -195,7 +318,6 @@ createApp({
             this.visibleDetalleCuenta = false
             this.visiblePrestamos = false
             this.visibleGetCards = false;
-
         },
 
         mostrarDatosPersonales() {

@@ -817,7 +817,6 @@ ul {
       font-size: 1.3rem;
       font-weight: bold;
       color: var(--darkShades);
-
     }
 
     .colorType {
@@ -834,7 +833,6 @@ ul {
       font-size: 1.2rem;
       color: var(--darkShades);
       font-family: 'Courier New', Courier, monospace;
-
     }
 
     .date {
@@ -846,3 +844,4 @@ ul {
     }
   }
 }
+
