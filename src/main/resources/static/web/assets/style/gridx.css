@@ -123,3 +123,21 @@ footer{
 .mainManager__section1{
   grid-column: 4/11;
 }
+
+@media screen and (max-width: 768px){
+  .mainManager__section1{
+    grid-column: 1/-1;
+    width: 100%;
+  }
+}
+
+.topManager{
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  .topManager__text {
+    grid-column: 3/11;
+    
+  }
+}

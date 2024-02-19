@@ -45,8 +45,7 @@
             text-transform: uppercase;
             color: rgb(255, 255, 255);
             cursor: pointer;
-            margin: 0.5rem 1rem;
-            padding: 2rem 0.5rem;
+            padding: 2rem 1rem;
 
             &:hover {
                 background-color: var(--main);
@@ -288,7 +287,7 @@ footer {
     text-align: center;
     margin: 2rem 0 0 0;
 
-    .linkPanel{
+    .linkPanel {
         display: flex;
         justify-content: center;
         cursor: pointer;
@@ -843,11 +842,11 @@ footer {
 
 /* fin cuentas */
 .boton {
-    background-color: var(--lightAccent)!important;
+    background-color: var(--lightAccent) !important;
     font-size: 1.2rem;
     color: black;
     text-decoration: none;
-    border: 1px solid var(--bordesBotonesEnPrincipal)!important;
+    border: 1px solid var(--bordesBotonesEnPrincipal) !important;
     padding: 0.125rem 0.5rem 0.125rem .5rem;
     border-radius: 10px;
     transition: all 0.5s ease;
@@ -858,14 +857,34 @@ footer {
         color: var(--lightShades);
     }
 }
+@media screen and (max-width: 425px) {
+    
+.btn100{
+    width: 100%!important;
+    
+}
+}
+.topManager {
+    display: flex;
+    background-color: var(--lightAccent);
+    justify-content: center;
+    align-items: center;
+    .top__text p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: large;
+        color: black;
+    }
+}
 
 .mainManager {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    min-height: calc(100vh - 5.5rem);
     color: var(--darkShades);
     justify-content: space-between;
+    min-height: calc(100vh - 12.5rem);
 
     .mainManager__navLateral {
         width: 25%;
@@ -894,6 +913,12 @@ footer {
                 }
             }
         }
+    }
+    @media screen and (max-width: 768px){
+        .mainManager__navLateral {
+            display: none;
+        }
+
     }
 
     .mainManager__section1 {
@@ -927,7 +952,7 @@ footer {
                 color: var(--lightShades);
             }
         }
-
+    
         @media screen and (max-width: 425px) {
             .botonera {
                 .boton {
@@ -945,10 +970,70 @@ footer {
             border-bottom: 1px solid var(--lightAccent);
         }
     }
+    @media screen and (max-width: 768px) {
+        .mainManager__section1 {
+            width: 100%;
+            border: 1px solid red;
+        }            
+        
+    }   
+}
+
+.formAdmin{
+
+    input{
+        margin: 8px 6px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+}
+
+.tableListClients{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    border: 1px solid #ccc;
+    th, td{
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+    }
+    th{
+        background-color: var(--darkShades);
+        color: var(--lightShades);
+    }
+    tr:nth-child(even){
+        background-color: var(--lightAccent);
+    }
+    tr:nth-child(odd){
+        background-color: var(--darkShades);
+    }
+}
+@media screen and (max-width: 425px){
+    .tableListClients{
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+        border: 1px solid #ccc;
+        overflow: auto;
+	    overflow-y: auto;
+
+        th, td{
+            border: 1px solid #ccc;
+            padding: 0.2rem;
+        }
+        th{
+            background-color: var(--darkShades);
+            color: var(--lightShades);
+        }
+        tr:nth-child(even){
+            background-color: var(--lightAccent);
+        }
+        tr:nth-child(odd){
+            background-color: var(--darkShades);
+        }
+
+
+    }
     
 }
-
-.footManager{
-    height: 2rem;
-}
-

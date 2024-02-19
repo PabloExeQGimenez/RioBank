@@ -34,6 +34,5 @@ public class Cliente {
     card.setCliente(this);
     this.cards.add(card);
   }
-
 }
 

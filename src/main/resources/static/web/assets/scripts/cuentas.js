@@ -220,16 +220,65 @@ createApp({
             });
         },
         createTransaction() {
-            axios
-                .post("/api/transactions",
-                    `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`)
-                .then((response) => {
-                    location.reload()
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "boton",
+                    cancelButton: "boton",
+                },
+                buttonsStyling: false
+            });
+        
+            const transactionConfirmationMessage = `
+                <strong>Amount:</strong> ${this.amount}<br>
+                <strong>Description:</strong> ${this.description}<br>
+                <strong>Origin Number:</strong> ${this.originNumber}<br>
+                <strong>Destination Number:</strong> ${this.destinationNumber}
+            `;
+        
+            swalWithBootstrapButtons.fire({
+                title: "Confirm Transaction",
+                html: transactionConfirmationMessage,
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, proceed!",
+                cancelButtonText: "No, cancel",
+                reverseButtons: true,
+                background: "#7B97AC",
+                color: "#000"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .post("/api/transactions",
+                            `amount=${this.amount}&description=${this.description}&originNumber=${this.originNumber}&destinationNumber=${this.destinationNumber}`)
+                        .then((response) => {
+                            swalWithBootstrapButtons.fire({
+                                title: "Transaction Successful!",
+                                text: "Your transaction has been completed successfully.",
+                                icon: "success",
+                                background: "#7B97AC",
+                                color: "#000"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            swalWithBootstrapButtons.fire({
+                                title: "Transaction Failed",
+                                text: "An error occurred while processing your transaction.",
+                                icon: "error"
+                            });
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Transaction Cancelled",
+                        text: "Your transaction has been cancelled.",
+                        icon: "error"
+                    });
+                }
+            });
         },
+        
         formatTransactionDate(date) {
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -343,14 +392,52 @@ createApp({
             this.visibleCards = false;
             this.visibleGetCards = false;
         },
-        logout() {
-            axios
-                .post("http://localhost:8080/api/logout")
-                .then((response) => {
-                    console.log("signed out!!!");
-                    location.href = "http://localhost:8080/web/index.html";
-                })
-                .catch((error) => console.log(error));
+
+        capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
         },
+
+        logout() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "boton",
+                    cancelButton: "boton",
+                },
+                buttonsStyling: false
+            });
+        
+            swalWithBootstrapButtons.fire({
+                title: "Logout",
+                text: "You are about to logout. Are you sure?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                background: "#7B97AC",
+                color: "#000"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .post("http://localhost:8080/api/logout")
+                        .then(() => {
+                            console.log("signed out!!!");
+                            location.href = "http://localhost:8080/web/index.html";
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            swalWithBootstrapButtons.fire({
+                                title: "Logout Failed",
+                                text: "An error occurred while logging out.",
+                                icon: "error"
+                            });
+                        });
+                } else {
+                    console.log("Logout canceled");
+                }
+            });
+        }
+        
+        
+        
     },
 }).mount('#app');

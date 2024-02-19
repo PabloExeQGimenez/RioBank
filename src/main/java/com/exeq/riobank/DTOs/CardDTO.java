@@ -20,5 +20,6 @@ public class CardDTO {
   private String number;
   private String cvv;
   private LocalDate thruDate, fromDate;
+  private boolean active;
 
 }

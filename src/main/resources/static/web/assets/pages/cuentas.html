@@ -234,7 +234,6 @@
                       </div>
                       <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId"
                         style="padding-bottom: 1rem;">
-                        <h5>Select the number of payments</h5>
                         <div style="display: flex; flex-wrap: wrap;">
                           <div class="form-check form-check-inline d-flex flex-column align-items-center" v-if="loanId"
                             style="padding-bottom: 1rem;">
@@ -354,7 +353,7 @@
           <a href="" @click.prevent="mostrarDatosPersonales" data-bs-target="#modalLogin" data-bs-toggle="modal"
             class="d-flex align-items-center">
             <i class="bi bi-person-circle fs-2 mx-2"></i>
-            <span> {{ clienteCurrent.nombre}} {{ clienteCurrent.apellido }}</span>
+            <span> {{ capitalizeFirstLetter(clienteCurrent.nombre)}} {{ capitalizeFirstLetter(clienteCurrent.apellido) }}</span>
           </a>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

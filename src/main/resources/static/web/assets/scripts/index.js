@@ -78,7 +78,7 @@ createApp({
               background: '#7B97AC',
               color: 'white',
               didClose: () => {
-                location.pathname = "/web/assets/pages/manager.html";
+                location.pathname = "/web/assets/pages/admin.html";
               }
             });
           } else {
@@ -109,11 +109,49 @@ createApp({
         });
     },
 
+    capitalizeFirstLetter(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+  },
+
     logout() {
-      axios.post('/api/logout').then(response => {
-        location.pathname = "/web/index.html"
-      })
-    },
+      const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+              confirmButton: "boton",
+              cancelButton: "boton",
+          },
+          buttonsStyling: false
+      });
+  
+      swalWithBootstrapButtons.fire({
+          title: "Logout",
+          text: "You are about to logout. Are you sure?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Yes",
+          cancelButtonText: "No",
+          background: "#7B97AC",
+          color: "#000"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              axios
+                  .post("http://localhost:8080/api/logout")
+                  .then(() => {
+                      console.log("signed out!!!");
+                      location.href = "http://localhost:8080/web/index.html";
+                  })
+                  .catch((error) => {
+                      console.log(error);
+                      swalWithBootstrapButtons.fire({
+                          title: "Logout Failed",
+                          text: "An error occurred while logging out.",
+                          icon: "error"
+                      });
+                  });
+          } else {
+              console.log("Logout canceled");
+          }
+      });
+  },
 
   linkAdmin(){
     Swal.fire({
