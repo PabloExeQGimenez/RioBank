@@ -15,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
+
 import static com.exeq.riobank.utils.CardUtils.generateCvv;
 import static com.exeq.riobank.utils.CardUtils.generateNumber;
 
@@ -41,11 +43,27 @@ public class CardController {
   }
 
   @PatchMapping("/clientes/current/cards")
-  public CardDTO deleteCard(@RequestParam Long id, Authentication authentication) {
+  public ResponseEntity<Object> deleteCard(@RequestParam Long id, Authentication authentication) {
     Cliente cliente = clienteService.buscarClientePorEmail(authentication.getName());
 
-    Card card = c
+    Optional<Card> cardOptional = cliente.getCards().stream()
+            .filter(card -> card.getId() == id)
+            .findFirst();
 
+    if (cardOptional.isPresent()) {
+      Card card = cardOptional.get();
+      // Cambiar la propiedad 'active' a false
+      card.setActive(false);
+
+      // Guardar los cambios en la base de datos
+      cardService.saveCard(card);
+      clienteService.saveClient(cliente);
+
+      return new ResponseEntity<>("Card deactivated!", HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>("Card not found", HttpStatus.NOT_FOUND);
     }
   }
+
 }
+

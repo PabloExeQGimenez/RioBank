@@ -25,6 +25,13 @@ public class  Card {
   private Cliente cliente;
   private boolean active=true;
 
-  public Card(String s, CardType cardType, CardColor cardColor, String s1, String s2, LocalDate now, LocalDate localDate) {
-  }
+    public Card(String cardholder, CardType type, CardColor color, String number, String cvv, LocalDate thruDate, LocalDate fromDate) {
+        this.cardholder = cardholder;
+        this.type = type;
+        this.color = color;
+        this.number = number;
+        this.cvv = cvv;
+        this.thruDate = thruDate;
+        this.fromDate = fromDate;
+    }
 }

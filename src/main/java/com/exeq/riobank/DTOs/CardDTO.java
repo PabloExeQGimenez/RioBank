@@ -22,4 +22,15 @@ public class CardDTO {
   private LocalDate thruDate, fromDate;
   private boolean active;
 
+    public CardDTO(Card card) {
+        this.id = card.getId();
+        this.cardholder = card.getCardholder();
+        this.type = card.getType();
+        this.color = card.getColor();
+        this.number = card.getNumber();
+        this.cvv = card.getCvv();
+        this.thruDate = card.getThruDate();
+        this.fromDate = card.getFromDate();
+        this.active = card.isActive();
+    }
 }

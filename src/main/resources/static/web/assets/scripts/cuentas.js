@@ -29,6 +29,7 @@ createApp({
             amountLoan: 0,
             payments: 0,
             toAccount: "",
+            cardId: 0,
         };
     },
     created() {
@@ -227,14 +228,14 @@ createApp({
                 },
                 buttonsStyling: false
             });
-        
+
             const transactionConfirmationMessage = `
                 <strong>Amount:</strong> ${this.amount}<br>
                 <strong>Description:</strong> ${this.description}<br>
                 <strong>Origin Number:</strong> ${this.originNumber}<br>
                 <strong>Destination Number:</strong> ${this.destinationNumber}
             `;
-        
+
             swalWithBootstrapButtons.fire({
                 title: "Confirm Transaction",
                 html: transactionConfirmationMessage,
@@ -278,7 +279,7 @@ createApp({
                 }
             });
         },
-        
+
         formatTransactionDate(date) {
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -405,7 +406,7 @@ createApp({
                 },
                 buttonsStyling: false
             });
-        
+
             swalWithBootstrapButtons.fire({
                 title: "Logout",
                 text: "You are about to logout. Are you sure?",
@@ -435,9 +436,17 @@ createApp({
                     console.log("Logout canceled");
                 }
             });
-        }
-        
-        
-        
+        },
+        deleteCard(cardId) {
+            axios
+                .patch(`/api/clientes/current/cards?id=${cardId}`)
+                .then((response) => {
+                    console.log(`Card ${cardId} deleted successfully`);
+                    this.cards = this.cards.filter((card) => card.id !== cardId && card.active);
+                })
+                .catch((error) => {
+                    console.error(`Error deleting account ${cardId}:`, error);
+                });
+        },
     },
 }).mount('#app');
