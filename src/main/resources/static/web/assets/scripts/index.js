@@ -134,10 +134,10 @@ createApp({
       }).then((result) => {
           if (result.isConfirmed) {
               axios
-                  .post("http://localhost:8080/api/logout")
+                  .post("/api/logout")
                   .then(() => {
                       console.log("signed out!!!");
-                      location.href = "http://localhost:8080/web/index.html";
+                      location.href = "/web/index.html";
                   })
                   .catch((error) => {
                       console.log(error);
