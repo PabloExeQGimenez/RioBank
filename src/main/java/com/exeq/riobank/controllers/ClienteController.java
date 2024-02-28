@@ -4,6 +4,7 @@ import com.exeq.riobank.DTOs.ClienteDTO;
 import com.exeq.riobank.mappers.ClienteMapper;
 import com.exeq.riobank.models.Cliente;
 import com.exeq.riobank.models.Cuenta;
+import com.exeq.riobank.models.CuentaTipo;
 import com.exeq.riobank.repositories.ClienteRepo;
 import com.exeq.riobank.service.ClienteService;
 import com.exeq.riobank.service.CuentaService;
@@ -51,7 +52,7 @@ public class ClienteController {
                                          @RequestParam String email, @RequestParam String password){
 
     Cliente cliente = clienteService.insertarCliente(nombre, apellido, email, passwordEncoder.encode(password));
-    Cuenta cuenta = new Cuenta(generateRandomNumber(), LocalDate.now(), 0.00 );
+    Cuenta cuenta = new Cuenta(generateRandomNumber(), LocalDate.now(), 0.00, CuentaTipo.SAVINGS); ;
     cliente.agregarCuenta(cuenta);
     cuentaService.saveAccount(cuenta);
     clienteService.saveClient(cliente);

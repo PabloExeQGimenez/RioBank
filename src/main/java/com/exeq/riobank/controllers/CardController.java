@@ -15,7 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.exeq.riobank.utils.CardUtils.generateCvv;
 import static com.exeq.riobank.utils.CardUtils.generateNumber;
@@ -35,7 +37,7 @@ public class CardController {
   @PostMapping("/clientes/current/cards")
   public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color, Authentication authentication) {
     Cliente cliente = clienteService.buscarClientePorEmail(authentication.getName());
-    Card card = new Card((cliente.getNombre() + " " + cliente.getApellido()), CardType.valueOf(type), CardColor.valueOf(color), (generateNumber(1, 10000) + " " + generateNumber(1, 10000) + " " + generateNumber(1, 10000) + " " + generateNumber(1, 10000)), generateCvv(1, 1000), LocalDate.now(), LocalDate.now().plusYears(5));
+    Card card = new Card((cliente.getNombre() + " " + cliente.getApellido()), CardType.valueOf(type), CardColor.valueOf(color), (generateNumber(1, 10000) + " " + generateNumber(1, 10000) + " " + generateNumber(1, 10000) + " " + generateNumber(1, 10000)), generateCvv(1, 1000), LocalDate.now().plusYears(5), LocalDate.now());
     cliente.addCard(card);
     cardService.saveCard(card);
     clienteService.saveClient(cliente);
@@ -52,10 +54,8 @@ public class CardController {
 
     if (cardOptional.isPresent()) {
       Card card = cardOptional.get();
-      // Cambiar la propiedad 'active' a false
       card.setActive(false);
 
-      // Guardar los cambios en la base de datos
       cardService.saveCard(card);
       clienteService.saveClient(cliente);
 
@@ -64,6 +64,12 @@ public class CardController {
       return new ResponseEntity<>("Card not found", HttpStatus.NOT_FOUND);
     }
   }
-
+  @GetMapping("clientes/current/cards")
+  public List<CardDTO> allCardsCurrent(Authentication authentication){
+    Cliente cliente = clienteService.buscarClientePorEmail(authentication.getName());
+    List<CardDTO> cardDTOS = cliente.getCards().stream().map(card -> new CardDTO(card)).filter(cardDTO -> cardDTO.isActive()==true).collect(Collectors.toList());
+    return cardDTOS;
+  }
 }
+
 

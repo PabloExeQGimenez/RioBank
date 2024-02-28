@@ -15,12 +15,14 @@ public class TransactionServiceImpl implements TransactionService {
   @Autowired
   private TransactionRepo transactionRepo;
   @Override
-  public Transaction createTransaction(TransactionType type, Double amount, String description, LocalDateTime date) {
+  public Transaction createTransaction(TransactionType type, Double amount, String description, LocalDateTime date, Double balance) {
     Transaction transaction = new Transaction();
     transaction.setType(type);
     transaction.setAmount(amount);
     transaction.setDescription(description);
     transaction.setDate(date);
+    transaction.setBalance(balance);
+
     return transactionRepo.save(transaction);
   }
 

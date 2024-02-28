@@ -60,8 +60,8 @@ public class TransactionsController {
             return new ResponseEntity<>("You cannot transfer to the same account",
                     HttpStatus.FORBIDDEN);
         } else {
-            Transaction transactionCredit = transactionService.createTransaction(TransactionType.CREDIT, amount, description, LocalDateTime.now());
-            Transaction transactionDebit = transactionService.createTransaction(TransactionType.DEBIT, -amount, description, LocalDateTime.now());
+            Transaction transactionCredit = transactionService.createTransaction(TransactionType.CREDIT, amount, description, LocalDateTime.now(), (accountCredit.getBalance() + amount));
+            Transaction transactionDebit = transactionService.createTransaction(TransactionType.DEBIT, -amount, description, LocalDateTime.now(), (accountDebit.getBalance() - amount));
             transactionService.saveTransactions(transactionCredit);
             transactionService.saveTransactions(transactionDebit);
             accountDebit.addTransaction(transactionDebit);

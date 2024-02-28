@@ -1,6 +1,7 @@
 package com.exeq.riobank.service.impl;
 
 import com.exeq.riobank.models.Cuenta;
+import com.exeq.riobank.models.CuentaTipo;
 import com.exeq.riobank.repositories.CuentaRepo;
 import com.exeq.riobank.service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,13 @@ public class CuentaServiceImpl implements CuentaService {
   @Autowired
   private CuentaRepo cuentaRepo;
   @Override
-  public Cuenta insertarCuenta(String numero, LocalDate fechaCreacion, Double balance) {
+  public Cuenta insertarCuenta(String numero, LocalDate fechaCreacion, Double balance, CuentaTipo tipo) {
 
     Cuenta cuenta = new Cuenta();
     cuenta.setNumero(numero);
     cuenta.setFechaCreacion(fechaCreacion);
     cuenta.setBalance(balance);
+    cuenta.setTipo(tipo);
 
     return cuentaRepo.save(cuenta);
   }

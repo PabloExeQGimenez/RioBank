@@ -1,5 +1,5 @@
 package com.exeq.riobank.models;
 
-public enum cuentaTipo {
+public enum CuentaTipo {
     SAVINGS, CHECKING
 }

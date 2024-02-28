@@ -48,7 +48,7 @@ public class ClientLoanController {
         Cuenta account = cuentaService.findByNumero(destinationAccount);
         ClientLoan clientLoan = clientLoanService.createClientLoan(loan, amount, payments);
         autenticado.addClientLoan(clientLoan);
-        Transaction transactionCredit = transactionService.createTransaction(TransactionType.CREDIT, amount, "Credit " + loan.getName() + " approved", LocalDateTime.now());
+        Transaction transactionCredit = transactionService.createTransaction(TransactionType.CREDIT, amount, "Credit " + loan.getName() + " approved", LocalDateTime.now(), account.getBalance() + amount);
         account.addTransaction(transactionCredit);
         account.setBalance(account.getBalance() + amount);
         cuentaService.saveAccount(account);

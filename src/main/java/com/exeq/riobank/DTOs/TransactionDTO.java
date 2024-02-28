@@ -18,4 +18,5 @@ public class TransactionDTO {
   private Double amount;
   private String description;
   private LocalDateTime date;
+  private Double balance;
 }

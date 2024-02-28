@@ -1,6 +1,7 @@
 package com.exeq.riobank.DTOs;
 
 import com.exeq.riobank.models.Cuenta;
+import com.exeq.riobank.models.CuentaTipo;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +20,9 @@ public class CuentaDTO {
     private LocalDate fechaCreacion;
     private Double balance;
     private List<TransactionDTO> transactions;
+    private boolean active;
+    private CuentaTipo tipo;
+
 
 
 }

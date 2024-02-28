@@ -43,8 +43,8 @@ public class RiobankApplication {
 
 			LocalDate hoy = LocalDate.now();
 			LocalDate diaSiguiente = hoy.plusDays(1);
-			Cuenta cuentaMelba1 = cuentaService.insertarCuenta("VIN001", hoy, 5000.00);
-			Cuenta cuentaMelba2 = cuentaService.insertarCuenta("VIN002", diaSiguiente, 7500.00);
+			Cuenta cuentaMelba1 = cuentaService.insertarCuenta("VIN001", hoy, 5000.00, CuentaTipo.SAVINGS);
+			Cuenta cuentaMelba2 = cuentaService.insertarCuenta("VIN002", diaSiguiente, 7500.00, CuentaTipo.CHECKING);
 			clienteMelba.agregarCuenta(cuentaMelba1);
 			clienteMelba.agregarCuenta(cuentaMelba2);
 			cuentaRepo.save(cuentaMelba1);
@@ -52,11 +52,11 @@ public class RiobankApplication {
 			clienteRepo.save(clienteMelba);
 
 			LocalDateTime ahora = LocalDateTime.now();
-			Transaction transactionMelba = transactionService.createTransaction(TransactionType.CREDIT, 2000.00, "Prueba credit", ahora );
+			Transaction transactionMelba = transactionService.createTransaction(TransactionType.CREDIT, 2000.00, "Prueba credit", ahora, 7000.00);
 
 			cuentaMelba1.addTransaction(transactionMelba);
 			transactionService.saveTransactions(transactionMelba);
-			Transaction transactionMelba2 = transactionService.createTransaction(TransactionType.DEBIT, 3000.00, "Prueba debit", ahora );
+			Transaction transactionMelba2 = transactionService.createTransaction(TransactionType.DEBIT, 3000.00, "Prueba debit", ahora, 4000.00 );
 			cuentaMelba1.addTransaction(transactionMelba2);
 			transactionService.saveTransactions(transactionMelba2);
 
@@ -76,17 +76,15 @@ public class RiobankApplication {
 			clientLoanRepo.save(melbaLoanPersonal);
 			clienteRepo.save(clienteMelba);
 
-			/*Card cardMelba = new Card(
+			Card cardMelba = new Card(
 					(clienteMelba.getNombre() + " " + clienteMelba.getApellido()),
 					CardType.DEBIT, CardColor.TITANIUM,
 					"9238 8928 9823 7879", "345",
-					LocalDate.now(), LocalDate.now().plusYears(5)
-			);*/
-			/*System.out.println("Lista de tarjetas antes de agregar: " + clienteMelba.getCards());
+					LocalDate.now().plusYears(-1),LocalDate.now()
+			);
 			clienteMelba.addCard(cardMelba);
 			cardService.saveCard(cardMelba);
 			clienteService.saveClient(clienteMelba);
-*/
 		};
 
 		};

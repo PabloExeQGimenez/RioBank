@@ -22,8 +22,9 @@ public class Transaction {
   private LocalDateTime date;
   @ManyToOne(fetch = FetchType.EAGER)
   private Cuenta cuenta;
+  private Double balance;
 
-  public Transaction(Long id, TransactionType type, Double amount, String description, LocalDateTime date){
+  public Transaction(Long id, TransactionType type, Double amount, String description, LocalDateTime date, Double balance){
     this.id = id;
     this.type = type;
     this.amount = amount;

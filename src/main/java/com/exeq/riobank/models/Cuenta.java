@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,11 +21,14 @@ public class Cuenta {
   private Cliente cliente;
   @OneToMany(mappedBy = "cuenta", fetch = FetchType.EAGER)
   private Set<Transaction> transactions = new HashSet<>();
+  private boolean active = true;
+  private CuentaTipo tipo;
 
-  public Cuenta (String numero, LocalDate fechaCreacion, Double balance){
+  public Cuenta (String numero, LocalDate fechaCreacion, Double balance, CuentaTipo tipo){
     this.numero = numero;
     this.fechaCreacion = fechaCreacion;
     this.balance = balance;
+    this.tipo = tipo;
   }
 
   public void addTransaction(Transaction transaction) {
