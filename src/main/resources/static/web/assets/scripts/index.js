@@ -16,7 +16,23 @@ createApp({
   },
 
   created() {
-    this.cliente1()
+    Swal.fire({
+      title: "Test Application",
+      html: `
+          <p><strong>Client:</strong> esmeralda@gmail.com</p>
+          <p><strong>Password:</strong> esmeralda</p>
+          <br>
+          <p><strong>Admin:</strong> admin@admin.com</p>
+          <p><strong>Password:</strong> admin</p>
+          <p>Or Register</p>
+      `,
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonText: "OK",
+      background: "#7B97AC",
+      color: "#000"
+  });
+      this.cliente1()
   },
   methods: {
     cliente1() {

@@ -74,7 +74,7 @@
         </div>
         <div v-show="visibleCuentas" class="cont_account">
           <div class="botonera">
-            <a @click.prevent="createAccount" class="boton" role="button">Request Account</a>
+            <a  class="boton" role="button" data-bs-toggle="modal" data-bs-target="#exampleModalAccount">Request Account</a>
             <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#modalTransaction">
               Make a transaction
             </button>
@@ -93,11 +93,11 @@
                   </tr>
                 </thead>
                 <tbody class="">
-                  <tr v-for="cuenta of cuentasCurrent"  role="button">
+                  <tr v-for="cuenta of cuentasCurrent"  role="button" class="detailsAccount"  data-content="Details account">
                     <td @click.prevent="accountId(cuenta.id)">{{cuenta.numero}}</td>
-                    <td>$ {{cuenta.balance}}</td>
-                    <td>{{cuenta.tipo}}</td>
-                    <td>{{formatDate(cuenta.fechaCreacion)}}</td>
+                    <td @click.prevent="accountId(cuenta.id)">$ {{cuenta.balance}}</td>
+                    <td @click.prevent="accountId(cuenta.id)">{{cuenta.tipo}}</td>
+                    <td @click.prevent="accountId(cuenta.id)">{{formatDate(cuenta.fechaCreacion)}}</td>
                     <td><a @click.prevent="deleteAccount(cuenta.id)" class="boton" role="button"><i class="bi bi-trash3"></i></a></td>
 
                   </tr>
@@ -105,6 +105,33 @@
               </table>
             </div>
             
+          </div>
+        </div>
+        <div class="modal fade " id="exampleModalAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content modalCard">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Request Account</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <span></span>
+                  <fieldset>
+                    <legend>Select the type of account:</legend>
+                    <div class="d-flex gap-4">
+                      <label><input type="radio" id="SAVINGS" name="tipo" value="SAVINGS"
+                          v-model="cuentaTipo">SAVINGS</label>
+                      <label><input type="radio" id="CHECKING" name="tipo" value="CHECKING"
+                          v-model="cuentaTipo">CHECKINGS</label>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn boton" @click="createAccount">Create Account</button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal fade " id="modalTransaction" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class CardServiceImpl implements CardService {
@@ -24,6 +25,11 @@ public class CardServiceImpl implements CardService {
     card.setThruDate(thruDate);
     card.setFromDate(fromDate);
     return cardRepo.save(card);
+  }
+
+  @Override
+  public List<Card> getCards() {
+    return cardRepo.findAll();
   }
 
   @Override

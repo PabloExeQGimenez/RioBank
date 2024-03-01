@@ -30,7 +30,7 @@ createApp({
             payments: 0,
             toAccount: "",
             cardId: 0,
-            cuentaTipo: "SAVINGS",
+            cuentaTipo: "",
         };
     },
     created() {

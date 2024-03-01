@@ -1,5 +1,6 @@
 package com.exeq.riobank.controllers;
 import com.exeq.riobank.DTOs.CardDTO;
+import com.exeq.riobank.mappers.CardMapper;
 import com.exeq.riobank.models.CardColor;
 import com.exeq.riobank.models.CardType;
 import com.exeq.riobank.models.Card;
@@ -33,6 +34,9 @@ public class CardController {
   private CardUtils cardUtils;
   @Autowired
   private CardRepo cardRepo;
+
+  @Autowired
+  private CardMapper cardMapper;
 
   @PostMapping("/clientes/current/cards")
   public ResponseEntity<Object> createCard(@RequestParam String type, @RequestParam String color, Authentication authentication) {
@@ -69,6 +73,11 @@ public class CardController {
     Cliente cliente = clienteService.buscarClientePorEmail(authentication.getName());
     List<CardDTO> cardDTOS = cliente.getCards().stream().map(card -> new CardDTO(card)).filter(cardDTO -> cardDTO.isActive()==true).collect(Collectors.toList());
     return cardDTOS;
+  }
+
+  @GetMapping("/cards")
+  public List<CardDTO> allCards() {
+    return cardMapper.transformarAListaCardsDTO(cardService.getCards());
   }
 }
 

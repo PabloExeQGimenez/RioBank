@@ -73,6 +73,7 @@ a{
 
   .mainIndex__section1{
     grid-column: 3/11;
+
   }
 
   .mainIndex__section2{
@@ -111,17 +112,6 @@ footer{
     grid-column: 1/-1;
   }
   
-}
-
-.mainManager{
-  grid-column: 3/11;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-
-  
-}
-.mainManager__section1{
-  grid-column: 4/11;
 }
 
 @media screen and (max-width: 768px){

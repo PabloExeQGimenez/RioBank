@@ -54,8 +54,9 @@
             <section class="mainAccount__navLateral">
                 <ul class="ulLateral">
                     <li><a @click.prevent="showAddClients"><i class="bi bi-person-gear"></i> Add Clients</a></li>
-                    <li><a @click.prevent="showListClients"><i class="bi bi-people"></i> List Clients</a></li>
-                    <li><a><i class="bi bi-cash-coin"></i> Loans</a></li>
+                    <li><a @click.prevent="showListClients"><i class="bi bi-people"></i> Clients</a></li>
+                    <li><a @click.prevent="showListCards"><i class="bi bi-credit-card"></i> Cards</a></li>
+                    <li><a @click.prevent="showMoneyAccounts"><i class="bi bi-piggy-bank"></i> Balance</a></li>
                 </ul>
 
             </section>
@@ -85,24 +86,133 @@
                     </form>
                 </div>
                 <div v-show="showListClientss">
+                    <div class="botonera">
+                        <label>
+                            <input type="search" placeholder="Search" v-model="inputSearchClient" class="p-1 m-1">
+                            <button type="button" class="boton" @click="searchClients"> Search</button>
+                            <span> (Search by name, last name, account number or card number)</span>
+                        </label>
+                    </div>
                     <div class="tableListClients">
-                        <h3 class="text-center">Client list</h3>
+                        <h3 class="text-center">Client list </h3>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Lastname</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Accounts</th>
+                                    <th scope="col">Cards</th>
+                                    <th scope="col">Loans</th>
                                 </tr>
                             </thead>
                             <tbody class="rounded-4">
-                                <tr v-for="cliente of clientes">
-                                    <td>{{cliente.nombre}}</td>
-                                    <td>{{cliente.apellido}}</td>
-                                    <td>{{cliente.email}}</td>
+                                <tr v-if="filteredClients.length === 0" v-for="cliente of clientess" >
+                                    <td>{{ cliente.nombre }}</td>
+                                    <td>{{ cliente.apellido }}</td>
+                                    <td>{{ cliente.email }}</td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="cuenta in cliente.cuentas" :key="cuenta.id">{{ cuenta.numero }}
+                                                U$D {{cuenta.balance}}</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="card in cliente.cards" :key="card.id">{{ card.type}} {{
+                                                card.number }}</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="loan in cliente.loans" :key="loan.id">{{loan.loanName}} U$D {{
+                                                loan.amount }}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr v-else v-for="cliente in filteredClients" :key="cliente.id">
+                                    <td>{{ cliente.nombre }}</td>
+                                    <td>{{ cliente.apellido }}</td>
+                                    <td>{{ cliente.email }}</td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="cuenta in cliente.cuentas" :key="cuenta.id">{{ cuenta.numero }}
+                                                U$S {{cuenta.balance}}</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="card in cliente.cards" :key="card.id">{{ card.type}} {{
+                                                card.number }}</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="loan in cliente.loans" :key="loan.id">{{loan.loanName}} U$D {{
+                                                loan.amount }}</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+
+                </div>
+                <div v-show="showListCardss">
+                    <div class="botonera">
+                        <label>
+                            <input type="search" placeholder="Search" v-model="inputSearch">
+                            <button type="button" class="boton" @click="searchCards"> Search</button>
+                        </label>
+                    </div>
+                    <div class="tableListCards">
+                        <h3 class="text-center">Cards list</h3>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cardholder</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Number</th>
+                                    <th scope="col">Cvv</th>
+                                    <th scope="col">From Date</th>
+                                    <th scope="col">Thru Date</th>
+                                    <th scope="col">Active</th>
+                                </tr>
+                            </thead>
+                            <tbody class="rounded-4">
+                                <tr v-if="filteredCards.length === 0" v-for="card in cards">
+                                    <td>{{ card.cardholder }}</td>
+                                    <td>{{ card.type }}</td>
+                                    <td>{{ card.color }}</td>
+                                    <td>{{ card.number }}</td>
+                                    <td>{{ card.cvv }}</td>
+                                    <td>{{ card.fromDate }}</td>
+                                    <td>{{ card.thruDate }}</td>
+                                    <td>{{ card.active }}</td>
+                                </tr>
+                                <tr v-else v-for="card in filteredCards">
+                                    <td>{{ card.cardholder }}</td>
+                                    <td>{{ card.type }}</td>
+                                    <td>{{ card.color }}</td>
+                                    <td>{{ card.number }}</td>
+                                    <td>{{ card.cvv }}</td>
+                                    <td>{{ card.fromDate }}</td>
+                                    <td>{{ card.thruDate }}</td>
+                                    <td>{{ card.active }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div v-show="showMoneyAccountss">
+                    
+                    <div >
+                        <h3 >Total money in  accounts: U$D {{totalAccounts}}</h3>
+                        <h3 >Total money in loans: U$D {{totalLoans}}</h3>
+                        <h2 class="bg-info-subtle">Total Balance: U$D {{ totalAccounts - totalLoans }}</h2>
+                    
                     </div>
                 </div>
             </section>
@@ -116,17 +226,19 @@
                     <span class="text-light fs-2">{{ capitalizeFirstLetter(name) }}</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div> 
+            </div>
             <div class="offcanvas-body">
                 <ul class="ulLateralMobile">
-                    <li><a @click.prevent="showAddClients" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-person-gear"></i> Add Clients</a></li>
-                    <li><a @click.prevent="showListClients" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-people"></i> List Clients</a></li>
+                    <li><a @click.prevent="showAddClients" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                                class="bi bi-person-gear"></i> Add Clients</a></li>
+                    <li><a @click.prevent="showListClients" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                                class="bi bi-people"></i> List Clients</a></li>
                     <li><a><i class="bi bi-cash-coin"></i> Loans</a></li>
-                    <li><a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
-                        class="d-flex align-items-center">
-                        <i class="bi bi-box-arrow-in-left fs-2 "></i>
-                        Logout
-                    </a></li>
+                    <li><a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin"
+                            data-bs-toggle="modal" class="d-flex align-items-center">
+                            <i class="bi bi-box-arrow-in-left fs-2 "></i>
+                            Logout
+                        </a></li>
                 </ul>
             </div>
         </div>
