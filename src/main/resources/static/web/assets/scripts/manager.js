@@ -193,20 +193,18 @@ createApp({
                 .get("/api/cards")
                 .then(response => {
                     this.cards = response.data
+                    console.log(this.cards)
 
                 })
 
         },
-
-
-
 
         capitalizeFirstLetter(str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
         },
 
         searchCards() {
-            this.filteredCards = this.cards.filter(card => card.cardholder.toLowerCase().includes(this.inputSearch.toLowerCase()));
+            this.filteredCards = this.cards.filter(card => card.cardholder.toLowerCase().includes(this.inputSearch.toLowerCase()) || card.number.toLowerCase().includes(this.inputSearch.toLowerCase()));
             console.log(this.filteredCards)
         },
 
