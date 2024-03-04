@@ -152,17 +152,15 @@
             }
     }
 
-
-
     @media (max-width: 768px) {
         .mainIndex__section1 {
 
             .card {
                 width: 100%;
+                margin-bottom: 1rem;
             }
         }
     }
-
 
     .mainIndex__section2 {
         display: flex;
@@ -279,14 +277,14 @@
 }
 
 footer {
-    height: 9rem;
+    height: 7.05rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     background-color: var(--darkShades);
     color: white;
     text-align: center;
-    margin: 2rem 0 0 0;
+    margin: 1rem 0 0 0;
 
     .linkPanel {
         display: flex;
@@ -393,9 +391,10 @@ footer {
 .mainAccount {
     display: flex;
     justify-content: center;
-    min-height: calc(100vh - 19.5rem);
+    min-height: calc(100vh - 16.55rem);
     color: var(--darkShades);
     justify-content: space-between;
+    
 
     .mainAccount__navLateral {
         width: 20%;
@@ -512,7 +511,6 @@ footer {
         .mainAccount__section1 {
             width: 100%;
         }
-
     }
 
     .bannerLateral {
@@ -733,7 +731,6 @@ footer {
             padding: 0.5rem;
             transform: rotate(-45deg);
             color: red;
-
         }
 
         .fromDate {
@@ -742,7 +739,6 @@ footer {
             left: 6rem;
             font-size: 0.8rem;
             color: var(--lightShades);
-
         }
     }
 }
@@ -885,7 +881,6 @@ footer {
 
     .btn100 {
         width: 100% !important;
-
     }
 }
 
@@ -910,7 +905,7 @@ footer {
     justify-content: center;
     color: var(--darkShades);
     justify-content: space-between;
-    min-height: calc(100vh - 12.5rem);
+    min-height: calc(100vh - 19.5rem);
 
     .mainManager__navLateral {
         width: 25%;
@@ -945,7 +940,6 @@ footer {
         .mainManager__navLateral {
             display: none;
         }
-
     }
 
     .mainManager__section1 {
@@ -1003,18 +997,15 @@ footer {
             width: 100%;
             border: 1px solid red;
         }
-
     }
 }
 
 .formAdmin {
-
     input {
         margin: 8px 6px;
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-
 }
 
 .tableListClients {
@@ -1073,9 +1064,7 @@ footer {
         tr:nth-child(odd) {
             background-color: var(--darkShades);
         }
-
     }
-
 }
 
 .botonDeleteCard {

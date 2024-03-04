@@ -337,10 +337,7 @@ createApp({
                 }
             });
         },
-
-
         //Loans
-
         getLoans() {
             axios
                 .get("/api/loans")
@@ -485,15 +482,12 @@ createApp({
             });
             return formattedDate;
         },
-
-        
         //others
 
         capitalizeFirstLetter(str) {
             if (str) {
                 return str.charAt(0).toUpperCase() + str.slice(1);
             }
-            // Manejar el caso en que la cadena es undefined
             return "";
         },
         logout() {
@@ -544,8 +538,6 @@ createApp({
             });
             return formattedDate;
         },
-
-
         //Views
 
         mostrarGetCards() {

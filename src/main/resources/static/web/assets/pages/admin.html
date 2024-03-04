@@ -57,6 +57,9 @@
           <li><a @click.prevent="showListCards"><i class="bi bi-credit-card"></i> Cards</a></li>
           <li><a @click.prevent="showMoneyAccounts"><i class="bi bi-piggy-bank"></i> Balance</a></li>
         </ul>
+        <div class="bannerLateral">
+          <img src="../images/g4.png" alt="investments">
+        </div>
       </section>
       <section class="mainAccount__section1">
         <div v-show="showAddClientss">
@@ -239,13 +242,7 @@
         </ul>
       </div>
     </div>
-    <footer>
-      <div class="top">
-        <div class="top__text">
-          <a @click="linkAdmin" class="linkPanel text-black text-decoration-underline"><i class="bi bi-gear"></i>
-            Administration panel</a>
-        </div>
-      </div>
+    <footer class="footAdm">
       <div class="foot">
         <a href="www.facebook.com" class="text-reset"><i class="bi bi-facebook"></i></a>
         <a href="www.twiter.com" class="text-reset"><i class="bi bi-twitter"></i> </a>
