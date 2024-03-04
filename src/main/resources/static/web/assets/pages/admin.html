@@ -30,7 +30,7 @@
                 <nav class="header__navPc">
                     <div v-if="name !== '-'" class="d-flex align-items-start">
                         <a href="./assets/pages/cuentas.html"> <i class="bi bi-person-circle fs-2 mx-2"></i>
-                            {{name}} {{lastName}}</a>
+                            {{name}}</a>
                     </div>
                     <div v-if="name =='-'">
                         <a data-bs-target="#modalLogin" data-bs-toggle="modal">
@@ -229,14 +229,15 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="ulLateralMobile">
-                    <li><a @click.prevent="showAddClients" data-bs-dismiss="offcanvas" aria-label="Close"><i
-                                class="bi bi-person-gear"></i> Add Clients</a></li>
-                    <li><a @click.prevent="showListClients" data-bs-dismiss="offcanvas" aria-label="Close"><i
-                                class="bi bi-people"></i> List Clients</a></li>
-                    <li><a><i class="bi bi-cash-coin"></i> Loans</a></li>
+                    
+                        <li><a @click.prevent="showAddClients" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-person-gear"></i> Add Clients</a></li>
+                        <li><a @click.prevent="showListClients" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-people"></i> Clients</a></li>
+                        <li><a @click.prevent="showListCards" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-credit-card"></i> Cards</a></li>
+                        <li><a @click.prevent="showMoneyAccounts" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-piggy-bank"></i> Balance</a></li>
+                    
                     <li><a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin"
-                            data-bs-toggle="modal" class="d-flex align-items-center">
-                            <i class="bi bi-box-arrow-in-left fs-2 "></i>
+                            data-bs-toggle="modal" class="text-white">
+                            <i class="bi bi-box-arrow-in-left "></i>
                             Logout
                         </a></li>
                 </ul>
