@@ -20,10 +20,8 @@ createApp({
             filteredClients: [],
             totalAccounts: "",
             showMoneyAccountss: false,
-            totalLoans:"",
-            totalBalance:"",
-
-
+            totalLoans: "",
+            totalBalance: "",
         };
     },
 
@@ -46,24 +44,20 @@ createApp({
             axios
                 .get("/api/cuentas")
                 .then(response => {
-                    // Obtén los balances de todas las cuentas
                     const balances = response.data.map(cuenta => cuenta.balance);
-
-                    // Suma los balances utilizando reduce
                     this.totalAccounts = balances.reduce((total, balance) => total + balance, 0);
                 })
                 .catch(error => {
                     console.error("Error fetching account balances:", error);
                 });
         },
-        moneyLoans(){
+        moneyLoans() {
             axios
-            .get("/api/clientloans")
-            .then(response => {
-                const balanceLoans = response.data.map(clientloan => clientloan.amount);
-
-                this.totalLoans = balanceLoans.reduce((total, balance) => total + balance, 0);
-            })
+                .get("/api/clientloans")
+                .then(response => {
+                    const balanceLoans = response.data.map(clientloan => clientloan.amount);
+                    this.totalLoans = balanceLoans.reduce((total, balance) => total + balance, 0);
+                })
         },
 
         clientes_() {
@@ -148,8 +142,6 @@ createApp({
             this.filteredClients = this.clientess.filter(cliente => cliente.nombre.toLowerCase().includes(this.inputSearchClient.toLowerCase()) || cliente.apellido.toLowerCase().includes(this.inputSearchClient.toLowerCase()) || cliente.cuentas.some(cuenta => cuenta.numero.toLowerCase().includes(this.inputSearchClient.toLowerCase())) || cliente.cards.some(card => card.number.includes(this.inputSearchClient)));
         },
 
-
-
         borrarFormulario() {
             this.inputNombre = ""
             this.inputApellido = ""
@@ -157,7 +149,7 @@ createApp({
             this.mensaje = ""
         },
 
-        showMoneyAccounts(){
+        showMoneyAccounts() {
             this.showMoneyAccountss = true;
             this.showListClientss = false;
             this.showAddClientss = false;
@@ -175,7 +167,6 @@ createApp({
             this.showAddClientss = true;
             this.showListCardss = false;
             this.showMoneyAccountss = false
-
         },
 
         showListCards() {
@@ -183,20 +174,16 @@ createApp({
             this.showAddClientss = false;
             this.showListClientss = false;
             this.showMoneyAccountss = false
-
         },
 
         // Cards
-
         allCards() {
             axios
                 .get("/api/cards")
                 .then(response => {
                     this.cards = response.data
                     console.log(this.cards)
-
                 })
-
         },
 
         capitalizeFirstLetter(str) {

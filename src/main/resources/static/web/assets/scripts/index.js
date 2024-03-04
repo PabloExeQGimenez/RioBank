@@ -98,7 +98,6 @@ createApp({
               }
             });
           } else {
-            // Si no es 'admin@admin.com', redireccionar a la página de cuentas
             Swal.fire({
               title: "Welcome!",
               text: "You will be redirected to your personal account.",
