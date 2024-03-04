@@ -2,279 +2,268 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Río Bank | Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <div id="app" class="grid">
-        <div class="top">
-            <div class="top__text">
-                <i class="bi bi-headset mx-2"> </i><span>Administration panel</span>
-            </div>
-        </div>
-        <div class="containerHeader">
-            <header class="containerHeader__header">
-                <h1><a href="#"><i class="bi bi-bank2"></i> Río Bank</a></h1>
-                <div v-if="name =='-'" class="header__navMobile">
-                    <a data-bs-target="#modalLogin" data-bs-toggle="modal">
-                        <i class="bi bi-box-arrow-in-right"></i> </a>
-                </div>
-                <nav class="header__navPc">
-                    <div v-if="name !== '-'" class="d-flex align-items-start">
-                        <a href="./assets/pages/cuentas.html"> <i class="bi bi-person-circle fs-2 mx-2"></i>
-                            {{name}}</a>
-                    </div>
-                    <div v-if="name =='-'">
-                        <a data-bs-target="#modalLogin" data-bs-toggle="modal">
-                            <i class="bi bi-box-arrow-in-right"></i>
-                            Login / Register
-                        </a>
-                    </div>
-                    <a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
-                        class="d-flex align-items-center">
-                        <i class="bi bi-box-arrow-in-left fs-2 "></i>
-                        Logout
-                    </a>
-                </nav>
-                <nav v-if="name !=='-'" class="header__offcanvas">
-                    <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                        aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></a>
-                </nav>
-            </header>
-        </div>
-        <main class="mainAccount">
-            <section class="mainAccount__navLateral">
-                <ul class="ulLateral">
-                    <li><a @click.prevent="showAddClients"><i class="bi bi-person-gear"></i> Add Clients</a></li>
-                    <li><a @click.prevent="showListClients"><i class="bi bi-people"></i> Clients</a></li>
-                    <li><a @click.prevent="showListCards"><i class="bi bi-credit-card"></i> Cards</a></li>
-                    <li><a @click.prevent="showMoneyAccounts"><i class="bi bi-piggy-bank"></i> Balance</a></li>
-                </ul>
-
-            </section>
-            <section class="mainAccount__section1">
-                <div v-show="showAddClientss">
-                    <h3 class="text-center"> Add clients</h3>
-                    <form class="formAdmin">
-                        <div class="">
-                            <label for="exampleInputName" class="form-label">Name</label>
-                            <input type="email" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-                                v-model="inputNombre">
-                        </div>
-                        <div class="">
-                            <label for="exampleInputLasname" class="form-label">Lastname</label>
-                            <input type="email" class="form-control" id="exampleInputLasname"
-                                aria-describedby="emailHelp" v-model="inputApellido">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                                v-model="inputEmail">
-                        </div>
-                        <div class="text-center">
-                            <span class="text-danger fs-6">{{mensaje}}</span>
-                        </div>
-                        <button type="button" class="btn boton btn100" @click="agregarCliente">Send</button>
-                    </form>
-                </div>
-                <div v-show="showListClientss">
-                    <div class="botonera">
-                        <label>
-                            <input type="search" placeholder="Search" v-model="inputSearchClient" class="p-1 m-1">
-                            <button type="button" class="boton" @click="searchClients"> Search</button>
-                            <span> (Search by name, last name, account number or card number)</span>
-                        </label>
-                    </div>
-                    <div class="tableListClients">
-                        <h3 class="text-center">Client list </h3>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Lastname</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Accounts</th>
-                                    <th scope="col">Cards</th>
-                                    <th scope="col">Loans</th>
-                                </tr>
-                            </thead>
-                            <tbody class="rounded-4">
-                                <tr v-if="filteredClients.length === 0" v-for="cliente of clientess" >
-                                    <td>{{ cliente.nombre }}</td>
-                                    <td>{{ cliente.apellido }}</td>
-                                    <td>{{ cliente.email }}</td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="cuenta in cliente.cuentas" :key="cuenta.id">{{ cuenta.numero }}
-                                                U$D {{cuenta.balance}}</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="card in cliente.cards" :key="card.id">{{ card.type}} {{
-                                                card.number }}</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="loan in cliente.loans" :key="loan.id">{{loan.loanName}} U$D {{
-                                                loan.amount }}</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr v-else v-for="cliente in filteredClients" :key="cliente.id">
-                                    <td>{{ cliente.nombre }}</td>
-                                    <td>{{ cliente.apellido }}</td>
-                                    <td>{{ cliente.email }}</td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="cuenta in cliente.cuentas" :key="cuenta.id">{{ cuenta.numero }}
-                                                U$S {{cuenta.balance}}</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="card in cliente.cards" :key="card.id">{{ card.type}} {{
-                                                card.number }}</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="loan in cliente.loans" :key="loan.id">{{loan.loanName}} U$D {{
-                                                loan.amount }}</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                </div>
-                <div v-show="showListCardss">
-                    <div class="botonera">
-                        <label>
-                            <input type="search" placeholder="Search" v-model="inputSearch">
-                            <button type="button" class="boton" @click="searchCards"> Search</button>
-                            (Search by first name, last name or card number)
-                        </label>
-                    </div>
-                    <div class="tableListCards">
-                        <h3 class="text-center">Cards list</h3>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Cardholder</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Color</th>
-                                    <th scope="col">Number</th>
-                                    <th scope="col">Cvv</th>
-                                    <th scope="col">From Date</th>
-                                    <th scope="col">Thru Date</th>
-                                    <th scope="col">Active</th>
-                                </tr>
-                            </thead>
-                            <tbody class="rounded-4">
-                                <tr v-if="filteredCards.length === 0" v-for="card in cards">
-                                    <td>{{ card.cardholder }}</td>
-                                    <td>{{ card.type }}</td>
-                                    <td>{{ card.color }}</td>
-                                    <td>{{ card.number }}</td>
-                                    <td>{{ card.cvv }}</td>
-                                    <td>{{ card.fromDate }}</td>
-                                    <td>{{ card.thruDate }}</td>
-                                    <td>{{ card.active }}</td>
-                                </tr>
-                                <tr v-else v-for="card in filteredCards">
-                                    <td>{{ card.cardholder }}</td>
-                                    <td>{{ card.type }}</td>
-                                    <td>{{ card.color }}</td>
-                                    <td>{{ card.number }}</td>
-                                    <td>{{ card.cvv }}</td>
-                                    <td>{{ card.fromDate }}</td>
-                                    <td>{{ card.thruDate }}</td>
-                                    <td>{{ card.active }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div v-show="showMoneyAccountss">
-                    
-                    <div >
-                        <h3 >Total money in  accounts: U$D {{totalAccounts}}</h3>
-                        <h3 >Total money in loans: U$D {{totalLoans}}</h3>
-                        <h2 class="bg-info-subtle">Total Balance: U$D {{ totalAccounts - totalLoans }}</h2>
-                    
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-            aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-                    <i class="text-light bi bi-person-circle fs-1 mx-2"></i>
-                    <span class="text-light fs-2">{{ capitalizeFirstLetter(name) }}</span>
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="ulLateralMobile">
-                    
-                        <li><a @click.prevent="showAddClients" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-person-gear"></i> Add Clients</a></li>
-                        <li><a @click.prevent="showListClients" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-people"></i> Clients</a></li>
-                        <li><a @click.prevent="showListCards" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-credit-card"></i> Cards</a></li>
-                        <li><a @click.prevent="showMoneyAccounts" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-piggy-bank"></i> Balance</a></li>
-                    
-                    <li><a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin"
-                            data-bs-toggle="modal" class="text-white">
-                            <i class="bi bi-box-arrow-in-left "></i>
-                            Logout
-                        </a></li>
-                </ul>
-            </div>
-        </div>
-        <footer>
-            <div class="top">
-                <div class="top__text">
-                    <a @click="linkAdmin" class="linkPanel text-black text-decoration-underline"><i
-                            class="bi bi-gear"></i> Administration panel</a>
-                </div>
-            </div>
-            <div class="foot">
-                <a href="www.facebook.com" class="text-reset">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="www.twiter.com" class="text-reset">
-                    <i class="bi bi-twitter"></i> </a>
-                <a href="www.google.com" class="text-reset">
-                    <i class="bi bi-google"></i>
-                    <a href="www.instagram.com" class="text-reset">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-            </div>
-            <div class="foot__text">
-                <p>© 2023 Río Bank V-0.3</p>
-            </div>
-        </footer>
+  <div id="app" class="grid">
+    <div class="top">
+      <div class="top__text">
+        <i class="bi bi-gear-fill mx-2"> </i><span>Administration panel</span>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../scripts/manager.js"></script>
+    <div class="containerHeader">
+      <header class="containerHeader__header">
+        <h1><a href="#"><i class="bi bi-bank2"></i> Río Bank</a></h1>
+        <div v-if="name =='-'" class="header__navMobile">
+          <a data-bs-target="#modalLogin" data-bs-toggle="modal">
+            <i class="bi bi-box-arrow-in-right"></i> </a>
+        </div>
+        <nav class="header__navPc">
+          <div v-if="name !== '-'" class="d-flex align-items-start">
+            <a href="./assets/pages/cuentas.html"> <i class="bi bi-person-circle fs-2 mx-2"></i>
+              {{name}}</a>
+          </div>
+          <div v-if="name =='-'">
+            <a data-bs-target="#modalLogin" data-bs-toggle="modal">
+              <i class="bi bi-box-arrow-in-right"></i>
+              Login / Register
+            </a>
+          </div>
+          <a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
+            class="d-flex align-items-center">
+            <i class="bi bi-box-arrow-in-left fs-2 "></i>
+            Logout
+          </a>
+        </nav>
+        <nav v-if="name !=='-'" class="header__offcanvas">
+          <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></a>
+        </nav>
+      </header>
+    </div>
+    <main class="mainAccount">
+      <section class="mainAccount__navLateral">
+        <ul class="ulLateral">
+          <li><a @click.prevent="showAddClients"><i class="bi bi-person-gear"></i> Add Clients</a></li>
+          <li><a @click.prevent="showListClients"><i class="bi bi-people"></i> Clients</a></li>
+          <li><a @click.prevent="showListCards"><i class="bi bi-credit-card"></i> Cards</a></li>
+          <li><a @click.prevent="showMoneyAccounts"><i class="bi bi-piggy-bank"></i> Balance</a></li>
+        </ul>
+      </section>
+      <section class="mainAccount__section1">
+        <div v-show="showAddClientss">
+          <h3 class="text-center"> Add clients</h3>
+          <form class="formAdmin">
+            <div class="">
+              <label for="exampleInputName" class="form-label">Name</label>
+              <input type="email" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                v-model="inputNombre">
+            </div>
+            <div class="">
+              <label for="exampleInputLasname" class="form-label">Lastname</label>
+              <input type="email" class="form-control" id="exampleInputLasname" aria-describedby="emailHelp"
+                v-model="inputApellido">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                v-model="inputEmail">
+            </div>
+            <div class="text-center">
+              <span class="text-danger fs-6">{{mensaje}}</span>
+            </div>
+            <button type="button" class="btn boton btn100" @click="agregarCliente">Send</button>
+          </form>
+        </div>
+        <div v-show="showListClientss">
+          <div class="botonera">
+            <label>
+              <input type="search" placeholder="Search" v-model="inputSearchClient" class="p-1 m-1">
+              <button type="button" class="boton" @click="searchClients"> Search</button>
+              <span> (Search by name, last name, account number or card number)</span>
+            </label>
+          </div>
+          <div class="tableListClients">
+            <h3 class="text-center">Client list </h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Accounts</th>
+                  <th scope="col">Cards</th>
+                  <th scope="col">Loans</th>
+                </tr>
+              </thead>
+              <tbody class="rounded-4">
+                <tr v-if="filteredClients.length === 0" v-for="cliente of clientess">
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.apellido }}</td>
+                  <td>{{ cliente.email }}</td>
+                  <td>
+                    <ul>
+                      <li v-for="cuenta in cliente.cuentas" :key="cuenta.id">{{ cuenta.numero }}
+                        U$D {{cuenta.balance}}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li v-for="card in cliente.cards" :key="card.id">{{ card.type}} {{
+                        card.number }}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li v-for="loan in cliente.loans" :key="loan.id">{{loan.loanName}} U$D {{
+                        loan.amount }}</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr v-else v-for="cliente in filteredClients" :key="cliente.id">
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.apellido }}</td>
+                  <td>{{ cliente.email }}</td>
+                  <td>
+                    <ul>
+                      <li v-for="cuenta in cliente.cuentas" :key="cuenta.id">{{ cuenta.numero }}
+                        U$S {{cuenta.balance}}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li v-for="card in cliente.cards" :key="card.id">{{ card.type}} {{
+                        card.number }}</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li v-for="loan in cliente.loans" :key="loan.id">{{loan.loanName}} U$D {{
+                        loan.amount }}</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div v-show="showListCardss">
+          <div class="botonera">
+            <label>
+              <input type="search" placeholder="Search" v-model="inputSearch">
+              <button type="button" class="boton" @click="searchCards"> Search</button>
+              <span> (Search by first name, last name or card number)</span>
+            </label>
+          </div>
+          <div class="tableListCards">
+            <h3 class="text-center">Cards list</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Cardholder</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Number</th>
+                  <th scope="col">Cvv</th>
+                  <th scope="col">From Date</th>
+                  <th scope="col">Thru Date</th>
+                  <th scope="col">Active</th>
+                </tr>
+              </thead>
+              <tbody class="rounded-4">
+                <tr v-if="filteredCards.length === 0" v-for="card in cards">
+                  <td>{{ card.cardholder }}</td>
+                  <td>{{ card.type }}</td>
+                  <td>{{ card.color }}</td>
+                  <td>{{ card.number }}</td>
+                  <td>{{ card.cvv }}</td>
+                  <td>{{ card.fromDate }}</td>
+                  <td>{{ card.thruDate }}</td>
+                  <td>{{ card.active }}</td>
+                </tr>
+                <tr v-else v-for="card in filteredCards">
+                  <td>{{ card.cardholder }}</td>
+                  <td>{{ card.type }}</td>
+                  <td>{{ card.color }}</td>
+                  <td>{{ card.number }}</td>
+                  <td>{{ card.cvv }}</td>
+                  <td>{{ card.fromDate }}</td>
+                  <td>{{ card.thruDate }}</td>
+                  <td>{{ card.active }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div v-show="showMoneyAccountss">
+          <div>
+            <h3>Total money in accounts: U$D {{totalAccounts}}</h3>
+            <h3>Total money in loans: U$D {{totalLoans}}</h3>
+            <h2 class="bg-info-subtle">Total Balance: U$D {{ totalAccounts - totalLoans }}</h2>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+      aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+          <i class="text-light bi bi-person-circle fs-1 mx-2"></i>
+          <span class="text-light fs-2">{{ capitalizeFirstLetter(name) }}</span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="ulLateralMobile">
+          <li><a @click.prevent="showAddClients" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-person-gear"></i> Add Clients</a></li>
+          <li><a @click.prevent="showListClients" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-people"></i> Clients</a></li>
+          <li><a @click.prevent="showListCards" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-credit-card"></i> Cards</a></li>
+          <li><a @click.prevent="showMoneyAccounts" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="bi bi-piggy-bank"></i> Balance</a></li>
+          <li><a v-if="name !=='-'" @click="logout()" href="" data-bs-target="#modalLogin" data-bs-toggle="modal"
+              class="text-white">
+              <i class="bi bi-box-arrow-in-left "></i>
+              Logout
+            </a></li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <div class="top">
+        <div class="top__text">
+          <a @click="linkAdmin" class="linkPanel text-black text-decoration-underline"><i class="bi bi-gear"></i>
+            Administration panel</a>
+        </div>
+      </div>
+      <div class="foot">
+        <a href="www.facebook.com" class="text-reset"><i class="bi bi-facebook"></i></a>
+        <a href="www.twiter.com" class="text-reset"><i class="bi bi-twitter"></i> </a>
+        <a href="www.google.com" class="text-reset"><i class="bi bi-google"></i></a>
+        <a href="www.instagram.com" class="text-reset"><i class="bi bi-instagram"></i></a>
+      </div>
+      <div class="foot__text">
+        <p>© 2023 Río Bank V-0.3</p>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../scripts/manager.js"></script>
 </body>
 
 </html>

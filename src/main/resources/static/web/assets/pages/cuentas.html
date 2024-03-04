@@ -36,6 +36,7 @@
               Logout
             </a>
           </div>
+        </div>
       </nav>
       <nav class="header__offcanvas">
         <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
@@ -95,13 +96,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="cuenta of cuentasCurrent"  role="button" class="detailsAccount"  data-content="Details account">
+                  <tr v-for="cuenta of cuentasCurrent" class="detailsAccount"  data-content="Details account">
                     <td @click.prevent="accountId(cuenta.id)">{{cuenta.numero}}</td>
                     <td @click.prevent="accountId(cuenta.id)">$ {{cuenta.balance}}</td>
                     <td @click.prevent="accountId(cuenta.id)">{{cuenta.tipo}}</td>
                     <td @click.prevent="accountId(cuenta.id)">{{formatDate(cuenta.fechaCreacion)}}</td>
-                    <td><a @click.prevent="accountId(cuenta.id)" class="boton" role="button"><i class="bi bi-eye"></i></a></td>
-                    <td><a @click.prevent="deleteAccount(cuenta.id)" class="boton" role="button"><i class="bi bi-trash3"></i></a></td>
+                    <td><a @click.prevent="accountId(cuenta.id)" class="boton"><i class="bi bi-eye"></i></a></td>
+                    <td><a @click.prevent="deleteAccount(cuenta.id)" class="boton"><i class="bi bi-trash3"></i></a></td>
                   </tr>
                 </tbody>
               </table>
