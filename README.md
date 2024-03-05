@@ -15,6 +15,7 @@ ___
 
    O registrese con nuevos datos.
 ```
+![vista](src/main/resources/static/web/assets/images/prev.png)
 
 ## 📦 Tecnologías utilizadas
 ### Backend:
