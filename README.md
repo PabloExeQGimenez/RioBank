@@ -13,19 +13,15 @@ ___
    usuario: admin@admin.com
    contraseña: admin
 ```
-___
 
-##Tecnologias utilizadas
+## Tecnologias utilizadas
+
 <table align="center">
-	<img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="40">
-
  <tr >
 	 <td align="center" colspan="4" height="10">
         <h3>Lenguajes</h3>   
     </td>
-	 <td align="center" colspan="3" height="10">
-        <h3>Frameworks</h3>   
-    </td>
+	
 	 
  </tr>
 
@@ -41,6 +37,11 @@ ___
     </td>
  <td align="center" width="96">
 	<img src="https://skillicons.dev/icons?i=css" width="48" height="48"/>      
+    </td>
+</tr>
+<tr>
+	<td align="center" colspan="3" height="10">
+        <h3>Frameworks</h3>   
     </td>
 		<td align="center" width="96">
 	<img src="https://skillicons.dev/icons?i=spring" width="48" height="48"/>    
