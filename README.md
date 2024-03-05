@@ -1,20 +1,22 @@
 # [![logo](src/main/resources/static/web/assets/images/favicon.png) Rio Bank](https://riobank.onrender.com/web/index.html)
-### Aplicación de Home Banking con desarrollo de backend para prestaciones de usuario y administrador. 
-### Un frontend logrado e intuitivo para una correcta experiencia de usuario tanto en PC como en dispositivos móbiles.
+### 📌 Aplicación de Home Banking con desarrollo de backend para prestaciones de usuario y administrador. 
+### 📌 Un frontend logrado e intuitivo para una correcta experiencia de usuario tanto en PC como en dispositivos móbiles.
 ___
 >[!important]
 >**Visitá el [Deployment](https://riobank.onrender.com/web/index.html)** _(tarda en cargar, hosting gratuito)_
 
-**Datos de prueba:**
+📋 **Datos de prueba:**
 ```
    usuario: esmeralda@gmail.com 
    contraseña: esmeralda
 
    usuario: admin@admin.com
    contraseña: admin
+
+   O registrese con nuevos datos.
 ```
 
-## Tecnologías utilizadas
+## 📦 Tecnologías utilizadas
 ### Backend:
 ![java](https://skillicons.dev/icons?i=java)
 ![springboot](https://skillicons.dev/icons?i=spring)
@@ -38,3 +40,4 @@ ___
 ### Librerías
 **Lombok, MapStrck, Axios**
 ___
+[Pablo ExeQ Gimenez](https://github.com/PabloExeQGimenez)
