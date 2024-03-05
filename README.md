@@ -15,6 +15,12 @@ ___
 ```
 
 ## Tecnologias utilizadas
+![java](https://skillicons.dev/icons?i=java)
+![springboot](https://skillicons.dev/icons?i=spring)
+![gradle](https://skillicons.dev/icons?i=gradle)
+![hibernate](https://skillicons.dev/icons?i=hibernate)
+
+
 
 <table align="center">
  <tr >
