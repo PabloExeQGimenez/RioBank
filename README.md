@@ -1,5 +1,5 @@
 # [![logo](src/main/resources/static/web/assets/images/favicon.png) Rio Bank](https://riobank.onrender.com/web/index.html)
-### 📌 Aplicación de Home Banking con desarrollo de backend para prestaciones de usuario y administrador. 
+### 📌 Aplicación de Home Banking con desarrollo de backend para prestaciones de usuario y administrador, con seguridad implementada. 
 ### 📌 Un frontend logrado e intuitivo para una correcta experiencia de usuario tanto en PC como en dispositivos móbiles.
 ___
 >[!note]
