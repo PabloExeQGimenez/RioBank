@@ -2,7 +2,7 @@
 ### 📌 Aplicación de Home Banking con desarrollo de backend para prestaciones de usuario y administrador. 
 ### 📌 Un frontend logrado e intuitivo para una correcta experiencia de usuario tanto en PC como en dispositivos móbiles.
 ___
->[!important]
+>[!note]
 >**Visitá el [Deployment](https://riobank.onrender.com/web/index.html)** _(tarda en cargar, hosting gratuito)_
 
 📋 **Datos de prueba:**
