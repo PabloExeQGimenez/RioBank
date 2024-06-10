@@ -4,6 +4,8 @@
 ___
 >[!note]
 >**Visitá el [Deployment](https://riobank.onrender.com/web/index.html)** _(tarda en cargar, hosting gratuito)_
+>[!info]
+>***En firefox fallan los estilos en el deploy, probablemente anidamiento de etiquetas CSS
 
 📋 **Datos de prueba:**
 ```
